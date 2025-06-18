@@ -1,4 +1,4 @@
-<div class="w-full bg-white shadow-sm border-r border-gray-200 h-full">
+<div class="bg-mode w-full shadow-sm border-r border-gray-200 h-full">
     <!-- Logo -->
     <div class="p-6 border-b border-gray-200">
         <div class="flex items-center space-x-3">

@@ -1,4 +1,4 @@
-<nav class="bg-mode bg-mode w-full px-5 py-2 shadow-sm h-auto">
+<nav class="bg-mode w-full px-5 py-2 shadow-sm h-auto">
     <div class="flex justify-between items-center h-16">
         <!-- Left side - Back and Home icons -->
         <div class="flex items-center space-x-4">

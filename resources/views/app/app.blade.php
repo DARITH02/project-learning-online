@@ -18,12 +18,15 @@
         </article>
         <article class="w-4/5 block absolute left-1/5">
             <article class="w-full">
-                <nav class="w-full sticky top-0 bg-white">
+                <nav class="w-full sticky top-0">
                     @include('layout.navigaton')
                 </nav>  
                 <main class="w-full">
                     @yield('contents')
                 </main>
+                <footer class="w-full px-7 mb-1.5 ">
+                    @include('layout.footer')
+                </footer>
             </article>
         </article>
     </section>

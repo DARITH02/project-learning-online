@@ -1,63 +1,63 @@
 @extends('app.app')
 @section('contents')
-    <div class="min-h-screen p-8">
+    <div class=" p-8">
         <div class="max-w-7xl mx-auto space-y-12">
-            <h1 class="text-2xl font-medium text-gray-300 mb-8">Hello, Super Admin</h1>
+            <h1 class="text-2xl font-medium mb-8">Hello, Super Admin</h1>
 
             <!-- Stats Cards Container -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Total Student Card -->
-                <div class="bg-gray-800 rounded-lg p-6 flex items-center space-x-4">
+                <div class="bg-mode rounded-lg p-6 flex items-center space-x-4">
                     <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center">
                         <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                     </div>
                     <div>
-                        <p class="text-gray-400 text-sm">Total Student</p>
-                        <p class="text-3xl font-bold text-white">49</p>
+                        <p class="text-sm">Total Student</p>
+                        <p class="text-3xl font-bold ">49</p>
                     </div>
                 </div>
 
                 <!-- Total Instructor Card -->
-                <div class="bg-gray-800 rounded-lg p-6 flex items-center space-x-4">
+                <div class="bg-mode rounded-lg p-6 flex items-center space-x-4">
                     <div class="w-12 h-12 bg-yellow-600 rounded-full flex items-center justify-center">
-                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <svg class="w-6 h-6 " fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
                                 clip-rule="evenodd" />
                         </svg>
                     </div>
                     <div>
-                        <p class="text-gray-400 text-sm">Total Instructor</p>
-                        <p class="text-3xl font-bold text-white">1</p>
+                        <p class=" text-sm">Total Instructor</p>
+                        <p class="text-3xl font-bold ">1</p>
                     </div>
                 </div>
 
                 <!-- Total Course Card -->
-                <div class="bg-gray-800 rounded-lg p-6 flex items-center space-x-4">
+                <div class="bg-mode rounded-lg p-6 flex items-center space-x-4">
                     <div class="w-12 h-12 bg-teal-600 rounded-full flex items-center justify-center">
-                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <svg class="w-6 h-6 " fill="currentColor" viewBox="0 0 20 20">
                             <path
                                 d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
                         </svg>
                     </div>
                     <div>
-                        <p class="text-gray-400 text-sm">Total Course</p>
-                        <p class="text-3xl font-bold text-white">4</p>
+                        <p class=" text-sm">Total Course</p>
+                        <p class="text-3xl font-bold ">4</p>
                     </div>
                 </div>
 
                 <!-- Total Sales Card -->
-                <div class="bg-gray-800 rounded-lg p-6 flex items-center space-x-4">
+                <div class="bg-mode rounded-lg p-6 flex items-center space-x-4">
                     <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center">
-                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <svg class="w-6 h-6 " fill="currentColor" viewBox="0 0 20 20">
                             <path
                                 d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
                         </svg>
                     </div>
                     <div>
-                        <p class="text-gray-400 text-sm">Total Sales</p>
-                        <p class="text-3xl font-bold text-white">11</p>
+                        <p class=" text-sm">Total Sales</p>
+                        <p class="text-3xl font-bold ">11</p>
                     </div>
                 </div>
             </div>
@@ -65,42 +65,42 @@
                 <!-- Main Content Grid -->
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     <!-- Top Courses Table -->
-                    <div class="lg:col-span-2 bg-white rounded-lg shadow-sm p-6">
-                        <h2 class="text-xl font-semibold text-gray-800 mb-6">Top courses</h2>
+                    <div class="bg-mode lg:col-span-2 rounded-lg shadow-sm p-6">
+                        <h2 class="text-xl font-semibold  mb-6">Top courses</h2>
                         <div class="overflow-x-auto">
                             <table class="w-full">
                                 <thead>
                                     <tr class="border-b border-gray-200">
-                                        <th class="text-left py-3 px-2 text-gray-500 font-medium text-sm">ID</th>
-                                        <th class="text-left py-3 px-2 text-gray-500 font-medium text-sm">NAME</th>
-                                        <th class="text-left py-3 px-2 text-gray-500 font-medium text-sm">ENROLL</th>
-                                        <th class="text-left py-3 px-2 text-gray-500 font-medium text-sm">SALES</th>
+                                        <th class="text-left py-3 px-2  font-medium text-sm">ID</th>
+                                        <th class="text-left py-3 px-2  font-medium text-sm">NAME</th>
+                                        <th class="text-left py-3 px-2  font-medium text-sm">ENROLL</th>
+                                        <th class="text-left py-3 px-2  font-medium text-sm">SALES</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr class="border-b border-gray-100">
-                                        <td class="py-4 px-2 text-gray-800">1</td>
-                                        <td class="py-4 px-2 text-gray-600">Build a full stack NFT Marketplace using...</td>
-                                        <td class="py-4 px-2 text-gray-800">5</td>
-                                        <td class="py-4 px-2 text-gray-800">$80.00</td>
+                                        <td class="py-4 px-2 ">1</td>
+                                        <td class="py-4 px-2 ">Build a full stack NFT Marketplace using...</td>
+                                        <td class="py-4 px-2 ">5</td>
+                                        <td class="py-4 px-2 ">$80.00</td>
                                     </tr>
                                     <tr class="border-b border-gray-100">
-                                        <td class="py-4 px-2 text-gray-800">2</td>
-                                        <td class="py-4 px-2 text-gray-600">The Complete 2023 Web Development Bootca...</td>
-                                        <td class="py-4 px-2 text-gray-800">4</td>
-                                        <td class="py-4 px-2 text-gray-800">0.00</td>
+                                        <td class="py-4 px-2 ">2</td>
+                                        <td class="py-4 px-2 ">The Complete 2023 Web Development Bootca...</td>
+                                        <td class="py-4 px-2 ">4</td>
+                                        <td class="py-4 px-2 ">0.00</td>
                                     </tr>
                                     <tr class="border-b border-gray-100">
-                                        <td class="py-4 px-2 text-gray-800">3</td>
-                                        <td class="py-4 px-2 text-gray-600">The Complete ChatGPT Web Development Cod...</td>
-                                        <td class="py-4 px-2 text-gray-800">2</td>
-                                        <td class="py-4 px-2 text-gray-800">0.00</td>
+                                        <td class="py-4 px-2 ">3</td>
+                                        <td class="py-4 px-2 ">The Complete ChatGPT Web Development Cod...</td>
+                                        <td class="py-4 px-2 ">2</td>
+                                        <td class="py-4 px-2 ">0.00</td>
                                     </tr>
                                     <tr>
-                                        <td class="py-4 px-2 text-gray-800">4</td>
-                                        <td class="py-4 px-2 text-gray-600">The Web Developer Bootcamp 2023</td>
-                                        <td class="py-4 px-2 text-gray-800">0</td>
-                                        <td class="py-4 px-2 text-gray-800">0.00</td>
+                                        <td class="py-4 px-2 ">4</td>
+                                        <td class="py-4 px-2 ">The Web Developer Bootcamp 2023</td>
+                                        <td class="py-4 px-2 ">0</td>
+                                        <td class="py-4 px-2 ">0.00</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -108,8 +108,8 @@
                     </div>
 
                     <!-- Summary Panel -->
-                    <div class="bg-white rounded-lg shadow-sm p-6">
-                        <h2 class="text-xl font-semibold text-gray-800 mb-6">Summary</h2>
+                    <div class="bg-mode rounded-lg shadow-sm p-6">
+                        <h2 class="text-xl font-semibold  mb-6">Summary</h2>
                         <div class="space-y-4">
                             <!-- Total Student -->
                             <div class="flex items-center justify-between">
@@ -117,7 +117,7 @@
                                     <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
                                         <i data-lucide="users" class="w-4 h-4 text-blue-600"></i>
                                     </div>
-                                    <span class="text-gray-600 text-sm">Total Student</span>
+                                    <span class=" text-sm">Total Student</span>
                                 </div>
                                 <span class="text-green-500 font-semibold">49</span>
                             </div>
@@ -128,7 +128,7 @@
                                     <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
                                         <i data-lucide="user" class="w-4 h-4 text-blue-600"></i>
                                     </div>
-                                    <span class="text-gray-600 text-sm">Total Instructor</span>
+                                    <span class=" text-sm">Total Instructor</span>
                                 </div>
                                 <span class="text-green-500 font-semibold">1</span>
                             </div>
@@ -139,7 +139,7 @@
                                     <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
                                         <i data-lucide="book-open" class="w-4 h-4 text-blue-600"></i>
                                     </div>
-                                    <span class="text-gray-600 text-sm">Total Active Course</span>
+                                    <span class=" text-sm">Total Active Course</span>
                                 </div>
                                 <span class="text-green-500 font-semibold">4</span>
                             </div>
@@ -150,7 +150,7 @@
                                     <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
                                         <i data-lucide="clock" class="w-4 h-4 text-blue-600"></i>
                                     </div>
-                                    <span class="text-gray-600 text-sm">Total Pending Course</span>
+                                    <span class=" text-sm">Total Pending Course</span>
                                 </div>
                                 <span class="text-green-500 font-semibold">0</span>
                             </div>
@@ -161,7 +161,7 @@
                                     <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
                                         <i data-lucide="star" class="w-4 h-4 text-blue-600"></i>
                                     </div>
-                                    <span class="text-gray-600 text-sm">Featured Course</span>
+                                    <span class=" text-sm">Featured Course</span>
                                 </div>
                                 <span class="text-green-500 font-semibold">4</span>
                             </div>
@@ -172,7 +172,126 @@
                                     <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
                                         <i data-lucide="tag" class="w-4 h-4 text-blue-600"></i>
                                     </div>
-                                    <span class="text-gray-600 text-sm">Discount Course</span>
+                                    <span class=" text-sm">Discount Course</span>
+                                </div>
+                                <span class="text-green-500 font-semibold">2</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+ <div class="max-w-7xl mx-auto">
+                <!-- Main Content Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Top Courses Table -->
+                    <div class="bg-mode lg:col-span-2 rounded-lg shadow-sm p-6">
+                        <h2 class="text-xl font-semibold  mb-6">Top courses</h2>
+                        <div class="overflow-x-auto">
+                            <table class="w-full">
+                                <thead>
+                                    <tr class="border-b border-gray-200">
+                                        <th class="text-left py-3 px-2  font-medium text-sm">ID</th>
+                                        <th class="text-left py-3 px-2  font-medium text-sm">NAME</th>
+                                        <th class="text-left py-3 px-2  font-medium text-sm">ENROLL</th>
+                                        <th class="text-left py-3 px-2  font-medium text-sm">SALES</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b border-gray-100">
+                                        <td class="py-4 px-2 ">1</td>
+                                        <td class="py-4 px-2 ">Build a full stack NFT Marketplace using...</td>
+                                        <td class="py-4 px-2 ">5</td>
+                                        <td class="py-4 px-2 ">$80.00</td>
+                                    </tr>
+                                    <tr class="border-b border-gray-100">
+                                        <td class="py-4 px-2 ">2</td>
+                                        <td class="py-4 px-2 ">The Complete 2023 Web Development Bootca...</td>
+                                        <td class="py-4 px-2 ">4</td>
+                                        <td class="py-4 px-2 ">0.00</td>
+                                    </tr>
+                                    <tr class="border-b border-gray-100">
+                                        <td class="py-4 px-2 ">3</td>
+                                        <td class="py-4 px-2 ">The Complete ChatGPT Web Development Cod...</td>
+                                        <td class="py-4 px-2 ">2</td>
+                                        <td class="py-4 px-2 ">0.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-4 px-2 ">4</td>
+                                        <td class="py-4 px-2 ">The Web Developer Bootcamp 2023</td>
+                                        <td class="py-4 px-2 ">0</td>
+                                        <td class="py-4 px-2 ">0.00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Summary Panel -->
+                    <div class="bg-mode rounded-lg shadow-sm p-6">
+                        <h2 class="text-xl font-semibold  mb-6">Summary</h2>
+                        <div class="space-y-4">
+                            <!-- Total Student -->
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                                        <i data-lucide="users" class="w-4 h-4 text-blue-600"></i>
+                                    </div>
+                                    <span class=" text-sm">Total Student</span>
+                                </div>
+                                <span class="text-green-500 font-semibold">49</span>
+                            </div>
+
+                            <!-- Total Instructor -->
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                                        <i data-lucide="user" class="w-4 h-4 text-blue-600"></i>
+                                    </div>
+                                    <span class=" text-sm">Total Instructor</span>
+                                </div>
+                                <span class="text-green-500 font-semibold">1</span>
+                            </div>
+
+                            <!-- Total Active Course -->
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                                        <i data-lucide="book-open" class="w-4 h-4 text-blue-600"></i>
+                                    </div>
+                                    <span class=" text-sm">Total Active Course</span>
+                                </div>
+                                <span class="text-green-500 font-semibold">4</span>
+                            </div>
+
+                            <!-- Total Pending Course -->
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                                        <i data-lucide="clock" class="w-4 h-4 text-blue-600"></i>
+                                    </div>
+                                    <span class=" text-sm">Total Pending Course</span>
+                                </div>
+                                <span class="text-green-500 font-semibold">0</span>
+                            </div>
+
+                            <!-- Featured Course -->
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                                        <i data-lucide="star" class="w-4 h-4 text-blue-600"></i>
+                                    </div>
+                                    <span class=" text-sm">Featured Course</span>
+                                </div>
+                                <span class="text-green-500 font-semibold">4</span>
+                            </div>
+
+                            <!-- Discount Course -->
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                                        <i data-lucide="tag" class="w-4 h-4 text-blue-600"></i>
+                                    </div>
+                                    <span class=" text-sm">Discount Course</span>
                                 </div>
                                 <span class="text-green-500 font-semibold">2</span>
                             </div>
@@ -195,7 +314,7 @@
     <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
         <div class="flex flex-wrap gap-4">
             <!-- Primary Buttons -->
-            <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+            <button class="px-4 py-2 bg-blue-600  rounded-lg hover:bg-blue-700 transition-colors">
                 Primary Button
             </button>
             <button class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
@@ -248,7 +367,7 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
             <h3 class="text-lg font-semibold text-gray-900 mb-2">Basic Card</h3>
-            <p class="text-gray-600 mb-4">This is a basic card with some content.</p>
+            <p class=" mb-4">This is a basic card with some content.</p>
             <button class="px-3 py-1 bg-blue-600 text-white text-sm rounded hover:bg-blue-700">
                 Action
             </button>
@@ -258,9 +377,9 @@
             <img src="/placeholder.svg?height=160&width=300" alt="Course" class="w-full h-40 object-cover">
             <div class="p-4">
                 <h3 class="text-lg font-semibold text-gray-900 mb-2">Course Card</h3>
-                <p class="text-gray-600 text-sm mb-3">Course description...</p>
+                <p class=" text-sm mb-3">Course description...</p>
                 <div class="flex items-center justify-between">
-                    <span class="text-sm text-gray-600">⭐ 4.8 (120)</span>
+                    <span class="text-sm ">⭐ 4.8 (120)</span>
                     <span class="text-lg font-bold text-blue-600">$99</span>
                 </div>
             </div>
