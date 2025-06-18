@@ -7,19 +7,20 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 </head>
 
-<body class="bg-gray-200">
+<body class="">
     <section class="flex gap-15 relative">
 
         <article class="w-1/5 h-screen fixed">
             @include('layout.siteBar')
         </article>
-        <article class="pl-10 w-4/5 block absolute left-1/5">
+        <article class="w-4/5 block absolute left-1/5">
             <article class="w-full">
-                <nav class="">
+                <nav class="w-full sticky top-0 bg-white">
                     @include('layout.navigaton')
-                </nav>
+                </nav>  
                 <main class="w-full">
                     @yield('contents')
                 </main>
