@@ -10,11 +10,12 @@
         "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
         "Noto Color Emoji";
 }
+
 body.dark {
-    background-color: black;
+    background-color:black;
     color: whitesmoke;
 }
 body.light {
-    background-color: whitesmoke;
+    background-color: white;
     color: black;
 }

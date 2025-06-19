@@ -18,17 +18,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const theme = localStorage.getItem("theme");
     if (theme === "dark") {
         document.body.classList.add("dark");
+        document.body.classList.remove("light");
+
         setIconTheme(true);
         bgMode.forEach((e) => {
             e.classList.add("bg-[#212529]");
-            e.classList.remove("bg-[#dee2e6]");
+            e.classList.remove("bg-[#f8f9fa]");
         });
     } else {
         setIconTheme(false);
         document.body.classList.remove("dark");
+        // document.body.classList.add("light");
         bgMode.forEach((e) => {
             e.classList.remove("bg-[#212529]");
-            e.classList.add("bg-[#dee2e6]");
+            e.classList.add("bg-[#f8f9fa]");
         });
     }
 });
@@ -42,15 +45,19 @@ document.getElementById("toggle-theme").addEventListener("click", () => {
 
     if (isDark) {
         document.body.classList.add("dark");
+        document.body.classList.remove("light");
+
         bgMode.forEach((e) => {
             e.classList.add("bg-[#212529]");
-            e.classList.remove("bg-[#dee2e6]");
+            e.classList.remove("bg-[#f8f9fa]");
         });
     } else {
         document.body.classList.add("ligth");
+        document.body.classList.remove("dark");
+
         bgMode.forEach((e) => {
+            e.classList.add("bg-[#f8f9fa]");
             e.classList.remove("bg-[#212529]");
-            e.classList.add("bg-[#dee2e6]");
         });
     }
 });
@@ -75,7 +82,7 @@ btnShowToggles.forEach((btn) => {
     btn.addEventListener("click", (e) => {
         const thisLi = btn.closest("li");
         const thisToggle = thisLi?.querySelector(".togle-show");
-       
+
         //   thisToggle.classList.add("");
 
         // Check if this one is visible
@@ -88,13 +95,15 @@ btnShowToggles.forEach((btn) => {
         // Hide all other toggles
         document.querySelectorAll(".togle-show").forEach((el) => {
             el.classList.add("hidden");
-            btn.classList.remove("border-blue-700","border-l-3","text-blue-700")
+            btn.classList.remove(
+                "border-blue-700",
+                "border-l-3",
+                "text-blue-700"
+            );
             //    if (el.classList.contains("hidden")){
             //     console.log(el);
-                
-                    
+
             //     }
-            
         });
 
         // Toggle this one (if it was hidden, show it; if visible, hide it)
@@ -110,6 +119,5 @@ btnShowToggles.forEach((btn) => {
         //  if(thisToggle.classList.contains("hidden")){
         //     btn.classList.remove("border-blue-700","border-l-3","text-blue-700")
         // }
-
     });
 });
