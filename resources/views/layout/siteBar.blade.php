@@ -22,9 +22,8 @@
         <ul class="w-full flex-col flex space-y-3.5">
             <li class="w-full ">
                 <!-- Dashboard -->
-                <a href="{{route('/')}}" class="{{request()->routeIs('/') ? 'border-blue-700 border-l-3' : '' }} flex items-center justify-between px-3 py-2.5 text-sm font-medium  "
-                    {{-- class=" "> --}}
-                    >
+                <a href="{{route('/')}}" class="{{request()->routeIs('/') ? 'border-blue-700 border-l-3 text-blue-700' : '' }} 
+                        flex items-center justify-between px-5 py-2.5 text-sm font-medium">
                     <div class="flex items-center space-x-3">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -35,19 +34,79 @@
                     </div>
                 </a>
             </li>
-            <li class="w-full">
-                <!-- Dashboard -->
-                <a href="#"
-                    class="flex items-center justify-between px-3 py-2.5 text-sm font-medium border-l-3  border-blue-700 text-blue-700">
-                    <div class="flex items-center space-x-3">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
-                            </path>
+            <li class="w-full ">
+                <span class="items-center justify-between block py-2.5 text-sm font-medium  ">
+                    <button class="flex gap-3 items-center bg-show-togle pl-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-book-open-icon lucide-book-open">
+                            <path d="M12 7v14" />
+                            <path
+                                d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" />
                         </svg>
-                        <span>Dashboard</span>
-                    </div>
-                </a>
+                        Courses
+                    </button>
+                    <!-- Dashboard -->
+                    <ul class="pl-3 mt-3 w-full h-20 bg-gray-700 togle-show hidden">
+                        <li class="w-full px-2.5 py-3.5 ">
+                            <a href="{{route('viewsCourses')}}"
+                                class="{{request()->routeIs('viewsCourses' ? 'text-blue-700' : '')}}">
+
+                                Courses
+                            </a>
+                        </li>
+                        <li>
+                            Category
+                        </li>
+                    </ul>
+                    {{-- <a href="{{ route('courses')}}"
+                        class="{{ request()->routeIs('courses') ? 'border-l-3  border-blue-700 text-blue-700' : ''}} flex items-center justify-between px-3 py-2.5 text-sm font-medium ">
+                        <div class="flex items-center space-x-3">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                                </path>
+                            </svg>
+                            <span>Dashboard</span>
+                        </div>
+                    </a> --}}
+                </span>
+
+            </li>
+            <li class="w-full ">
+                <span class=" px-5 items-center justify-between block  py-2.5 text-sm font-medium">
+                    <button class="flex gap-3 items-center bg-show-togle">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-book-open-icon lucide-book-open">
+                            <path d="M12 7v14" />
+                            <path
+                                d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" />
+                        </svg>
+                        Courses
+                    </button>
+                    <!-- Dashboard -->
+                    <ul class="pl-3 mt-3 w-full h-20 bg-gray-700 togle-show hidden">
+                        <li class="w-full px-2.5 py-3.5 ">
+                            Courses
+                        </li>
+                        <li>
+                            Category
+                        </li>
+                    </ul>
+                    {{-- <a href="{{ route('courses')}}"
+                        class="{{ request()->routeIs('courses') ? 'border-l-3  border-blue-700 text-blue-700' : ''}} flex items-center justify-between px-3 py-2.5 text-sm font-medium ">
+                        <div class="flex items-center space-x-3">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                                </path>
+                            </svg>
+                            <span>Dashboard</span>
+                        </div>
+                    </a> --}}
+                </span>
+
             </li>
         </ul>
 

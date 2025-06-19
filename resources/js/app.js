@@ -54,3 +54,62 @@ document.getElementById("toggle-theme").addEventListener("click", () => {
         });
     }
 });
+
+// const btnShowTogle = document.querySelectorAll(".bg-show-togle");
+// btnShowTogle.forEach((e,i) => {
+//     e.addEventListener("click", (el) => {
+//         console.log(el.target.classList.value);
+
+//         const togle = document.querySelector(".togle-show");
+//         const showTogle = togle.classList.contains("hidden");
+//         if (showTogle) {
+//             togle.classList.remove("hidden");
+//         } else {
+//             togle.classList.add("hidden");
+//         }
+//     });
+// });
+const btnShowToggles = document.querySelectorAll(".bg-show-togle");
+
+btnShowToggles.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+        const thisLi = btn.closest("li");
+        const thisToggle = thisLi?.querySelector(".togle-show");
+       
+        //   thisToggle.classList.add("");
+
+        // Check if this one is visible
+        const isVisible =
+            thisToggle && !thisToggle.classList.contains("hidden");
+        if (isVisible) {
+            // btn.classList.remove("border-blue-700","border-l-3","text-blue-700")
+        }
+
+        // Hide all other toggles
+        document.querySelectorAll(".togle-show").forEach((el) => {
+            el.classList.add("hidden");
+            btn.classList.remove("border-blue-700","border-l-3","text-blue-700")
+            //    if (el.classList.contains("hidden")){
+            //     console.log(el);
+                
+                    
+            //     }
+            
+        });
+
+        // Toggle this one (if it was hidden, show it; if visible, hide it)
+        if (!isVisible && thisToggle) {
+            thisToggle.classList.remove("hidden");
+            // btn.classList.remove(
+            //     "border-blue-700",
+            //     "border-l-3",
+            //     "text-blue-700"
+            // );
+            btn.classList.add("border-blue-700", "border-l-3", "text-blue-700");
+        }
+        //  if(thisToggle.classList.contains("hidden")){
+        //     btn.classList.remove("border-blue-700","border-l-3","text-blue-700")
+        // }
+
+    });
+});

@@ -1,9 +1,11 @@
 @extends('app.app')
 @section('contents')
-    <div class=" p-8">
+    <div class="p-8">
         <div class="max-w-7xl mx-auto space-y-12">
-            <h1 class="text-2xl font-medium mb-8">Hello, Super Admin</h1>
-
+            {{-- <h1 class="text-2xl font-medium mb-8">Hello, Super Admin</h1> --}}
+            <x-headding>
+                Hello, Super Admin
+            </x-headding>
             <!-- Stats Cards Container -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Total Student Card -->
@@ -180,7 +182,7 @@
                     </div>
                 </div>
             </div>
- <div class="max-w-7xl mx-auto">
+            <div class="max-w-7xl mx-auto">
                 <!-- Main Content Grid -->
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     <!-- Top Courses Table -->
