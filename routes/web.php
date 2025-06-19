@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CoursesController;
 use Illuminate\Support\Facades\Route;
@@ -15,7 +16,11 @@ Route::get('courses', function () {
 
 
 //route courese
-Route::get('/viewsCourses',[CoursesController::class,'index'])->name('viewsCourses');
+Route::get('/viewsCategory', [CoursesController::class, 'index'])->name('viewsCategory');
+Route::get('/viewCourses', [CategoryController::class, 'index'])->name('viewCourses');
+
+//route category
+Route::get('/viewcategory', [CategoryController::class, 'index'])->name('viewcategory');
 
 
 

@@ -49,7 +49,7 @@
                     <!-- Dashboard -->
                     <ul class="pl-3 mt-3 w-full h-20 bg-gray-700 togle-show hidden">
                         <li class="w-full px-2.5 py-3.5 ">
-                            <a href="{{route('viewsCourses')}}"
+                            <a href="{{route('viewsCategory')}}"
                                 class="{{request()->routeIs('viewsCourses' ? 'text-blue-700' : '')}}">
 
                                 Courses
