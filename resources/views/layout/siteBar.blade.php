@@ -19,96 +19,79 @@
 
     <!-- Navigation Menu -->
     <nav class="py-4 h-full w-full">
-        <ul class="w-full flex-col flex space-y-3.5">
-            <li class="w-full ">
-                <!-- Dashboard -->
-                <a href="{{route('/')}}" class="{{request()->routeIs('/') ? 'border-blue-700 border-l-3 text-blue-700' : '' }} 
-                        flex items-center justify-between px-5 py-2.5 text-sm font-medium">
-                    <div class="flex items-center space-x-3">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
-                            </path>
-                        </svg>
-                        <span>Dashboard</span>
-                    </div>
-                </a>
-            </li>
-            <li class="w-full ">
-                <span class="items-center justify-between block py-2.5 text-sm font-medium  ">
-                    <button class="flex gap-3 items-center bg-show-togle pl-5">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-book-open-icon lucide-book-open">
-                            <path d="M12 7v14" />
-                            <path
-                                d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" />
-                        </svg>
-                        Courses
-                    </button>
-                    <!-- Dashboard -->
-                    <ul class="pl-3 mt-3 w-full h-20 bg-gray-700 togle-show hidden">
-                        <li class="w-full px-2.5 py-3.5 ">
-                            <a href="{{route('viewsCategory')}}"
-                                class="{{request()->routeIs('viewsCourses' ? 'text-blue-700' : '')}}">
 
-                                Courses
-                            </a>
-                        </li>
-                        <li>
-                            Category
-                        </li>
-                    </ul>
-                    {{-- <a href="{{ route('courses')}}"
-                        class="{{ request()->routeIs('courses') ? 'border-l-3  border-blue-700 text-blue-700' : ''}} flex items-center justify-between px-3 py-2.5 text-sm font-medium ">
-                        <div class="flex items-center space-x-3">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
-                                </path>
-                            </svg>
-                            <span>Dashboard</span>
-                        </div>
-                    </a> --}}
-                </span>
+        <div class="rounded-lg">
+              <div class="w-full">
+                <div onclick="toggleSubmenu(this)"
+                    class="flex items-center cursor-pointer p-4 hover:bg-gray-50 select-none">
+                    <svg class="w-5 h-5  mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                    <span class="flex-1 text-sm font-medium ">Courses</span>
+                    <svg class="w-4 h-4 text-gray-400 transition-transform duration-200 chevron" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                    {{-- <span class="flex-1 text-sm font-medium text-indigo-600">Courses</span> --}}
+                </div>
+                <div class="submenu max-h-0 overflow-hidden transition-all duration-300 ">
 
-            </li>
-            <li class="w-full ">
-                <span class=" px-5 items-center justify-between block  py-2.5 text-sm font-medium">
-                    <button class="flex gap-3 items-center bg-show-togle">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-book-open-icon lucide-book-open">
-                            <path d="M12 7v14" />
-                            <path
-                                d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" />
-                        </svg>
-                        Courses
-                    </button>
-                    <!-- Dashboard -->
-                    <ul class="pl-3 mt-3 w-full h-20 bg-gray-700 togle-show hidden">
-                        <li class="w-full px-2.5 py-3.5 ">
-                            Courses
-                        </li>
-                        <li>
-                            Category
-                        </li>
-                    </ul>
-                    {{-- <a href="{{ route('courses')}}"
-                        class="{{ request()->routeIs('courses') ? 'border-l-3  border-blue-700 text-blue-700' : ''}} flex items-center justify-between px-3 py-2.5 text-sm font-medium ">
-                        <div class="flex items-center space-x-3">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
-                                </path>
-                            </svg>
-                            <span>Dashboard</span>
-                        </div>
-                    </a> --}}
-                </span>
+                    {{-- <div class="submenu-item px-6 py-2 text-sm text-gray-700 hover:bg-gray-200 cursor-pointer relative"
+                        onclick="setActive(this);loadPage('/viewCourses')">Courses List</div>
+                    <div class="submenu-item active px-6 py-2 text-sm text-blue-600 font-medium bg-blue-50 hover:bg-blue-100 cursor-pointer relative"
+                        onclick="setActive(this);loadPage('/viewcategory')">Categories List</div> --}}
+                </div>
+            </div>
 
-            </li>
-        </ul>
+            <!-- Example Menu Item -->
+            <div class="w-full">
+                <div onclick="toggleSubmenu(this)"
+                    class="flex items-center cursor-pointer p-4 hover:bg-gray-50 select-none">
+                    <svg class="w-5 h-5 text-indigo-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                    <span class="flex-1 text-sm font-medium text-indigo-600">Courses</span>
+                    <svg class="w-4 h-4 text-gray-400 transition-transform duration-200 chevron" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+                <div class="submenu max-h-0 overflow-hidden transition-all duration-300 ">
+                    <div class="submenu-item px-6 py-2 text-sm text-gray-700 hover:bg-gray-200 cursor-pointer relative"
+                        onclick="setActive(this);loadPage('/courses')">Courses List</div>
+                    <div class="submenu-item active px-6 py-2 text-sm text-blue-600 font-medium bg-blue-50 hover:bg-blue-100 cursor-pointer relative"
+                        onclick="setActive(this);loadPage('/viewcategory')">Categories List</div>
+                </div>
+            </div>
+
+            <!-- Repeat the same for other menu sections (Users, Analytics...) -->
+            <!-- Example below is Users -->
+            <div class="w-full">
+                <div onclick="toggleSubmenu(this)"
+                    class="flex items-center cursor-pointer p-4 hover:bg-gray-50 select-none">
+                    <svg class="w-5 h-5 text-indigo-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                    <span class="flex-1 text-sm font-medium text-indigo-600">Users</span>
+                    <svg class="w-4 h-4 text-gray-400 transition-transform duration-200 chevron" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+                <div class="submenu max-h-0 overflow-hidden transition-all duration-300 bg-gray-50">
+                    <div class="submenu-item px-6 py-2 text-sm text-gray-700 hover:bg-gray-200 cursor-pointer"
+                        onclick="setActive(this)">All Users</div>
+                    <div class="submenu-item px-6 py-2 text-sm text-gray-700 hover:bg-gray-200 cursor-pointer"
+                        onclick="setActive(this)">Add User</div>
+                    <div class="submenu-item px-6 py-2 text-sm text-gray-700 hover:bg-gray-200 cursor-pointer"
+                        onclick="setActive(this)">User Roles</div>
+                </div>
+            </div>
+
+        </div>
 
 
         <!-- Staffs -->
@@ -141,5 +124,47 @@
         </a> --}}
 
         <!-- Add more menu items as needed -->
+
+
+        <script>
+            // function toggleSubmenu(header) {
+            //   const submenu = header.nextElementSibling;
+            //   const chevron = header.querySelector('.chevron');
+
+            //   const allSubmenus = document.querySelectorAll('.submenu');
+            //   const allChevrons = document.querySelectorAll('.chevron');
+
+            //   allSubmenus.forEach(menu => {
+            //     if (menu !== submenu) {
+            //       menu.classList.remove('max-h-40');
+            //       menu.classList.add('max-h-0');
+            //     }
+            //   });
+
+            //   allChevrons.forEach(chev => {
+            //     if (chev !== chevron) chev.classList.remove('rotate-180');
+            //   });
+
+            //   submenu.classList.toggle('max-h-0');
+            //   submenu.classList.toggle('max-h-40');
+            //   chevron.classList.toggle('rotate-180');
+            // }
+
+            // function setActive(item) {
+            //   document.querySelectorAll('.submenu-item').forEach(i => {
+            //     i.classList.remove('active', 'bg-blue-50', 'text-blue-600', 'font-medium');
+            //     i.classList.add('text-gray-700');
+            //   });
+
+            //   item.classList.add('active', 'bg-blue-50', 'text-blue-600', 'font-medium');
+            //   item.classList.remove('text-gray-700');
+            // }
+
+            // // Auto-expand first menu on load
+            // document.addEventListener('DOMContentLoaded', () => {
+            //   const firstHeader = document.querySelector('.menu-item .flex');
+            //   if (firstHeader) toggleSubmenu(firstHeader);
+            // });
+        </script>
     </nav>
 </div>

@@ -1,21 +1,23 @@
 @extends('app.app')
 @section('contents')
 
-    <div class="p-7">
-        <div class="max-w-7xl ">
+<div  class="p-7">
+    <div class="min-h-screen w-full ">
+        <!-- Header Section -->
+        <x-headding-page class="rounded-md">
+            <x-slot name='headding'>Create Courses</x-slot>
+            <x-slot name='title1'>Courses</x-slot>
+            <x-slot name='title2'>View Courses</x-slot>
+            {{-- <x-slot name='title3'> </x-slot> --}}
+        </x-headding-page>
 
-
-            <div class="shadown w-full">
-                <!-- Header Section -->
-                <x-headding-page>
-                    <x-slot name="headding">Courses</x-slot>
-                    <x-slot name="title1">Courses</x-slot>
-                    <x-slot name="title2">/Courses</x-slot>
-                    <x-slot name="title3">/Courses</x-slot>
-                </x-headding-page>
-                <div class="mx-auto mt-6 bg-mode px-5 py-2.5">
+        <!-- Main Content -->
+        <div class="w-full mt-5 bg-mode">
+            <div class="rounded-lg shadow-sm">
+                <!-- Controls Section -->
+                <div class="p-6 border-b border-gray-200">
                     <div class="flex items-center justify-between flex-wrap gap-4">
-                        <div class="flex items-center gap-4">
+                        <div class="flex items-center gap-4 flex-wrap">
                             <div class="flex items-center gap-2">
                                 <span class="text-gray-700 font-medium">Show</span>
                                 <select
@@ -28,205 +30,203 @@
                                 <span class="text-gray-700 font-medium">Entries</span>
                             </div>
 
-                            <div class="relative">
+                            <select
+                                class="border border-gray-300 rounded-md px-3 py-2 text-sm text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 min-w-[140px]">
+                                <option>Select Category</option>
+                                <option>Software Development</option>
+                                <option>Website Development</option>
+                                <option>Mobile Development</option>
+                                <option>Desktop Development</option>
+                            </select>
+
+                            <select
+                                class="border border-gray-300 rounded-md px-3 py-2 text-sm text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 min-w-[140px]">
+                                <option>Select Instructor</option>
+                                <option>Instructor 1</option>
+                                <option>Instructor 2</option>
+                            </select>
+
+                            <select
+                                class="border border-gray-300 rounded-md px-3 py-2 text-sm text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 min-w-[120px]">
+                                <option>Select Status</option>
+                                <option>Active</option>
+                                <option>Inactive</option>
+                            </select>
+
+                            <div class="">
                                 <input type="text" placeholder="search"
                                     class="border border-gray-300 rounded-md pl-4 pr-10 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-64">
                                 <i
                                     class="fas fa-search absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
                             </div>
 
-                            {{-- <button
+                            <button
                                 class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
                                 Filter
-                            </button> --}}
-                            <x-booton-primary>
-                                Fillter
-                            </x-booton-primary>
+                            </button>
                         </div>
-                        <x-booton-primary class="bg-red-700">
-                            add
-                        </x-booton-primary>
-                        {{-- <button
+
+                        <button
                             class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium flex items-center gap-2 transition-colors">
                             <i class="fas fa-plus"></i>
                             Add
-                        </button> --}}
+                        </button>
                     </div>
                 </div>
 
                 <!-- Table Section -->
-                <div class="overflow-x-auto mt-4 bg-mode shadow-sm">
+                <div class="overflow-x-auto">
                     <table class="w-full">
-                        <thead class="border-b ">
+                        <thead class="border-b border-gray-200">
                             <tr>
                                 <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    ID
-                                </th>
+                                    ID</th>
                                 <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    TITLE
-                                </th>
+                                    TITLE</th>
                                 <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    ICON
-                                </th>
-                                <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    PARENT
                                     CATEGORY</th>
                                 <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    COURSE
-                                </th>
+                                    INSTRUCTOR</th>
                                 <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    STATUS
-                                </th>
+                                    CONTENT</th>
                                 <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    CREATED
-                                    AT</th>
+                                    ENROLLMENT</th>
                                 <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    ACTION
-                                </th>
+                                    PRICE</th>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    COURSE TYPE</th>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    STATUS</th>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    VISIBILITY</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-200">
                             <tr class="hover:bg-gray-50">
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">1</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Software Development</td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
-                                        <i class="fas fa-code text-gray-500 text-sm"></i>
-                                    </div>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                    <a href="#" class="text-blue-600 hover:text-blue-800">Build a full stack N...</a>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">-</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">1</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Software Development</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    Instructor : <span class="text-blue-600">instructor</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    <div>Total Section : 12.00</div>
+                                    <div>Total Lesson : 4.00</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">0.00</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$100.00</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="text-blue-600 text-sm">Recorded</span>
+                                </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <span
                                         class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
                                         Active
                                     </span>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">10-12-2024</td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <button class="text-gray-400 hover:text-gray-600 p-2 rounded-full hover:bg-gray-100">
-                                        <i class="fas fa-ellipsis-h"></i>
-                                    </button>
+                                    <span
+                                        class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-teal-100 text-teal-800">
+                                        Public
+                                    </span>
                                 </td>
                             </tr>
 
                             <tr class="hover:bg-gray-50">
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Website Development</td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
-                                        <i class="fas fa-globe text-gray-500 text-sm"></i>
-                                    </div>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                    <a href="#" class="text-blue-600 hover:text-blue-800">The Complete ChatGPT...</a>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Software Development</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">1</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Website Development</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    Instructor : <span class="text-blue-600">instructor</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    <div>Total Section : 3.00</div>
+                                    <div>Total Lesson : 0.00</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">0.00</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Free</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="text-blue-600 text-sm">Recorded</span>
+                                </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <span
                                         class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
                                         Active
                                     </span>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">10-12-2024</td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <button class="text-gray-400 hover:text-gray-600 p-2 rounded-full hover:bg-gray-100">
-                                        <i class="fas fa-ellipsis-h"></i>
-                                    </button>
+                                    <span
+                                        class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-teal-100 text-teal-800">
+                                        Public
+                                    </span>
                                 </td>
                             </tr>
 
                             <tr class="hover:bg-gray-50">
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">3</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Mobile Development</td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
-                                        <i class="fas fa-mobile-alt text-gray-500 text-sm"></i>
-                                    </div>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                    <a href="#" class="text-blue-600 hover:text-blue-800">The Complete 2023 We...</a>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Software Development</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">1</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Mobile Development</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    Instructor : <span class="text-blue-600">instructor</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    <div>Total Section : 2.00</div>
+                                    <div>Total Lesson : 0.00</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">0.00</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$160.00</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="text-blue-600 text-sm">Recorded</span>
+                                </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <span
                                         class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
                                         Active
                                     </span>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">10-12-2024</td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <button class="text-gray-400 hover:text-gray-600 p-2 rounded-full hover:bg-gray-100">
-                                        <i class="fas fa-ellipsis-h"></i>
-                                    </button>
+                                    <span
+                                        class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-teal-100 text-teal-800">
+                                        Public
+                                    </span>
                                 </td>
                             </tr>
 
                             <tr class="hover:bg-gray-50">
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">4</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Desktop Development</td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
-                                        <i class="fas fa-desktop text-gray-500 text-sm"></i>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">-</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">1</td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <span
-                                        class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
-                                        Active
-                                    </span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">10-12-2024</td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <button class="text-gray-400 hover:text-gray-600 p-2 rounded-full hover:bg-gray-100">
-                                        <i class="fas fa-ellipsis-h"></i>
-                                    </button>
-                                </td>
-                            </tr>
-
-                            <tr class="hover:bg-gray-50">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">5</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Game Development</td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
-                                        <i class="fas fa-gamepad text-gray-500 text-sm"></i>
-                                    </div>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                    <a href="#" class="text-blue-600 hover:text-blue-800">The Web Developer Boo...</a>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Desktop Development</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">0</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    Instructor : <span class="text-blue-600">instructor</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    <div>Total Section : 6.00</div>
+                                    <div>Total Lesson : 1.00</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">0.00</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$120.00</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="text-blue-600 text-sm">Recorded</span>
+                                </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <span
                                         class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
                                         Active
                                     </span>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">10-12-2024</td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <button class="text-gray-400 hover:text-gray-600 p-2 rounded-full hover:bg-gray-100">
-                                        <i class="fas fa-ellipsis-h"></i>
-                                    </button>
-                                </td>
-                            </tr>
-
-                            <tr class="hover:bg-gray-50">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">6</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Search Engine Optimi...</td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
-                                        <i class="fas fa-search text-gray-500 text-sm"></i>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Desktop Development</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">0</td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <span
-                                        class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
-                                        Active
+                                        class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-teal-100 text-teal-800">
+                                        Public
                                     </span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">10-12-2024</td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <button class="text-gray-400 hover:text-gray-600 p-2 rounded-full hover:bg-gray-100">
-                                        <i class="fas fa-ellipsis-h"></i>
-                                    </button>
                                 </td>
                             </tr>
                         </tbody>
@@ -235,4 +235,6 @@
             </div>
         </div>
     </div>
+    </div>
+
 @endsection

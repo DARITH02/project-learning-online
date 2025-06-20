@@ -121,3 +121,114 @@ btnShowToggles.forEach((btn) => {
         // }
     });
 });
+window.toggleSubmenu = function (header) {
+    const submenu = header.nextElementSibling;
+    const chevron = header.querySelector(".chevron");
+
+    const allSubmenus = document.querySelectorAll(".submenu");
+    const allChevrons = document.querySelectorAll(".chevron");
+
+    allSubmenus.forEach((menu) => {
+        if (menu !== submenu) {
+            menu.classList.remove("max-h-40");
+            menu.classList.add("max-h-0");
+        }
+    });
+
+    allChevrons.forEach((chev) => {
+        if (chev !== chevron) chev.classList.remove("rotate-180");
+    });
+
+    submenu.classList.toggle("max-h-0");
+    submenu.classList.toggle("max-h-40");
+    chevron.classList.toggle("rotate-180");
+    header.classList.contains("text-blue-600")
+        ? header.classList.remove("text-blue-600")
+        : header.classList.add("text-blue-600");
+};
+
+window.setActive = function (item) {
+    document.querySelectorAll(".submenu-item").forEach((i) => {
+        i.classList.remove(
+            "active",
+            "bg-blue-50",
+            "text-blue-600",
+            "font-medium"
+        );
+        i.classList.add("text-gray-700");
+    });
+
+    item.classList.add("active", "bg-blue-50", "text-blue-600", "font-medium");
+    item.classList.remove("text-gray-700");
+};
+
+// Auto-expand first menu on load
+document.addEventListener("DOMContentLoaded", () => {
+    const firstHeader = document.querySelector(".menu-item .flex");
+    if (firstHeader) toggleSubmenu(firstHeader);
+});
+// window.loadPage = function (url) {
+
+//     fetch(url)
+//     // console.log(url);
+
+//         .then((response) => {
+//             if (!response.ok) throw new Error("Failed to load");
+//             return response.text();
+//         })
+//         .then((html) => {
+//             const container = document.getElementById("main-content");
+//             // document.getElementById("main-content").innerHTML = html;
+//             if(container){
+//                   container.innerHTML = html;
+//                  window.history.pushState(null, '', url);
+//             }
+//         })
+//         .catch((error) => {
+//             console.error("Error loading page:", error);
+//         });
+// };
+window.loadPage = function (url) {
+    fetch(url, {
+        headers: {
+            "X-Requested-With": "XMLHttpRequest", // Let Laravel know this is an AJAX request
+        },
+    })
+        .then((response) => response.text())
+        .then((html) => {
+            const container = document.getElementById("main-content");
+            if (container) {
+                container.innerHTML = html;
+                bgMode.forEach((e) => {
+                    e.classList.add("bg-blue-500");
+                    // e.classList.remove("bg-[#f8f9fa]");
+                });
+
+                // ✅ Update browser URL without reloading
+                history.pushState({ url: url }, "", url);
+            } else {
+                console.error("#main-content container not found.");
+            }
+        })
+        .catch((error) => {
+            console.error("Error loading page:", error);
+        });
+};
+
+// ✅ Handle browser back/forward buttons
+window.addEventListener("popstate", function (event) {
+    const state = event.state;
+    if (state && state.url) {
+        loadPage(state.url);
+    }
+});
+
+// ✅ On first load: check if not homepage and auto-load
+document.addEventListener("DOMContentLoaded", function () {
+    const currentPath = window.location.pathname;
+
+    // Only load dynamically if not on the homepage
+    if (currentPath !== "/") {
+        loadPage(currentPath);
+    }
+});

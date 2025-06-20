@@ -5,6 +5,7 @@ use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CoursesController;
 use Illuminate\Support\Facades\Route;
 use function PHPUnit\Framework\returnValueMap;
+use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return view('pages.dashbord');
@@ -16,11 +17,29 @@ Route::get('courses', function () {
 
 
 //route courese
-Route::get('/viewsCategory', [CoursesController::class, 'index'])->name('viewsCategory');
-Route::get('/viewCourses', [CategoryController::class, 'index'])->name('viewCourses');
+// Route::get('/viewCourses', [CoursesController::class, 'index'])->name('viewCourses');
+Route::get('/viewCourses', function () {
+    $view = view('pages.courses.coursesList')->renderSections();
+    // return view('pages.courses.coursesList');
+    return $view['contents'];
+});
+
+
+Route::get('/courses', function (Request $request) {
+    if ($request->ajax()) {
+        return view('pages.courses.coursesList')->renderSections()['contents'];
+    }
+
+    return view('pages.courses.coursesList');
+});
 
 //route category
-Route::get('/viewcategory', [CategoryController::class, 'index'])->name('viewcategory');
+Route::get('/viewcategory',function (){
+     $view = view('pages.category.categories')->renderSections();
+    // return view('pages.courses.coursesList');
+    return $view['contents'];
+});
+// Route::get('/addCategory', [CategoryController::class, 'show'])->name('addCategory');
 
 
 

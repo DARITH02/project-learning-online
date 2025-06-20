@@ -21,7 +21,7 @@
                 <nav class="w-full sticky top-0">
                     @include('layout.navigaton')
                 </nav>  
-                <main class="w-full">
+                <main id="main-content" class="w-full">
                     @yield('contents')
                 </main>
                 <footer class="w-full px-7 mb-1.5 ">

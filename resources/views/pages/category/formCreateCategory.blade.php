@@ -2,8 +2,11 @@
 @section('contents')
 
     <div class="w-full p-8">
-
-
+        <x-headding-page>
+            <x-slot name='headding'>Create Courses </x-slot>
+            <x-slot name='title1'>courses</x-slot>
+            <x-slot name='title2'>Create</x-slot>
+        </x-headding-page>
         <div class="bg-mode mx-auto rounded-lg shadow-sm m-5 p-7">
             <form class="space-y-6">
                 <!-- Title Field -->
