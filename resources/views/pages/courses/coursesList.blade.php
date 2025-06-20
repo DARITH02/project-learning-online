@@ -2,7 +2,7 @@
 @section('contents')
 
 <div  class="p-7">
-    <div class="min-h-screen w-full ">
+    <div class="min-h-screen w-full">
         <!-- Header Section -->
         <x-headding-page class="rounded-md">
             <x-slot name='headding'>Create Courses</x-slot>

@@ -76,86 +76,77 @@ document.getElementById("toggle-theme").addEventListener("click", () => {
 //         }
 //     });
 // });
-const btnShowToggles = document.querySelectorAll(".bg-show-togle");
+// Toggle button click logic
+document.querySelectorAll(".bg-show-togle").forEach((btn) => {
+    btn.addEventListener("click", () => {
+        const listItem = btn.closest("li");
+        const toggleContent = listItem?.querySelector(".togle-show");
 
-btnShowToggles.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-        const thisLi = btn.closest("li");
-        const thisToggle = thisLi?.querySelector(".togle-show");
+        const isVisible = toggleContent && !toggleContent.classList.contains("hidden");
 
-        //   thisToggle.classList.add("");
-
-        // Check if this one is visible
-        const isVisible =
-            thisToggle && !thisToggle.classList.contains("hidden");
-        if (isVisible) {
-            // btn.classList.remove("border-blue-700","border-l-3","text-blue-700")
-        }
-
-        // Hide all other toggles
-        document.querySelectorAll(".togle-show").forEach((el) => {
-            el.classList.add("hidden");
-            btn.classList.remove(
-                "border-blue-700",
-                "border-l-3",
-                "text-blue-700"
-            );
-            //    if (el.classList.contains("hidden")){
-            //     console.log(el);
-
-            //     }
+        // Hide all toggles and reset buttons
+        document.querySelectorAll(".togle-show").forEach((el) => el.classList.add("hidden"));
+        document.querySelectorAll(".bg-show-togle").forEach((el) => {
+            el.classList.remove("border-blue-700", "border-l-3", "text-blue-700");
         });
 
-        // Toggle this one (if it was hidden, show it; if visible, hide it)
-        if (!isVisible && thisToggle) {
-            thisToggle.classList.remove("hidden");
-            // btn.classList.remove(
-            //     "border-blue-700",
-            //     "border-l-3",
-            //     "text-blue-700"
-            // );
+        // Show the clicked toggle and style the button if it was hidden
+        if (!isVisible && toggleContent) {
+            toggleContent.classList.remove("hidden");
             btn.classList.add("border-blue-700", "border-l-3", "text-blue-700");
         }
-        //  if(thisToggle.classList.contains("hidden")){
-        //     btn.classList.remove("border-blue-700","border-l-3","text-blue-700")
-        // }
     });
 });
+
+// Toggle submenu
 window.toggleSubmenu = function (header) {
     const submenu = header.nextElementSibling;
     const chevron = header.querySelector(".chevron");
 
-    const allSubmenus = document.querySelectorAll(".submenu");
-    const allChevrons = document.querySelectorAll(".chevron");
-
-    allSubmenus.forEach((menu) => {
+    // Collapse all other submenus and reset all headers & chevrons
+    document.querySelectorAll(".submenu").forEach((menu) => {
         if (menu !== submenu) {
             menu.classList.remove("max-h-40");
             menu.classList.add("max-h-0");
         }
     });
 
-    allChevrons.forEach((chev) => {
-        if (chev !== chevron) chev.classList.remove("rotate-180");
+    document.querySelectorAll(".chevron").forEach((c) => {
+        if (c !== chevron) {
+            c.classList.remove("rotate-180");
+            c.classList.remove("text-blue-600");
+            c.classList.add("text-gray-400");
+        }
     });
 
-    submenu.classList.toggle("max-h-0");
-    submenu.classList.toggle("max-h-40");
+    document.querySelectorAll(".submenu-header").forEach((h) => {
+        if (h !== header) {
+            h.classList.remove("text-blue-600");
+            h.querySelector("svg")?.classList.remove("text-blue-600");
+            h.querySelector("svg")?.classList.add("text-gray-400");
+        }else{
+
+        }
+    });
+
+    // Toggle current submenu
+    const isExpanded = submenu.classList.contains("max-h-40");
+    submenu.classList.toggle("max-h-0", isExpanded);
+    submenu.classList.toggle("max-h-40", !isExpanded);
+
+    // Toggle chevron and header color
     chevron.classList.toggle("rotate-180");
-    header.classList.contains("text-blue-600")
-        ? header.classList.remove("text-blue-600")
-        : header.classList.add("text-blue-600");
+    chevron.classList.add("text-blue-600");
+    chevron.classList.remove("text-gray-400");
+
+    header.classList.toggle("text-blue-600");
 };
 
+// Set active submenu item
 window.setActive = function (item) {
-    document.querySelectorAll(".submenu-item").forEach((i) => {
-        i.classList.remove(
-            "active",
-            "bg-blue-50",
-            "text-blue-600",
-            "font-medium"
-        );
-        i.classList.add("text-gray-700");
+    document.querySelectorAll(".submenu-item").forEach((el) => {
+        el.classList.remove("active", "bg-blue-50", "text-blue-600", "font-medium");
+        el.classList.add("text-gray-700");
     });
 
     item.classList.add("active", "bg-blue-50", "text-blue-600", "font-medium");
@@ -197,16 +188,49 @@ window.loadPage = function (url) {
         .then((response) => response.text())
         .then((html) => {
             const container = document.getElementById("main-content");
+
             if (container) {
                 container.innerHTML = html;
-                bgMode.forEach((e) => {
-                    e.classList.add("bg-blue-500");
-                    // e.classList.remove("bg-[#f8f9fa]");
+                const theme = localStorage.getItem("theme") || "light";
+                const bgMode = document.querySelectorAll(".bg-mode");
+
+                bgMode.forEach((el) => {
+                    // Remove any existing theme classes
+                    // el.classList.remove("bg-blue-500", "bg-[#f8f9fa]");  
+
+                    if (theme === "dark") {
+                        el.classList.add("bg-[#212529]");
+                        el.classList.remove("bg-[#f8f9fa]");
+                        // el.classList.add("bg-blue-500"); // dark theme color
+                    } else {
+                        el.classList.add("bg-[#f8f9fa]"); // light theme color
+                        el.classList.remove("bg-[#212529]");
+
+                    }
                 });
+                // bgMode.forEach((el) => {
+                //     const bgMode = document.querySelectorAll(".bg-mode");
+                //     // e.classList.remove("bg-[#f8f9fa]");
+
+                //     // el.classList.remove("bg-blue-500", "bg-[#f8f9fa]");
+
+                //     if (theme === "dark") {
+                //     el.classList.add("bg-[#f8f9fa]");
+                //         // el.classList.add("bg-[#f8f9fa]"); // dark theme color
+                //     } else {
+                //         el.classList.add("bg-[#f8f9fa]"); // light theme color
+                //     }
+                // });
 
                 // ✅ Update browser URL without reloading
                 history.pushState({ url: url }, "", url);
             } else {
+                // const bgMode = document.querySelectorAll(".bg-mode");
+
+                // bgMode.forEach((e) => {
+                //     e.classList.remove("bg-[#212529]");
+                //     e.classList.add("bg-[#f8f9fa]");
+                // });
                 console.error("#main-content container not found.");
             }
         })
