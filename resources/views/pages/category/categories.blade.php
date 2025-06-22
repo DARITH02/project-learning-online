@@ -1,7 +1,7 @@
 @extends('app.app')
 @section('contents')
 
-    <div id="main-content" class="p-7">
+    <div class="p-7">
         <div class="">
             <div class="shadown w-full">
                 <!-- Header Section -->
@@ -9,7 +9,7 @@
                     <x-slot name="headding">Categoyies</x-slot>
                     <x-slot name="title1">Category</x-slot>
                     <x-slot name="title2">View Categories</x-slot>
-                
+
                 </x-headding-page>
                 <div class="mx-auto mt-6 bg-mode px-5 py-2.5">
                     <div class="flex items-center justify-between flex-wrap gap-4">
@@ -41,8 +41,8 @@
                                 Fillter
                             </x-booton-primary>
                         </div>
-                        <x-booton-primary class="bg-red-700">
-                            <a href="{{route('addCategory')}}">add</a>
+                        <x-booton-primary class="bg-red-700" onclick="loadPage('createCategory')">
+                            New
                         </x-booton-primary>
                         {{-- <button
                             class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium flex items-center gap-2 transition-colors">

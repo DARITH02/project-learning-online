@@ -5,7 +5,9 @@
             {{-- <h1 class="text-2xl font-medium mb-8">Hello, Super Admin</h1> --}}
             <x-headding>
                 Hello, Super Admin
+
             </x-headding>
+            <button id="add">add</button>
             <!-- Stats Cards Container -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Total Student Card -->

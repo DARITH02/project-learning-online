@@ -1,3 +1,4 @@
+import axios from "axios";
 import "./bootstrap";
 lucide.createIcons();
 
@@ -62,32 +63,25 @@ document.getElementById("toggle-theme").addEventListener("click", () => {
     }
 });
 
-// const btnShowTogle = document.querySelectorAll(".bg-show-togle");
-// btnShowTogle.forEach((e,i) => {
-//     e.addEventListener("click", (el) => {
-//         console.log(el.target.classList.value);
-
-//         const togle = document.querySelector(".togle-show");
-//         const showTogle = togle.classList.contains("hidden");
-//         if (showTogle) {
-//             togle.classList.remove("hidden");
-//         } else {
-//             togle.classList.add("hidden");
-//         }
-//     });
-// });
 // Toggle button click logic
 document.querySelectorAll(".bg-show-togle").forEach((btn) => {
     btn.addEventListener("click", () => {
         const listItem = btn.closest("li");
         const toggleContent = listItem?.querySelector(".togle-show");
 
-        const isVisible = toggleContent && !toggleContent.classList.contains("hidden");
+        const isVisible =
+            toggleContent && !toggleContent.classList.contains("hidden");
 
         // Hide all toggles and reset buttons
-        document.querySelectorAll(".togle-show").forEach((el) => el.classList.add("hidden"));
+        document
+            .querySelectorAll(".togle-show")
+            .forEach((el) => el.classList.add("hidden"));
         document.querySelectorAll(".bg-show-togle").forEach((el) => {
-            el.classList.remove("border-blue-700", "border-l-3", "text-blue-700");
+            el.classList.remove(
+                "border-blue-700",
+                "border-l-3",
+                "text-blue-700"
+            );
         });
 
         // Show the clicked toggle and style the button if it was hidden
@@ -99,86 +93,70 @@ document.querySelectorAll(".bg-show-togle").forEach((btn) => {
 });
 
 // Toggle submenu
+
 window.toggleSubmenu = function (header) {
     const submenu = header.nextElementSibling;
     const chevron = header.querySelector(".chevron");
 
-    // Collapse all other submenus and reset all headers & chevrons
+    if (!submenu || !chevron) return;
+
+    const isExpanded = submenu.classList.contains("max-h-40");
+    console.log(isExpanded);
+
+    // Collapse all submenus and reset chevrons and headers
     document.querySelectorAll(".submenu").forEach((menu) => {
-        if (menu !== submenu) {
-            menu.classList.remove("max-h-40");
-            menu.classList.add("max-h-0");
-        }
+        menu.classList.remove("max-h-40");
+        menu.classList.add("max-h-0");
     });
 
     document.querySelectorAll(".chevron").forEach((c) => {
-        if (c !== chevron) {
-            c.classList.remove("rotate-180");
-            c.classList.remove("text-blue-600");
-            c.classList.add("text-gray-400");
-        }
+        c.classList.remove("rotate-180", "text-blue-600");
+        c.classList.add("text-gray-400");
     });
 
     document.querySelectorAll(".submenu-header").forEach((h) => {
-        if (h !== header) {
-            h.classList.remove("text-blue-600");
-            h.querySelector("svg")?.classList.remove("text-blue-600");
-            h.querySelector("svg")?.classList.add("text-gray-400");
-        }else{
-
-        }
+        h.classList.remove("text-blue-600", "bg-blue-200");
+        // h.querySelector("svg")?.classList.remove("text-blue-600");
+        h.querySelector("svg")?.classList.add("text-gray-400");
     });
 
     // Toggle current submenu
-    const isExpanded = submenu.classList.contains("max-h-40");
-    submenu.classList.toggle("max-h-0", isExpanded);
-    submenu.classList.toggle("max-h-40", !isExpanded);
+    if (!isExpanded) {
+        submenu.classList.remove("max-h-0");
+        submenu.classList.add("max-h-40");
 
-    // Toggle chevron and header color
-    chevron.classList.toggle("rotate-180");
-    chevron.classList.add("text-blue-600");
-    chevron.classList.remove("text-gray-400");
+        chevron.classList.add("rotate-180", "text-blue-600");
 
-    header.classList.toggle("text-blue-600");
+        chevron.classList.remove("text-gray-400");
+
+        header.classList.add("text-blue-600", "bg-blue-200");
+    } else {
+        // header.classList.remove("text-blue-600",'bg-gray-700');
+    }
 };
 
 // Set active submenu item
 window.setActive = function (item) {
     document.querySelectorAll(".submenu-item").forEach((el) => {
-        el.classList.remove("active", "bg-blue-50", "text-blue-600", "font-medium");
-        el.classList.add("text-gray-700");
+        el.classList.remove(
+            "active",
+            "bg-blue-50",
+            "text-blue-600",
+            "font-medium"
+        );
+        // el.classList.add("text-white");
     });
 
-    item.classList.add("active", "bg-blue-50", "text-blue-600", "font-medium");
+    item.classList.add("active", "text-blue-600", "font-medium");
     item.classList.remove("text-gray-700");
 };
 
-// Auto-expand first menu on load
+// Auto-expand the first menu on page load
 document.addEventListener("DOMContentLoaded", () => {
-    const firstHeader = document.querySelector(".menu-item .flex");
-    if (firstHeader) toggleSubmenu(firstHeader);
+    const firstHeader = document.querySelector(".menu-item .submenu-header");
+    if (firstHeader) window.toggleSubmenu(firstHeader);
 });
-// window.loadPage = function (url) {
 
-//     fetch(url)
-//     // console.log(url);
-
-//         .then((response) => {
-//             if (!response.ok) throw new Error("Failed to load");
-//             return response.text();
-//         })
-//         .then((html) => {
-//             const container = document.getElementById("main-content");
-//             // document.getElementById("main-content").innerHTML = html;
-//             if(container){
-//                   container.innerHTML = html;
-//                  window.history.pushState(null, '', url);
-//             }
-//         })
-//         .catch((error) => {
-//             console.error("Error loading page:", error);
-//         });
-// };
 window.loadPage = function (url) {
     fetch(url, {
         headers: {
@@ -196,7 +174,7 @@ window.loadPage = function (url) {
 
                 bgMode.forEach((el) => {
                     // Remove any existing theme classes
-                    // el.classList.remove("bg-blue-500", "bg-[#f8f9fa]");  
+                    // el.classList.remove("bg-blue-500", "bg-[#f8f9fa]");
 
                     if (theme === "dark") {
                         el.classList.add("bg-[#212529]");
@@ -205,7 +183,6 @@ window.loadPage = function (url) {
                     } else {
                         el.classList.add("bg-[#f8f9fa]"); // light theme color
                         el.classList.remove("bg-[#212529]");
-
                     }
                 });
                 // bgMode.forEach((el) => {
@@ -255,4 +232,56 @@ document.addEventListener("DOMContentLoaded", function () {
     if (currentPath !== "/") {
         loadPage(currentPath);
     }
+});
+
+//create data
+
+document.addEventListener("DOMContentLoaded", () => {
+    var notyf = new Notyf({
+        duration: 2000,
+        position: {
+            x: "right",
+            y: "top",
+        },
+        types: [
+            {
+                type: "warning",
+                background: "orange",
+                icon: {
+                    className: "material-icons",
+                    tagName: "i",
+                    text: "warning",
+                },
+            },
+            {
+                type: "error",
+                background: "indianred",
+                duration: 2000,
+                dismissible: true,
+            },
+        ],
+    });
+
+    window.createCate = (selector) => {
+        let frmSelector = document.querySelector(selector);
+        let frmData = new FormData(frmSelector);
+
+        const url = frmSelector.getAttribute("data-url");
+        axios
+            .post(url, frmData)
+            .then((response) => {
+                notyf.success(response.data.message);
+                // console.log(response.data.message);
+                // console.log(response.data.data);
+            })
+            .catch((error) => {
+              if (error.response && error.response.data && error.response.data.message) {
+            notyf.error(error.response.data.message);
+            console.log(error.response.data.message);
+        } else {
+            notyf.error('An unexpected error occurred');
+            console.log(error);
+        }
+            });
+    };
 });

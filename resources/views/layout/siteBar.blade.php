@@ -21,23 +21,29 @@
     <nav class="py-4 h-full w-full">
 
         <div class="rounded-lg">
-              <div class="w-full">
-                <div onclick="toggleSubmenu(this)"
-                    class="flex items-center cursor-pointer p-4 hover:bg-gray-50 select-none">
-                    <svg class="w-5 h-5  mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            <div class="w-full">
+                <a href="{{route("/")}}" onclick="toggleSubmenu(this);"
+                    class="submenu-header bg-blue-200 flex items-center cursor-pointer p-4 hover:bg-gray-50 select-none">
+                   
+                    <svg class="w-5 h-5  mr-3" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-layout-dashboard-icon lucide-layout-dashboard">
+                        <rect width="7" height="9" x="3" y="3" rx="1" />
+                        <rect width="7" height="5" x="14" y="3" rx="1" />
+                        <rect width="7" height="9" x="14" y="12" rx="1" />
+                        <rect width="7" height="5" x="3" y="16" rx="1" />
                     </svg>
-                    <span class="flex-1 text-sm font-medium ">Courses</span>
-                    <svg class="w-4 h-4 text-gray-400 transition-transform duration-200 chevron" fill="none"
+                    <span class="flex-1 text-sm font-medium ">Dashboard</span>
+                    {{-- <svg class="w-4 h-4 text-gray-400 transition-transform duration-200 chevron" fill="none"
                         stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
+                    </svg> --}}
                     {{-- <span class="flex-1 text-sm font-medium text-indigo-600">Courses</span> --}}
-                </div>
+                </a>
                 <div class="submenu max-h-0 overflow-hidden transition-all duration-300 ">
 
-                    {{-- <div class="submenu-item px-6 py-2 text-sm text-gray-700 hover:bg-gray-200 cursor-pointer relative"
+                    {{-- <div
+                        class="submenu-item px-6 py-2 text-sm text-gray-700 hover:bg-gray-200 cursor-pointer relative"
                         onclick="setActive(this);loadPage('/viewCourses')">Courses List</div>
                     <div class="submenu-item active px-6 py-2 text-sm text-blue-600 font-medium bg-blue-50 hover:bg-blue-100 cursor-pointer relative"
                         onclick="setActive(this);loadPage('/viewcategory')">Categories List</div> --}}
@@ -46,8 +52,8 @@
 
             <!-- Example Menu Item -->
             <div class="w-full">
-                <div onclick="toggleSubmenu(this);onclick=setActive(this)"
-                    class="flex items-center cursor-pointer p-4 hover:bg-gray-50 select-none">
+                <div onclick="toggleSubmenu(this);"
+                    class="submenu-header flex items-center cursor-pointer p-4 hover:bg-gray-50 ">
                     <svg class="w-5 h-5  mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
@@ -59,34 +65,34 @@
                     </svg>
                 </div>
                 <div class="submenu max-h-0 overflow-hidden transition-all duration-300 ">
-                    <div class="submenu-item px-6 py-2 text-sm text-gray-700 hover:bg-gray-200 cursor-pointer relative"
-                        onclick="setActive(this);loadPage('/courses')">Courses List</div>
-                    <div class="submenu-item active px-6 py-2 text-sm text-blue-600 font-medium bg-blue-50 hover:bg-blue-100 cursor-pointer relative"
-                        onclick="setActive(this);loadPage('/viewcategory')">Categories List</div>
+                    <div class="submenu-item px-6 py-2 text-sm hover:bg-gray-200 cursor-pointer relative"
+                        onclick="setActive(this);loadPage('courses')">Courses List</div>
+                    <div class="submenu-item px-6 py-2 text-sm font-medium  hover:bg-blue-100 cursor-pointer relative"
+                        onclick="setActive(this);loadPage('viewcategory')">Categories List</div>
                 </div>
             </div>
 
             <!-- Repeat the same for other menu sections (Users, Analytics...) -->
             <!-- Example below is Users -->
             <div class="w-full">
-                <div onclick="toggleSubmenu(this);onclick=setActive(this)"
-                    class="flex items-center cursor-pointer p-4 hover:bg-gray-50 select-none">
-                    <svg class="w-5 h-5 text-indigo-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div onclick="toggleSubmenu(this)"
+                    class="submenu-header flex items-center cursor-pointer p-4 hover:bg-gray-50 ">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                     </svg>
-                    <span class="flex-1 text-sm font-medium text-indigo-600">Users</span>
+                    <span class="flex-1 text-sm font-medium">Users</span>
                     <svg class="w-4 h-4 text-gray-400 transition-transform duration-200 chevron" fill="none"
                         stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                     </svg>
                 </div>
-                <div class="submenu max-h-0 overflow-hidden transition-all duration-300 bg-gray-50">
-                    <div class="submenu-item px-6 py-2 text-sm text-gray-700 hover:bg-gray-200 cursor-pointer"
+                <div class="submenu max-h-0 overflow-hidden transition-all duration-300">
+                    <div class="submenu-item px-6 py-2 text-sm hover:bg-gray-200 cursor-pointer"
                         onclick="setActive(this)">All Users</div>
-                    <div class="submenu-item px-6 py-2 text-sm text-gray-700 hover:bg-gray-200 cursor-pointer"
+                    <div class="submenu-item px-6 py-2 text-sm hover:bg-gray-200 cursor-pointer"
                         onclick="setActive(this)">Add User</div>
-                    <div class="submenu-item px-6 py-2 text-sm text-gray-700 hover:bg-gray-200 cursor-pointer"
+                    <div class="submenu-item px-6 py-2 text-sm hover:bg-gray-200 cursor-pointer"
                         onclick="setActive(this)">User Roles</div>
                 </div>
             </div>

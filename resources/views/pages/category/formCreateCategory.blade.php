@@ -3,24 +3,35 @@
 
     <div class="w-full p-8">
         <x-headding-page>
-            <x-slot name='headding'>Create Courses </x-slot>
-            <x-slot name='title1'>courses</x-slot>
+            <x-slot name='headding'>Create Cetegory </x-slot>
+            <x-slot name='title1'>Category</x-slot>
             <x-slot name='title2'>Create</x-slot>
         </x-headding-page>
         <div class="bg-mode mx-auto rounded-lg shadow-sm m-5 p-7">
-            <form class="space-y-6">
+            <form id="form-crategory" class="space-y-6" data-url="{{ route('createCategory.store') }}">
                 <!-- Title Field -->
-                <div>
-                    <label for="title" class="block text-sm font-medium text-gray-700 mb-2">
-                        Title <span class="text-red-500">*</span>
-                    </label>
-                    <input type="text" id="title" name="title" placeholder="Enter Title"
-                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 placeholder-gray-400"
-                        required>
+                <div class="w-full flex gap-3.5">
+                    <div class="w-3/12">
+
+                        <label for="title" class="block text-sm font-medium text-gray-700 mb-2">
+                            Title <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" id="title" name="title" placeholder="Enter Title"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 placeholder-gray-400"
+                            required>
+                    </div>
+                    <div class="w-3/4">
+                        <label for="" class="block text-sm font-medium text-gray-700 mb-2">
+                            Description<span class="text-red-500">*</span>
+                        </label>
+                        <textarea name="desc" rows="5" cols="" id="" placeholder="Enter Title"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 placeholder-gray-400"></textarea>
+
+                    </div>
                 </div>
 
                 <!-- Parent Category and Status Row -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {{-- <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Parent Category -->
                     <div>
                         <label for="parent-category" class="block text-sm font-medium text-gray-700 mb-2">
@@ -58,10 +69,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <!-- Icon Upload Field -->
-                <div>
+                {{-- <div>
                     <label for="icon" class="block text-sm font-medium text-gray-700 mb-2">
                         Icon <span class="text-red-500">*</span>
                     </label>
@@ -88,36 +99,32 @@
                     <p class="mt-2 text-sm text-gray-500">
                         NB : Icon size will 35px x 35px and not more than 1mb
                     </p>
-                </div>
+                </div> --}}
 
                 <!-- Create Button -->
                 <div class="pt-4">
-                    <button type="submit"
+                    <button onclick="createCate('#form-crategory')" type="button"
                         class="bg-blue-600 hover:bg-blue-700 text-white font-medium px-8 py-3 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                         Create
                     </button>
                 </div>
             </form>
+
         </div>
     </div>
     <script>
-        // Handle file upload preview
-        document.getElementById('icon').addEventListener('change', function (e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    const uploadArea = document.querySelector('.border-dashed');
-                    uploadArea.innerHTML = `
-                                <div class="flex flex-col items-center justify-center space-y-2">
-                                    <img src="${e.target.result}" alt="Preview" class="w-16 h-16 object-cover rounded-lg">
-                                    <p class="text-sm text-gray-600">${file.name}</p>
-                                </div>
-                            `;
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-    </script>
+        // function add(){
+        //     alert(67890)
+        // }
 
+        // When you insert the page via AJAX:
+        // fetch(...).then(response => {
+        //     container.innerHTML = response;
+        //     const btn = container.querySelector('#btn_cate');
+        //     btn?.addEventListener('click', () => {
+        //         alert(456789);
+        //     });
+        // });
+
+    </script>
 @endsection
