@@ -165,8 +165,6 @@ window.loadPage = function (url) {
     })
         .then((response) => response.text())
         .then((html) => {
-            console.log(html);
-            
             const container = document.getElementById("main-content");
 
             if (container) {
@@ -268,22 +266,77 @@ document.addEventListener("DOMContentLoaded", () => {
         let frmSelector = document.querySelector(selector);
         let frmData = new FormData(frmSelector);
 
+        if (!frmData.get("title") || frmData.get("title") === "") {
+            notyf.error("field empty data !!!!");
+            return;
+        }
+
         const url = frmSelector.getAttribute("data-url");
         axios
             .post(url, frmData)
             .then((response) => {
-                notyf.success(response.data.message);
-                // console.log(response.data.message);
-                // console.log(response.data.data);
+                if (response.status === 200) {
+                    notyf.success(
+                        response.data.data + " : " + response.data.message
+                    );
+                    frmSelector.reset();
+                }
             })
             .catch((error) => {
-              if (error.response && error.response.data && error.response.data.message) {
-            notyf.error(error.response.data.message);
-            console.log(error.response.data.message);
-        } else {
-            notyf.error('An unexpected error occurred');
-            console.log(error);
-        }
+                if (
+                    error.response &&
+                    error.response.data &&
+                    error.response.data.message
+                ) {
+                    notyf.error(
+                        error.response.data.data +
+                            " : " +
+                            error.response.data.message
+                    );
+                } else {
+                    notyf.error("An unexpected error occurred");
+                    notyf.error("An unexpected error occurred");
+                }
             });
+    };
+
+    window.deleteItem = (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios
+                    .delete(`/deleteCategory/${id}`)
+                    .then((response) => {
+                        const row = document.querySelector(
+                            `#category-row-${id}`
+                        );
+                        if (row) {
+                            row.remove();
+                        }
+
+                        if (response.status === 200) {
+                            notyf.success(response.data.message);
+                        }
+                    })
+                    .catch((error) => {
+                        if (
+                            error.response &&
+                            error.response.data &&
+                            error.response.data.message
+                        ) {
+                            notyf.error(error.response.data.message);
+                        } else {
+                            notyf.error("An unexpected error occurred.");
+                        }
+                    });
+            }
+        });
     };
 });

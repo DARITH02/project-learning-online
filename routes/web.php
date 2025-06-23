@@ -39,6 +39,7 @@ Route::get('/viewcategory',[CategoryController::class,"index"]
 )->name('viewcategory');
 Route::get('/createCategory', [CategoryController::class, 'create'])->name('createCategory');
 Route::post('/createCategory', [CategoryController::class, 'store'])->name('createCategory.store');
+Route::delete('/deleteCategory/{id}',[CategoryController::class,"destroy"]);
 
 
 
