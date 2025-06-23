@@ -165,6 +165,8 @@ window.loadPage = function (url) {
     })
         .then((response) => response.text())
         .then((html) => {
+            console.log(html);
+            
             const container = document.getElementById("main-content");
 
             if (container) {

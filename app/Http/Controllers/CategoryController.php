@@ -10,9 +10,21 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $categories = Category::all();
+        // if ($request->ajax()) {
+        //     // Render the Blade view and extract only the 'contents' section
+        //     return view('pages.category.categories', compact('categories'))
+        //         ->renderSections()['contents'];
+        // }
+
+        if ($request->ajax()) {
+            return view('pages.category.categories',compact('categories')) ->renderSections()['contents'];
+        }
+        // For normal HTTP requests, return the full view
+        return view('pages.category.categories', compact('categories'));
+
     }
 
     /**
@@ -39,7 +51,7 @@ class CategoryController extends Controller
         // $cate = Category::create(['title' => $request['title']]);
         try {
             // Your real logic here, e.g., saving category
- throw new \Exception("Simulated failure for testing");
+            throw new \Exception("Simulated failure for testing");
             return response()->json([
                 'message' => 'Category saved successfully',
                 'data' => $request->all(),  // send input data back or saved model data

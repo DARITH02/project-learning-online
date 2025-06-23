@@ -34,16 +34,9 @@ Route::get('/courses', function (Request $request) {
 });
 
 //route category
-Route::get('/viewcategory', function (Request $request){
-     if ($request->ajax()) {
-        return view('pages.category.categories')->renderSections()['contents'];
-    }
-
-    return view('pages.category.categories');
-    //  $view = view('pages.category.categories')->renderSections();
-    // return view('pages.category.categories');
-    // return $view['contents'];
-})->name('viewcategory');
+Route::get('/viewcategory',[CategoryController::class,"index"]
+    
+)->name('viewcategory');
 Route::get('/createCategory', [CategoryController::class, 'create'])->name('createCategory');
 Route::post('/createCategory', [CategoryController::class, 'store'])->name('createCategory.store');
 
