@@ -40,7 +40,9 @@ Route::get('/viewcategory',[CategoryController::class,"index"]
 Route::get('/createCategory', [CategoryController::class, 'create'])->name('createCategory');
 Route::post('/createCategory', [CategoryController::class, 'store'])->name('createCategory.store');
 Route::delete('/deleteCategory/{id}',[CategoryController::class,"destroy"]);
-
+Route::get('/editCate/{id}',[CategoryController::class,'edit'])->name('editCate');
+Route::post('updateCategory',[CategoryController::class,'update'])->name('updateCategory.update');
+Route::post('/search',[CategoryController::class,'search'])->name('search');
 
 
 

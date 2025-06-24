@@ -1,5 +1,6 @@
 import axios from "axios";
 import "./bootstrap";
+import { data } from "autoprefixer";
 lucide.createIcons();
 
 const bgMode = document.querySelectorAll(".bg-mode");
@@ -257,7 +258,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 type: "error",
                 background: "indianred",
                 duration: 2000,
-                dismissible: true,
+                // dismissible: true,
             },
         ],
     });
@@ -267,7 +268,11 @@ document.addEventListener("DOMContentLoaded", () => {
         let frmData = new FormData(frmSelector);
 
         if (!frmData.get("title") || frmData.get("title") === "") {
-            notyf.error("field empty data !!!!");
+            notyf.open({
+                type: "warning",
+                message: "Empty field please enter it......!",
+            });
+
             return;
         }
 
@@ -276,6 +281,8 @@ document.addEventListener("DOMContentLoaded", () => {
             .post(url, frmData)
             .then((response) => {
                 if (response.status === 200) {
+                    loadPage("/viewcategory");
+
                     notyf.success(
                         response.data.data + " : " + response.data.message
                     );
@@ -322,6 +329,8 @@ document.addEventListener("DOMContentLoaded", () => {
                         }
 
                         if (response.status === 200) {
+                            loadPage("/viewcategory");
+
                             notyf.success(response.data.message);
                         }
                     })
@@ -338,5 +347,156 @@ document.addEventListener("DOMContentLoaded", () => {
                     });
             }
         });
+    };
+
+    window.edite = (id) => {
+        axios
+            .get(`/editCate/${id}`)
+            .then((response) => {
+                document.querySelector("#editFormContainer").innerHTML =
+                    response.data;
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+    window.udpateCate = (Selector) => {
+        let frmSelector = document.querySelector(Selector);
+        let frmData = new FormData(frmSelector);
+        const url = frmSelector.getAttribute("data-url");
+        const valueTitlte = document.getElementById("ttlel_up");
+
+        if (valueTitlte.value.trim() === "") {
+            notyf.open({
+                type: "warning",
+                message: "Empty field please enter it......!",
+            });
+
+            valueTitlte.focus();
+            return;
+        }
+
+        axios
+            .post(url, frmData)
+            .then((response) => {
+                if (response.status == 200) {
+                    loadPage("/viewcategory");
+                    notyf.success(response.data.message);
+                }
+                // console.log(response.data.data);
+            })
+            .catch((error) => {
+                console.log(error);
+
+                if (error.status == 500) {
+                    // notyf.success(response.data.message);
+                    notyf.error("Doubplicate");
+                }
+            });
+    };
+    window.searchBtn = (url, selector) => {
+        const valueSearch = document.getElementById(selector).value;
+        const tableBody = document.getElementById("tbl-body");
+
+        let timerInterval;
+        Swal.fire({
+            title: "Auto close alert!",
+            html: "I will close in <b></b> milliseconds.",
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: () => {
+                Swal.showLoading();
+                const timer = Swal.getPopup().querySelector("b");
+                timerInterval = setInterval(() => {
+                    timer.textContent = `${Swal.getTimerLeft()}`;
+                }, 100);
+            },
+            willClose: () => {
+                clearInterval(timerInterval);
+            },
+        }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+                console.log("I was closed by the timer");
+            }
+        });
+
+        axios
+            .post(url, { title: valueSearch })
+            .then((response) => {
+                var tr = "";
+                console.log(response.data);
+
+                if (response.data.html.length > 0) {
+                    response.data.html.forEach((e, i) => {
+                        tr += `
+                      <tr id="category-row-{{$category->id}}" class="hover:bg-gray-50">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${
+                                i + 1
+                            }</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${
+                                e["title"]
+                            }</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-code text-gray-500 text-sm"></i>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">-</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">1</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span
+                                    class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
+                                    Active
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">10-12-2024</td>
+                            <td class="px-6 py-4 whitespace-nowrap flex space-x-2.5" colspan="2">
+                                <button type="button" onclick="loadPage('{{ route('editCate', ${
+                                    e["i"]
+                                }) }}')"
+                                    class="text-gray-100 hover:text-white bg-blue-500 p-2 rounded-md hover:bg-blue-700 flex px-3 gap-1.5 cursor-pointer duration-150">
+
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="lucide lucide-square-pen-icon lucide-square-pen">
+                                        <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                                        <path
+                                            d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z" />
+                                    </svg>
+                                    edit
+                                </button>
+                                <button onclick="deleteItem(${e["id"]})"
+                                    class="text-gray-100 hover:text-white bg-rose-800 p-2 rounded-md hover:bg-rose-900 px-3 flex gap-1.5 cursor-pointer duration-150">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="lucide lucide-trash-icon lucide-trash">
+                                        <path d="M3 6h18" />
+                                        <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+                                        <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+                                    </svg>
+                                    delete
+                                </button>
+                            </td>
+                        </tr>
+    
+                    `;
+                    });
+                    tableBody.innerHTML = tr;
+                } else {
+                    Swal.fire({
+                        title: "The Internet?",
+                        text: "Not found ?",
+                        icon: "question",
+                    });
+                     loadPage("/viewcategory");
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     };
 });

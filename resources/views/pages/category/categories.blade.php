@@ -28,7 +28,7 @@
                             </div>
 
                             <div class="relative">
-                                <input type="text" placeholder="search"
+                                <input type="text" name="search" id="search" placeholder="search"
                                     class="border border-gray-300 rounded-md pl-4 pr-10 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-64">
                                 <i
                                     class="fas fa-search absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
@@ -38,11 +38,11 @@
                                 class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
                                 Filter
                             </button> --}}
-                            <x-booton-primary>
+                            <x-booton-primary onclick="searchBtn('{{route('search') }}','search')">
                                 Fillter
                             </x-booton-primary>
                         </div>
-                        <x-booton-primary class="bg-red-700" onclick="loadPage('createCategory')">
+                        <x-booton-primary class="" onclick="loadPage('createCategory')">
                             New
                         </x-booton-primary>
                         {{-- <button
@@ -54,6 +54,8 @@
                 </div>
 
                 <!-- Table Section -->
+                @include('components.editForm')
+
                 <div class="overflow-x-auto mt-4 bg-mode shadow-sm">
                     <table class="w-full">
                         <thead class="border-b ">
@@ -84,7 +86,9 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-gray-200">
+
+                        <tbody id="tbl-body" class="divide-y divide-gray-200">
+
                             @foreach($categories as $key => $category)
 
                                 <tr id="category-row-{{$category->id}}" class="hover:bg-gray-50">
@@ -104,8 +108,10 @@
                                         </span>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">10-12-2024</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <button class="text-gray-400 hover:text-gray-600 p-2 rounded-full hover:bg-gray-100">
+                                    <td class="px-6 py-4 whitespace-nowrap flex space-x-2.5" colspan="2">
+                                        <button type="button" onclick="loadPage('{{ route('editCate', $category->id) }}')"
+                                            class="text-gray-100 hover:text-white bg-blue-500 p-2 rounded-md hover:bg-blue-700 flex px-3 gap-1.5 cursor-pointer duration-150">
+
 
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -114,27 +120,35 @@
                                                 <path
                                                     d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z" />
                                             </svg>
+                                            edit
                                         </button>
                                         <button onclick="deleteItem({{$category['id']}})"
-                                            class="text-gray-400 hover:text-gray-600 p-2 rounded-full hover:bg-gray-100">
+                                            class="text-gray-100 hover:text-white bg-rose-800 p-2 rounded-md hover:bg-rose-900 px-3 flex gap-1.5 cursor-pointer duration-150">
 
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                                 stroke-linejoin="round" class="lucide lucide-trash-icon lucide-trash">
                                                 <path d="M3 6h18" />
                                                 <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
                                                 <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
                                             </svg>
+                                            delete
                                         </button>
                                     </td>
                                 </tr>
                             @endforeach
 
 
+
                         </tbody>
                     </table>
+
+
                 </div>
             </div>
         </div>
     </div>
+    <div>
+
+
 @endsection

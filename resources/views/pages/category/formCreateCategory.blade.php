@@ -7,7 +7,16 @@
             <x-slot name='title1'>Category</x-slot>
             <x-slot name='title2'>Create</x-slot>
         </x-headding-page>
-        <div class="bg-mode mx-auto rounded-lg shadow-sm m-5 p-7">
+        <button onclick="loadPage('{{route('viewcategory')}}')"
+            class="cursor-pointer hover:bg-gray-500 duration-200 bg-gray-300 px-3 py-2 my-2 rounded-md"><svg
+                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-circle-arrow-left-icon lucide-circle-arrow-left">
+                <circle cx="12" cy="12" r="10" />
+                <path d="m12 8-4 4 4 4" />
+                <path d="M16 12H8" />
+            </svg></button>
+        <div class="bg-mode mx-auto rounded-lg shadow-sm p-7">
             <form id="form-crategory" class="space-y-6" data-url="{{ route('createCategory.store') }}">
                 <!-- Title Field -->
                 <div class="w-full flex gap-3.5">
@@ -104,8 +113,14 @@
                 <!-- Create Button -->
                 <div class="pt-4">
                     <button onclick="createCate('#form-crategory')" type="button"
-                        class="bg-blue-600 hover:bg-blue-700 text-white font-medium px-8 py-3 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                        Create
+                        class="flex gap-2.5 bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 cursor-pointer py-3 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-square-plus-icon lucide-square-plus">
+                            <rect width="18" height="18" x="3" y="3" rx="2" />
+                            <path d="M8 12h8" />
+                            <path d="M12 8v8" />
+                        </svg> Create
                     </button>
                 </div>
             </form>

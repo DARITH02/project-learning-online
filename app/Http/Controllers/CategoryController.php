@@ -13,11 +13,7 @@ class CategoryController extends Controller
     public function index(Request $request)
     {
         $categories = Category::all();
-        // if ($request->ajax()) {
-        //     // Render the Blade view and extract only the 'contents' section
-        //     return view('pages.category.categories', compact('categories'))
-        //         ->renderSections()['contents'];
-        // }
+
 
         if ($request->ajax()) {
             return view('pages.category.categories', compact('categories'))->renderSections()['contents'];
@@ -81,25 +77,61 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    public function show(Request $request, $id)
     {
-        //
+        if ($request->ajax()) {
+            return view('pages.category.editCategory');
+        }
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        // return response()->json([
+        //     'message' => 'Category deleted successfully.',
+        //     'data' => $category
+        // ], 200);
+        if (request()->ajax()) {
+
+            return view('pages.category.editCategory', compact('category'))->renderSections()['contents'];
+        }
+        return view('pages.category.editCategory', compact('category'));
+
+
+        // return response()->json($id);
+        // return view('pages.category.editCategory', compact('category'));
+        // if (request()->ajax()) {
+        //     return view('pages.category.editCategory', compact('category'))->renderSections()['contents'];
+
+        // }
+
+        // return view('pages.category.editCategory', compact('category'));
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request)
     {
         //
+        // $credaintails=$request->validate([
+        //     'title'=>'required|unique:cate,column,except,id'
+        // ])
+        $selectDoubplicate = Category::where('title', $request['title'])->where('description', 'desc')->where('id', '!=', 'id')->first();
+
+        if ($selectDoubplicate != null) {
+            return response()->json(['data' => $selectDoubplicate, 'message' => "Category already exist....!"], 422);
+        }
+        $record = Category::findOrFail($request['id']);
+        $record->update($request->all());
+        return response()->json(['data' => $record, 'message' => "update successfully....!"], 200);
+
+
+
     }
 
     /**
@@ -108,7 +140,7 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         //
-          $cate = Category::findOrFail($id);
+        $cate = Category::findOrFail($id);
 
         try {
             if ($cate->delete()) {
@@ -130,7 +162,18 @@ class CategoryController extends Controller
                 'message' => 'An error occurred while deleting the category.'
             ], 500);
         }
+    }
+    public function search(Request $request)
+    {
+        $title = $request->input("title","");
+        // $getFilter = Category::where('title', 'LIKE', "%{$title}%")->get();
+        $getFilter = Category::where('title', 'LIKE', "%{$title}%")->get();
+        if($getFilter){
 
+            return response()->json(['html' => $getFilter]);
+        }
+
+        // return response()->json(['html' => $getFilter]);
 
     }
 }
