@@ -208,16 +208,35 @@ window.loadPage = function (url) {
             console.error("Error loading page:", error);
         });
 };
-window.previewImg=(item)=>{
-    console.log(item.classList.contains("preview"));
-    axios.get('preview-img').then(response=>{
-        console.log(response);
-        
-    }).catch(error=>{
-        console.log(error);
-        
-    })
-}
+window.previewImg = (input) => {
+    // console.log(item.classList.contains("preview"));
+    // const url=document.g
+    // const selectorFrm=document.querySelector(item);
+    // const frmData=new FormData(form);
+    // const url=form.getAttribute('data-url')
+    // console.log(url);
+
+    const file = input.files[0];
+    const reader = new FileReader();
+    // console.log(file);
+
+    reader.onload = (e) => {
+        const preview = document.getElementById("img-preview");
+
+        console.log(preview);
+
+        preview.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+
+    // axios.post(url,frmData).then(response=>{
+    //     console.log(response);
+
+    // }).catch(error=>{
+    //     console.log(error);
+
+    // })
+};
 
 window.addEventListener("popstate", function (e) {
     if (e.state && e.state.url) {
@@ -305,7 +324,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .post(url, frmData)
             .then((response) => {
                 console.log(response);
-                
+
                 if (response.status === 200) {
                     // loadPage("/viewcategory");
 

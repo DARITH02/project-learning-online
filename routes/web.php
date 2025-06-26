@@ -40,7 +40,7 @@ Route::post('/search', [CategoryController::class, 'search'])->name('search');
 Route::get('/viewCourses', [CoursesController::class, 'index'])->name('viewCourses');
 Route::get("/create-courses", [CoursesController::class, 'create'])->name('create-courses');
 Route::post("/create-courses", [CoursesController::class, 'store'])->name('create-courses.store');
-Route::get('preview-img',[PreviewImageController::class,'show'])->name('preview-img.show');
+// Route::post('preview-img',[CoursesController::class,'preview'])->name('preview-img');
 
 
 

@@ -17,6 +17,7 @@
                 <path d="m12 8-4 4 4 4" />
                 <path d="M16 12H8" />
             </svg></button>
+
         <div class="bg-mode mx-auto rounded-lg shadow-sm ">
             {{-- <form id="form-courses" class="space-y-6" data-url="{{ route('create-courses.store') }}">
                 <!-- Title Field -->
@@ -57,19 +58,49 @@
             </form> --}}
 
             <div class="w-full mx-auto bg-white rounded-lg shadow-sm p-8">
-                <form id="frm-create-courses" class="space-y-6" data-url="{{route('create-courses.store')}}">
+                <form id="frm-create-courses" class="space-y-6" enctype="multipart/form-data"
+                    data-url="{{route('create-courses.store')}}">
                     <!-- Course Title -->
-                    <div>
-                        <label for="courseTitle" class="block text-sm font-medium text-gray-700 mb-2">
-                            Course Title <span class="text-red-500">*</span>
-                        </label>
-                        <input type="text" id="courseTitle" name="courseTitle" placeholder="Enter Title"
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                            required>
+                    <div class="grid grid-rows-1 grid-cols-3 space-x-5">
+                        <div class="">
+                            <label for="courseTitle" class="block text-sm font-medium text-gray-700 mb-2">
+                                Course Title <span class="text-red-500">*</span>
+                            </label>
+                            <input type="text" id="courseTitle" name="title" placeholder="Enter Title"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                required>
+                        </div>
+                        <div class="">
+                            <label for="level" class="block text-sm font-medium text-gray-700 mb-2">
+                                Level <span class="text-red-500">*</span>
+                            </label>
+                            <select id="level" name="level"
+                                class="w-full px-3 py-2.5 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                <option value="beginner" selected>Beginner</option>
+                                <option value="intermediate">Intermediate</option>
+                                <option value="advanced">Advanced</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="category" class="block text-sm font-medium text-gray-700 mb-2">
+                                Category <span class="text-red-500">*</span>
+                            </label>
+
+                            <select id="category" name="category"
+                                class="w-full px-3 py-2.5 border border-gray-300 rounded-md shadow-sm text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                required>
+                                <option value="" selected disabled>Select Category</option>
+                                @foreach ($category as $cate)
+                                    <option value="{{$cate->id}}"> {{$cate->title}}</option>
+                                @endforeach
+
+                            </select>
+                        </div>
+
                     </div>
 
                     <!-- Course Type, Instructor, Level Row -->
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="grid grid-cols-2 gap-6">
                         <!-- Course Type -->
                         {{-- <div>
                             <label for="courseType" class="block text-sm font-medium text-gray-700 mb-2">
@@ -100,41 +131,17 @@
                         </div> --}}
 
                         <!-- Level -->
-                        <div>
-                            <label for="level" class="block text-sm font-medium text-gray-700 mb-2">
-                                Level <span class="text-red-500">*</span>
-                            </label>
-                            <select id="level" name="level"
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                >
-                                <option value="beginner" selected>Beginner</option>
-                                <option value="intermediate">Intermediate</option>
-                                <option value="advanced">Advanced</option>
-                            </select>
-                        </div>
+
                         <!-- Category -->
-                        <div>
-                            <label for="category" class="block text-sm font-medium text-gray-700 mb-2">
-                                Category <span class="text-red-500">*</span>
-                            </label>
-
-                            <select id="category" name="category"
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                required>
-                                <option value="" selected disabled>Select Category</option>
-                                @foreach ($category as $cate)
-                                    <option value="{{$cate->id}}"> {{$cate->title}}</option>
-                                @endforeach
-
-                            </select>
-                        </div>
 
                         <!-- Status -->
                         <div>
                             <label for="price" class="block text-sm font-medium text-gray-700 mb-2">
                                 price <span class="text-red-500">*</span>
                             </label>
-                           <input type="number" name="price" id="">
+                            <input
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                type="number" name="price" id="">
                         </div>
 
                         <!-- Visibility -->
@@ -142,23 +149,18 @@
                             <label for="visibility" class="block text-sm font-medium text-gray-700 mb-2">
                                 Visibility <span class="text-red-500">*</span>
                             </label>
-                            <select id="visibility" name="visibility"
+                            <select id="visibility" name="status"
                                 class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                 required>
-                                <option value="draft" selected>Draft</option>
+                                <option selected value="draft" selected>Draft</option>
                                 <option value="public">Public</option>
                                 <option value="private">Private</option>
                             </select>
                         </div>
-
-
-
-
-
                     </div>
 
                     <!-- Short Description -->
-                    <div>
+                    {{-- <div>
                         <label for="shortDescription" class="block text-sm font-medium text-gray-700 mb-2">
                             Short Description
                         </label>
@@ -184,11 +186,13 @@
                                 </button>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <!-- Description -->
+                    {{-- <input type="text" name="img" class="txt-name"> --}}
+
                     <div class="flex gap-5">
-                        <div class="border border-gray-300 rounded-md w-1/2">
+                        {{-- <div class="border border-gray-300 rounded-md w-1/2">
                             <!-- Toolbar -->
                             <label for="description" class="block text-sm font-medium text-gray-700 mb-2">
                                 Description
@@ -227,16 +231,73 @@
                             <!-- Text Area -->
                             <textarea id="description" name="description" rows="8" placeholder="Enter Description"
                                 class="w-full px-3 py-2 border-0 focus:outline-none focus:ring-0 resize-none placeholder-gray-400"></textarea>
-                        </div>
-                        <div class="w-1/2 h-fll">
+                        </div> --}}
+                        {{-- <div class="w-1/2 h-fll">
                             <label for="">Image</label>
-                                <div class="w-full h-full bg-red-700">
-                                    <label for="img" class="w-full h-full bg-blue-800 flex justify-center">
-                                        <img src="" alt="">
-                                    </label>
-                                    <input type="file" name="img" class="preview" id="img" onchange="previewImg(this)">
+                            <div class="w-full h-full bg-red-700">
+                                <label for="img" class="w-full h-full bg-blue-800 flex justify-center">
+                                    <img src="" alt="">
+                                </label>
+                                <input type="file" name="img" class="preview" id="img" onchange="previewImg(this)">
+                            </div>
+                        </div> --}}
+                        <div class="w-1/2 mx-auto bg-white rounded-lg shadow-md p-6">
+                            <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Upload Image</h2>
+
+                            <!-- Upload Area -->
+                            <div class="relative">
+
+                                <input type="file" accept="image/*" name="image"
+                                    class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                                    onchange="previewImg(this)">
+
+                                <!-- Thumbnail Preview Area -->
+                                <div id="thumbnailContainer"
+                                    class="border-2 border-dashed w-full border-gray-300 rounded-lg p-8 text-center hover:border-blue-400 transition-colors duration-200">
+                                    <!-- Default Upload Icon -->
+                                    {{-- <div id="uploadPlaceholder" class="flex flex-col items-center">
+                                        <svg class="w-12 h-12 text-gray-400 mb-4" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12">
+                                            </path>
+                                        </svg>
+                                        <p class="text-gray-500 text-sm mb-2">Click to upload or drag and drop</p>
+                                        <p class="text-gray-400 text-xs">PNG, JPG, GIF up to 10MB</p>
+                                    </div> --}}
+
+                                    <!-- Image Preview (hidden by default) -->
+                                    <div id="imagePreview" class="">
+                                        <img id="img-preview" src="" alt="Preview"
+                                            class="w-full h-full object-cover rounded-lg mb-4 ">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <p id="fileName" class="text-sm font-medium text-gray-700"></p>
+                                                <p id="fileSize" class="text-xs text-gray-500"></p>
+                                            </div>
+                                            <button onclick="removeImage()"
+                                                class="text-red-500 hover:text-red-700 transition-colors duration-200"
+                                                type="button">
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                                                    </path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
+                            </div>
+
+                            <!-- Upload Button -->
+                            <button id="uploadButton"
+                                class="w-full mt-6 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                                disabled>
+                                Upload Image
+                            </button>
                         </div>
+
+
                     </div>
 
                     <!-- Category, Status, Visibility, Language Row -->

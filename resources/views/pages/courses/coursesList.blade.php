@@ -10,6 +10,8 @@
                 <x-slot name='title2'>View Courses</x-slot>
                 {{-- <x-slot name='title3'> </x-slot> --}}
             </x-headding-page>
+            {{-- <img src="../storage/app/public/images/1750960272_685d88901748b.Screenshot from 2025-05-12 07-56-32.png"
+                alt=""> --}}
 
             <!-- Main Content -->
             <div class="w-full mt-5 bg-mode">
@@ -112,133 +114,40 @@
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-200">
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">1</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm">
-                                        <a href="#" class="text-blue-600 hover:text-blue-800">Build a full stack N...</a>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Software Development</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        Instructor : <span class="text-blue-600">instructor</span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        <div>Total Section : 12.00</div>
-                                        <div>Total Lesson : 4.00</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">0.00</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$100.00</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="text-blue-600 text-sm">Recorded</span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span
-                                            class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
-                                            Active
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span
-                                            class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-teal-100 text-teal-800">
-                                            Public
-                                        </span>
-                                    </td>
-                                </tr>
+                                @foreach ($data as $key => $datas)
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{$key + 1}}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                            <a href="#" class="text-blue-600 hover:text-blue-800">{{$datas->title}}</a>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Software Development</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            Instructor : <span class="text-blue-600">instructor</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <div>Total Section : 12.00</div>
+                                            <div>Total Lesson : 4.00</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">0.00</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$100.00</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="text-blue-600 text-sm">Recorded</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span
+                                                class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
+                                                Active
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span
+                                                class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-teal-100 text-teal-800">
+                                                Public
+                                            </span>
+                                        </td>
+                                    </tr>
 
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm">
-                                        <a href="#" class="text-blue-600 hover:text-blue-800">The Complete ChatGPT...</a>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Website Development</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        Instructor : <span class="text-blue-600">instructor</span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        <div>Total Section : 3.00</div>
-                                        <div>Total Lesson : 0.00</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">0.00</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Free</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="text-blue-600 text-sm">Recorded</span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span
-                                            class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
-                                            Active
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span
-                                            class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-teal-100 text-teal-800">
-                                            Public
-                                        </span>
-                                    </td>
-                                </tr>
-
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">3</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm">
-                                        <a href="#" class="text-blue-600 hover:text-blue-800">The Complete 2023 We...</a>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Mobile Development</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        Instructor : <span class="text-blue-600">instructor</span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        <div>Total Section : 2.00</div>
-                                        <div>Total Lesson : 0.00</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">0.00</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$160.00</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="text-blue-600 text-sm">Recorded</span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span
-                                            class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
-                                            Active
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span
-                                            class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-teal-100 text-teal-800">
-                                            Public
-                                        </span>
-                                    </td>
-                                </tr>
-
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">4</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm">
-                                        <a href="#" class="text-blue-600 hover:text-blue-800">The Web Developer Boo...</a>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Desktop Development</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        Instructor : <span class="text-blue-600">instructor</span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        <div>Total Section : 6.00</div>
-                                        <div>Total Lesson : 1.00</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">0.00</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$120.00</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="text-blue-600 text-sm">Recorded</span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span
-                                            class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
-                                            Active
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span
-                                            class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-teal-100 text-teal-800">
-                                            Public
-                                        </span>
-                                    </td>
-                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -246,5 +155,6 @@
             </div>
         </div>
     </div>
+
 
 @endsection
