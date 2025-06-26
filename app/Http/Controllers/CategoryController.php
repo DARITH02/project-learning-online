@@ -90,25 +90,12 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::findOrFail($id);
-        // return response()->json([
-        //     'message' => 'Category deleted successfully.',
-        //     'data' => $category
-        // ], 200);
+ 
         if (request()->ajax()) {
 
             return view('pages.category.editCategory', compact('category'))->renderSections()['contents'];
         }
         return view('pages.category.editCategory', compact('category'));
-
-
-        // return response()->json($id);
-        // return view('pages.category.editCategory', compact('category'));
-        // if (request()->ajax()) {
-        //     return view('pages.category.editCategory', compact('category'))->renderSections()['contents'];
-
-        // }
-
-        // return view('pages.category.editCategory', compact('category'));
 
     }
 
@@ -129,8 +116,6 @@ class CategoryController extends Controller
         $record = Category::findOrFail($request['id']);
         $record->update($request->all());
         return response()->json(['data' => $record, 'message' => "update successfully....!"], 200);
-
-
 
     }
 
@@ -172,8 +157,6 @@ class CategoryController extends Controller
 
             return response()->json(['html' => $getFilter]);
         }
-
-        // return response()->json(['html' => $getFilter]);
 
     }
 }

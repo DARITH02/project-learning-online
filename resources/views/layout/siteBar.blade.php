@@ -66,7 +66,7 @@
                 </div>
                 <div class="submenu max-h-0 overflow-hidden transition-all duration-300 ">
                     <div class="submenu-item px-6 py-2 text-sm hover:bg-gray-200 cursor-pointer relative"
-                        onclick="setActive(this);loadPage('courses')">Courses List</div>
+                        onclick="setActive(this);loadPage('viewCourses')">Courses List</div>
                     <div class="submenu-item px-6 py-2 text-sm font-medium  hover:bg-blue-100 cursor-pointer relative"
                         onclick="setActive(this);loadPage('viewcategory')">Categories List</div>
                 </div>

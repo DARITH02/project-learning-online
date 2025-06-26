@@ -170,6 +170,17 @@ window.loadPage = function (url) {
 
             if (container) {
                 container.innerHTML = html;
+
+                //                 document.addEventListener("click", function (e) {
+                //     if (e.target.closest(".pagination a")) {
+                //         e.preventDefault();
+                //         //   console.log("Pagination link clicked:", e.target.closest("a").href);
+                //         // const url = e.target.closest("a").getAttribute("href");
+                //         const url = e.target.closest("a").href;
+
+                //     }
+                // });
+
                 const theme = localStorage.getItem("theme") || "light";
                 const bgMode = document.querySelectorAll(".bg-mode");
 
@@ -186,29 +197,10 @@ window.loadPage = function (url) {
                         el.classList.remove("bg-[#212529]");
                     }
                 });
-                // bgMode.forEach((el) => {
-                //     const bgMode = document.querySelectorAll(".bg-mode");
-                //     // e.classList.remove("bg-[#f8f9fa]");
-
-                //     // el.classList.remove("bg-blue-500", "bg-[#f8f9fa]");
-
-                //     if (theme === "dark") {
-                //     el.classList.add("bg-[#f8f9fa]");
-                //         // el.classList.add("bg-[#f8f9fa]"); // dark theme color
-                //     } else {
-                //         el.classList.add("bg-[#f8f9fa]"); // light theme color
-                //     }
-                // });
 
                 // ✅ Update browser URL without reloading
                 history.pushState({ url: url }, "", url);
             } else {
-                // const bgMode = document.querySelectorAll(".bg-mode");
-
-                // bgMode.forEach((e) => {
-                //     e.classList.remove("bg-[#212529]");
-                //     e.classList.add("bg-[#f8f9fa]");
-                // });
                 console.error("#main-content container not found.");
             }
         })
@@ -216,6 +208,38 @@ window.loadPage = function (url) {
             console.error("Error loading page:", error);
         });
 };
+window.previewImg=(item)=>{
+    console.log(item.classList.contains("preview"));
+    axios.get('preview-img').then(response=>{
+        console.log(response);
+        
+    }).catch(error=>{
+        console.log(error);
+        
+    })
+}
+
+window.addEventListener("popstate", function (e) {
+    if (e.state && e.state.url) {
+        loadPage(e.state.url);
+    }
+});
+
+// document.addEventListener("click", function (e) {
+//     if (e.target.closest(".pagination a")) {
+//         e.preventDefault();
+//         const url = e.target.closest("a").getAttribute("href");
+//         loadPage(url);
+//         //     fetch(url, {
+//         //         headers: { "X-Requested-With": "XMLHttpRequest" },
+//         //     })
+//         //         .then((response) => response.text())
+//         //         .then((data) => {
+//         //             document.getElementById("posts-container").innerHTML = data;
+
+//         //         });
+//     }
+// });
 
 // ✅ Handle browser back/forward buttons
 window.addEventListener("popstate", function (event) {
@@ -267,21 +291,23 @@ document.addEventListener("DOMContentLoaded", () => {
         let frmSelector = document.querySelector(selector);
         let frmData = new FormData(frmSelector);
 
-        if (!frmData.get("title") || frmData.get("title") === "") {
-            notyf.open({
-                type: "warning",
-                message: "Empty field please enter it......!",
-            });
+        // if (!frmData.get("title") || frmData.get("title") === "") {
+        //     notyf.open({
+        //         type: "warning",
+        //         message: "Empty field please enter it......!",
+        //     });
 
-            return;
-        }
+        //     return;
+        // }
 
         const url = frmSelector.getAttribute("data-url");
         axios
             .post(url, frmData)
             .then((response) => {
+                console.log(response);
+                
                 if (response.status === 200) {
-                    loadPage("/viewcategory");
+                    // loadPage("/viewcategory");
 
                     notyf.success(
                         response.data.data + " : " + response.data.message
@@ -492,8 +518,20 @@ document.addEventListener("DOMContentLoaded", () => {
                         text: "Not found ?",
                         icon: "question",
                     });
-                     loadPage("/viewcategory");
+                    loadPage("/viewcategory");
                 }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
+    //courses
+    window.createFrmCourses = (url) => {
+        axios
+            .get(url)
+            .then((response) => {
+                console.log(response);
             })
             .catch((error) => {
                 console.log(error);

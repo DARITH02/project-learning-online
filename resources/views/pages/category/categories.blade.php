@@ -54,7 +54,7 @@
                 </div>
 
                 <!-- Table Section -->
-                @include('components.editForm')
+                {{-- @include('components.editForm') --}}
 
                 <div class="overflow-x-auto mt-4 bg-mode shadow-sm">
                     <table class="w-full">
@@ -138,13 +138,29 @@
                                 </tr>
                             @endforeach
 
-
-
                         </tbody>
                     </table>
 
 
                 </div>
+
+
+                {{-- {{$categories->links()}} --}}
+               
+               {{-- href="?page=2" --}}
+                {{-- {{ $categories->links('vendor.pagination.tailwind') }} --}}
+
+                {{-- <nav>
+                    <ul class="pagination">
+                        <li><a href="?page=2">2</a></li>
+                    </ul>
+                </nav> --}}
+
+
+
+                
+
+
             </div>
         </div>
     </div>
