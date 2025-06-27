@@ -1,13 +1,11 @@
 @extends('app.app')
+
 @section('contents')
-
-
-
     <div class="w-full p-8">
         <x-headding-page>
-            <x-slot name='headding'>Create Courses </x-slot>
-            <x-slot name='title1'>Category</x-slot>
-            <x-slot name='title2'>Create</x-slot>
+            <x-slot name='headding'>Update Courses </x-slot>
+            <x-slot name='title1'>Courses</x-slot>
+            <x-slot name='title2'>Update</x-slot>
         </x-headding-page>
         <a href="{{route('viewCourses')}}"
             class=" inline-block cursor-pointer hover:bg-gray-500 duration-200 bg-gray-300 px-3 py-2 my-2 rounded-md"><svg
@@ -20,7 +18,7 @@
             </svg>
         </a>
 
-        <div class="bg-mode mx-auto rounded-lg shadow-sm z-0">
+        <div class="bg-mode mx-auto rounded-lg shadow-sm ">
             {{-- <form id="form-courses" class="space-y-6" data-url="{{ route('create-courses.store') }}">
                 <!-- Title Field -->
                 <div class="w-full flex gap-3.5">
@@ -60,15 +58,18 @@
             </form> --}}
 
             <div class="w-full mx-auto bg-white rounded-lg shadow-sm p-8">
-                <form id="frm-create-courses" class="space-y-6" enctype="multipart/form-data"
-                    data-url="{{route('create-courses.store')}}">
+                <form id="frm-update-courses" class="space-y-6" enctype="multipart/form-data"
+                    data-url="{{route('update-course', $find->id)}}">
+                    {{-- <input type="text" id="id" value="{{$find->id}}"> --}}
+                    <input type="text" value="{{$find->thumbnail}}" name="old_thumbnail">
                     <!-- Course Title -->
                     <div class="grid grid-rows-1 grid-cols-3 space-x-5">
                         <div class="">
                             <label for="courseTitle" class="block text-sm font-medium text-gray-700 mb-2">
                                 Course Title <span class="text-red-500">*</span>
                             </label>
-                            <input type="text" id="courseTitle" name="title" placeholder="Enter Title"
+                            <input type="text" id="courseTitle" name="title" value="{{$find->title}}"
+                                placeholder="Enter Title"
                                 class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                 required>
                         </div>
@@ -92,9 +93,9 @@
                                 class="w-full px-3 py-2.5 border border-gray-300 rounded-md shadow-sm text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                 required>
                                 <option value="" selected disabled>Select Category</option>
-                                @foreach ($category as $cate)
-                                    <option value="{{$cate->id}}"> {{$cate->title}}</option>
-                                @endforeach
+                                {{-- @foreach ($category as $cate)
+                                <option value="{{$cate->id}}"> {{$cate->title}}</option>
+                                @endforeach --}}
 
                             </select>
                         </div>
@@ -143,7 +144,7 @@
                             </label>
                             <input
                                 class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                type="number" name="price" id="">
+                                type="number" name="price" id="" value="{{$find->price}}">
                         </div>
 
                         <!-- Visibility -->
@@ -154,9 +155,10 @@
                             <select id="visibility" name="status"
                                 class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                 required>
-                                <option selected value="draft" selected>Draft</option>
-                                <option value="public">Public</option>
-                                <option value="private">Private</option>
+                                <option selected value="{{$find->status}}">{{$find->status}}</option>
+                                <option value="draft">Draft</option>
+                                <option value="published">published</option>
+                                <option value="archived">archived</option>
                             </select>
                         </div>
                     </div>
@@ -253,6 +255,10 @@
                                 <!-- Thumbnail Preview Area -->
                                 <div id="thumbnailContainer"
                                     class="border-2 border-dashed w-full border-gray-300 rounded-lg p-8 text-center hover:border-blue-400 transition-colors duration-200">
+                                    <input type="file" accept="image/*" name="image"
+                                        class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                                        onchange="previewImg(this)">
+
                                     <!-- Default Upload Icon -->
                                     {{-- <div id="uploadPlaceholder" class="flex flex-col items-center">
                                         <svg class="w-12 h-12 text-gray-400 mb-4" fill="none" stroke="currentColor"
@@ -264,14 +270,11 @@
                                         <p class="text-gray-500 text-sm mb-2">Click to upload or drag and drop</p>
                                         <p class="text-gray-400 text-xs">PNG, JPG, GIF up to 10MB</p>
                                     </div> --}}
-                                    <input type="file" accept="image/*" name="image"
-                                        class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
-                                        onchange="previewImg(this)">
 
                                     <!-- Image Preview (hidden by default) -->
                                     <div id="imagePreview" class="">
-                                        <img id="img-preview" src="" alt="Preview"
-                                            class="w-full h-full object-cover rounded-lg mb-4">
+                                        <img id="img-preview" src="{{asset('storage/' . $find->thumbnail)}}" alt="Preview"
+                                            class="w-full h-full object-cover rounded-lg mb-4 ">
                                         <div class="flex items-center justify-between">
                                             <div>
                                                 <p id="fileName" class="text-sm font-medium text-gray-700"></p>
@@ -306,7 +309,7 @@
 
                     <!-- Submit Button -->
                     <div class="flex justify-end pt-6">
-                        <button type="button" onclick="createCate('#frm-create-courses')"
+                        <button type="button" onclick="udpateCate('#frm-update-courses')"
                             class="px-6 py-2 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
                             Create Course
                         </button>

@@ -89,8 +89,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
+        // return response()->json($id);
         $category = Category::findOrFail($id);
- 
+
         if (request()->ajax()) {
 
             return view('pages.category.editCategory', compact('category'))->renderSections()['contents'];
@@ -150,10 +151,10 @@ class CategoryController extends Controller
     }
     public function search(Request $request)
     {
-        $title = $request->input("title","");
+        $title = $request->input("title", "");
         // $getFilter = Category::where('title', 'LIKE', "%{$title}%")->get();
         $getFilter = Category::where('title', 'LIKE', "%{$title}%")->get();
-        if($getFilter){
+        if ($getFilter) {
 
             return response()->json(['html' => $getFilter]);
         }

@@ -91,7 +91,7 @@
 
                             @foreach($categories as $key => $category)
 
-                                <tr id="category-row-{{$category->id}}" class="hover:bg-gray-50">
+                                <tr class="hover:bg-gray-50 category-row-{{$category->id}}">
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{$key + 1}}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{$category->title}}</td>
                                     <td class="px-6 py-4 whitespace-nowrap">
@@ -109,9 +109,8 @@
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">10-12-2024</td>
                                     <td class="px-6 py-4 whitespace-nowrap flex space-x-2.5" colspan="2">
-                                        <button type="button" onclick="loadPage('{{ route('editCate', $category->id) }}')"
+                                        <button type="button" onclick="loadPage('/editCate/{{$category->id}}')"
                                             class="text-gray-100 hover:text-white bg-blue-500 p-2 rounded-md hover:bg-blue-700 flex px-3 gap-1.5 cursor-pointer duration-150">
-
 
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -122,7 +121,7 @@
                                             </svg>
                                             edit
                                         </button>
-                                        <button onclick="deleteItem({{$category['id']}})"
+                                        <button onclick="deleteItem('/deleteCategory/',{{$category['id']}})" 
                                             class="text-gray-100 hover:text-white bg-rose-800 p-2 rounded-md hover:bg-rose-900 px-3 flex gap-1.5 cursor-pointer duration-150">
 
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"

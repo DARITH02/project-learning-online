@@ -326,25 +326,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.log(response);
 
                 if (response.status === 200) {
-                    // loadPage("/viewcategory");
+                    loadPage("/viewCourses");
 
                     notyf.success(
-                        response.data.data + " : " + response.data.message
+                        response.data.message 
                     );
                     frmSelector.reset();
                 }
             })
             .catch((error) => {
-                if (
-                    error.response &&
-                    error.response.data &&
-                    error.response.data.message
-                ) {
-                    notyf.error(
-                        error.response.data.data +
-                            " : " +
-                            error.response.data.message
-                    );
+                console.log(error.response);
+
+                if (error.status === 422) {
+                    notyf.error(error.response.data.message);
                 } else {
                     notyf.error("An unexpected error occurred");
                     notyf.error("An unexpected error occurred");
@@ -352,7 +346,9 @@ document.addEventListener("DOMContentLoaded", () => {
             });
     };
 
-    window.deleteItem = (id) => {
+    window.deleteItem = (route, id) => {
+        console.log(route, id);
+
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -364,18 +360,16 @@ document.addEventListener("DOMContentLoaded", () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 axios
-                    .delete(`/deleteCategory/${id}`)
+                    .delete(`${route}${id}`)
                     .then((response) => {
                         const row = document.querySelector(
-                            `#category-row-${id}`
+                            `.category-row-${id}`
                         );
                         if (row) {
                             row.remove();
                         }
 
                         if (response.status === 200) {
-                            loadPage("/viewcategory");
-
                             notyf.success(response.data.message);
                         }
                     })
@@ -394,9 +388,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     };
 
-    window.edite = (id) => {
+    window.edite = (edition, id) => {
         axios
-            .get(`/editCate/${id}`)
+            .get(`${edition}${id}`)
             .then((response) => {
                 document.querySelector("#editFormContainer").innerHTML =
                     response.data;
@@ -410,23 +404,23 @@ document.addEventListener("DOMContentLoaded", () => {
         let frmSelector = document.querySelector(Selector);
         let frmData = new FormData(frmSelector);
         const url = frmSelector.getAttribute("data-url");
-        const valueTitlte = document.getElementById("ttlel_up");
+        // const valueTitlte = document.getElementById("ttlel_up");
 
-        if (valueTitlte.value.trim() === "") {
-            notyf.open({
-                type: "warning",
-                message: "Empty field please enter it......!",
-            });
+        // if (valueTitlte.value.trim() === "") {
+        //     notyf.open({
+        //         type: "warning",
+        //         message: "Empty field please enter it......!",
+        //     });
 
-            valueTitlte.focus();
-            return;
-        }
+        //     valueTitlte.focus();
+        //     return;
+        // }
 
         axios
             .post(url, frmData)
             .then((response) => {
                 if (response.status == 200) {
-                    loadPage("/viewcategory");
+                    loadPage("/viewCourses");
                     notyf.success(response.data.message);
                 }
                 // console.log(response.data.data);
