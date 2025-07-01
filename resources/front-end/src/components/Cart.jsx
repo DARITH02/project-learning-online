@@ -39,7 +39,7 @@ export default function Cart({
         );
     };
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 md:p-0 md:mb-5 gap-6 py-5 px-5">
+        <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 md:p-0 md:mb-5 gap-6 py-5 px-5">
             {courses.map((course) => (
                 <div
                     key={course.id}

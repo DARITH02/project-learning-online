@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
+import Logo from "../../../../public/storage/logo/logo-etec.png"
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
     Search,
     Bell,
@@ -9,9 +10,9 @@ import {
     ChevronDown,
     AlignJustify,
 } from "lucide-react";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
-import { Badge } from "./ui/badge";
+import { Button } from "../components/ui/button";
+import { Input } from "../components/ui/input";
+import { Badge } from "../components/ui/badge";
 
 // import {
 //     DropdownMenu,
@@ -20,33 +21,60 @@ import { Badge } from "./ui/badge";
 //     DropdownMenuTrigger,
 // } from "./ui/dropdown-menu";
 
-export default function Header() {
+export default function Header({ page, data }) {
+    console.log(data);
+
+    // const location = useLocation();
+    // const param = useParams();
+    // console.log(location.pathname);
+    // console.log(param);
+
     const [searchQuery, setSearchQuery] = useState("");
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const toggleMobileMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
     };
+    const [isHover, SetIsHover] = useState(null);
 
     const closeMobileMenu = () => {
         setIsMobileMenuOpen(false);
     };
 
+    useEffect(() => {
+        // const handleMouseLeave = () => {
+        //     SetIsHover(false);
+        // };
+        // window.addEventListener("mouseleave", handleMouseLeave);
+        // return () => {
+        //     window.removeEventListener("mouseover", handleMouseLeave);
+        // };
+    }, []);
+
+    const listMunu = [
+        {
+            lable: "Software development",
+            sumList: ["Web Design", "Web Back-end", "CPP"],
+        },
+        { lable: "Network", sumList: ["A", "b", "C"] },
+    ];
+
     return (
         <>
-            <header className="w-full bg-white border-b border-gray-200 px-4 py-3 z-50 sticky top-0 mb-3.5">
+            <header className="w-full bg-white border-b border-gray-200 px-4 py-3 z-50 sticky top-0 ">
                 <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
                     {/* Logo */}
-                    <div className="flex items-center gap-2 flex-shrink-0">
-                        <div className="relative">
+                    <div className="flex items-center gap-2 flex-shrink-0 overflow-hidden">
+                        <img className="h-14 w-14" src={Logo} alt="" />
+                        {/* <div className="relative">
                             <div className="w-8 h-8 bg-gradient-to-br from-orange-400 to-orange-500 rounded-md flex items-center justify-center">
                                 <div className="w-5 h-5 bg-white rounded-sm flex items-center justify-center">
                                     <div className="w-3 h-3 bg-gradient-to-br from-blue-500 to-blue-600 rounded-sm"></div>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                         <span className="text-xl font-bold text-gray-800 tracking-wide">
-                            ONEST
+                            ETEC
                         </span>
                     </div>
 
@@ -66,12 +94,12 @@ export default function Header() {
 
                     {/* Desktop Navigation */}
                     <nav className="hidden lg:flex items-center gap-8">
-                        <a
-                            href="#"
+                        <Link
+                            to="/home"
                             className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
                         >
                             Home
-                        </a>
+                        </Link>
                         {/* <div className="group relative z-30 ">
                             <span className="block py-3.5 text-gray-700 z-20 hover:text-blue-600 font-medium transition-colors cursor-pointer ">
                                 Categories
@@ -101,60 +129,82 @@ export default function Header() {
 
                             {/* Dropdown */}
                             <ul
-                                className="absolute top-full left-0  w-60 bg-gray-50 z-10 rounded-md px-5 py-3 shadow-xl
+                                className="flex gap-5 absolute top-full -left-[200%] w-[360px] bg-gray-300 z-10 rounded-md px-5 py-3 shadow-xl
                                 opacity-0 scale-y-0 translate-y-2 invisible 
                                 group-hover:opacity-100 group-hover:scale-y-100 group-hover:translate-y-0 group-hover:visible
                                 origin-top transition-all duration-300 ease-out"
                             >
-                                <li className="w-full mt-3 relative">
-                                    {/* Main link */}
-                                    <a
-                                        href="#"
-                                        className=" relative block w-full text-gray-800 font-medium
-               hover:text-blue-700 hover:underline decoration-blue-700 hover:shadow-2xl
-               transition-all duration-300 ease-out"
+                                {/* Main link */}
+                                {listMunu.map((el, i) => (
+                                    <ul
+                                        className="block w-fit"
+                                        // className="relative block  text-gray-800 font-medium
+                                        //        hover:text-blue-700 hover:underline decoration-blue-700 hover:shadow-2xl
+                                        //        transition-all duration-300 ease-out"
                                     >
-                                        Software Development
-                                    </a>
-
-                                    {/* Submenu */}
-                                    {/* <ul
-                                        className="absolute top-0 left-full ml-2 w-56 bg-blue-100 py-2 px-4 rounded-md shadow-lg
-               opacity-0 scale-y-95 translate-y-1 invisible
-               group-hover:opacity-100 group-hover:scale-y-100 group-hover:translate-y-0 group-hover:visible
-               origin-top-left transition-all duration-300 ease-out"
-                                    >
-                                        <li>
-                                            <a
-                                                href="#"
-                                                className="block w-full text-gray-800 font-medium py-1
-                   hover:text-blue-700 hover:underline decoration-blue-700 hover:shadow
-                   transition-all duration-300 ease-out"
-                                            >
-                                                Frontend Development
-                                            </a>
+                                        <li className="w-full block">
+                                            {el.lable}
+                                            <div>
+                                                {el.sumList.map((el, ind) => (
+                                                    <ul>
+                                                        <li className="text-blue-500">
+                                                            <Link
+                                                                to={`/category/${el}/${ind}`}
+                                                            >
+                                                                {el}
+                                                            </Link>
+                                                        </li>
+                                                    </ul>
+                                                ))}
+                                            </div>
                                         </li>
-                                        <li>
-                                            <a
-                                                href="#"
-                                                className="block w-full text-gray-800 font-medium py-1
-                   hover:text-blue-700 hover:underline decoration-blue-700 hover:shadow
-                   transition-all duration-300 ease-out"
-                                            >
-                                                Backend Development
-                                            </a>
-                                        </li>
-                                    </ul> */}
-                                </li>
+                                    </ul>
+                                ))}
                             </ul>
                         </div>
+                        {/* <a
+                                            href="#"
+                                            className=" relative block w-full text-gray-800 font-medium
+                                               hover:text-blue-700 hover:underline decoration-blue-700 hover:shadow-2xl
+                                               transition-all duration-300 ease-out"
+                                        >
+                                            Software Development
+                                        </a> */}
 
-                        <a
-                            href="#"
+                        {/* Submenu */}
+                        {/* <ul
+                                            onMouseLeave={() =>
+                                                SetIsHover(null)
+                                            }
+                                            className={`${
+                                                isHover == i
+                                                    ? "block"
+                                                    : "hidden"
+                                            } 
+                                            absolute top-0% left-full w-56 bg-blue-100 py-2 px-4 rounded-md shadow-lg
+                                            scale-y-95 translate-y-1
+                                            transition-all duration-300 ease-out`}
+                                        >
+                                            {el.sumList.map((subel, ind) => (
+                                                <li >
+                                                    <a
+                                                        href=""
+                                                        className="block w-full text-gray-800 font-medium py-1
+                   hover:text-blue-700 hover:underline decoration-blue-700 hover:shadow
+                   transition-all duration-300 ease-out"
+                                                    >
+                                                        Frontend Development
+                                                    </a>
+                                                </li>
+                                            ))}
+                                            </ul> */}
+
+                        <Link
+                            to="/about"
                             className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
                         >
-                            Instructors
-                        </a>
+                            About Us
+                        </Link>
                     </nav>
 
                     {/* Right Side Controls */}

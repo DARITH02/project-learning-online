@@ -6,6 +6,7 @@ use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\PreviewImageController;
 
 
+use App\Models\Category;
 use App\Models\Courses;
 use Illuminate\Support\Facades\Route;
 use function PHPUnit\Framework\returnValueMap;
@@ -96,6 +97,11 @@ Route::get('/course', function () {
         'page',
         'data'
     ));
+});
+Route::get('/category', function () {
+    $page = 'category';
+    $data = Category::all();
+    return view('react', compact('page', 'data'));
 });
 // Route::get('/c')
 

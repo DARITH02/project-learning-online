@@ -4,7 +4,15 @@ import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "../components/ui/button";
 import Cart from "../components/Cart";
+
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 import TrustedCompanies from "../components/TrustedCompanies";
+import P1 from "../../../../public/storage/image-front/IMG_0534.JPG";
+import P2 from "../../../../public/storage/image-front/image2.JPG";
+import P3 from "../../../../public/storage/image-front/image3.JPG";
+import P4 from "../../../../public/storage/image-front/image4.JPG";
 
 const slides = [
     {
@@ -14,8 +22,7 @@ const slides = [
         description:
             "comprehensive educational experiences that develop and enhance skill sets that can be applied to diverse job profiles.",
         buttonText: "Find your desired Course",
-        backgroundImage:
-            "https://onestacademy.s3.ap-southeast-1.amazonaws.com/uploads/Slider/image/images2023-04-13-bwzfnilgbx8b-original.jpeg",
+        backgroundImage: P1,
     },
     {
         id: 2,
@@ -24,7 +31,7 @@ const slides = [
         description:
             "Join thousands of students who have transformed their careers through our expert-led courses and practical learning approach.",
         buttonText: "Explore Courses",
-        backgroundImage: "/placeholder.svg?height=600&width=1200",
+        backgroundImage: P2,
     },
     {
         id: 3,
@@ -33,7 +40,7 @@ const slides = [
         description:
             "From beginner to expert, our structured learning paths guide you every step of the way to achieve your professional goals.",
         buttonText: "Get Started Today",
-        backgroundImage: "/placeholder.svg?height=600&width=1200",
+        backgroundImage: P3,
     },
 ];
 
@@ -132,6 +139,17 @@ const courseList = [
 ];
 
 export default function HeroSlider() {
+    useEffect(() => {
+        AOS.init({
+            duration: 800, // animation duration (in ms)
+            once: false, // animate only once
+        });
+    }, []);
+
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
     const [currentSlide, setCurrentSlide] = useState(0);
     const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
@@ -152,7 +170,11 @@ export default function HeroSlider() {
     const handleMouseLeave = () => setIsAutoPlaying(true);
 
     return (
-        <div className="max-w-7xl m-auto">
+        <div
+            className="max-w-7xl m-auto"
+            data-aos="fade-up"
+            data-aos-anchor-placement="top-center"
+        >
             <div
                 className="relative max-w-7xl m-auto h-[400px] sm:h-[500px] md:h-[600px] overflow-hidden rounded-lg sm:rounded-2xl"
                 onMouseEnter={handleMouseEnter}
@@ -241,31 +263,33 @@ export default function HeroSlider() {
             </div>
 
             {/* <div className="mt-5 flex items-center justify-center p-6"> */}
-                <div className="grid md:grid-rows-1 md:grid-cols-6 grid-rows-2 grid-cols-4 gap-6 px-5 my-7 md:my-20">
-                    {cards.map((el, idx) => (
-                        <div
-                            key={idx}
-                            className="p-6 bg-white rounded-lg shadow-md text-center hover:bg-gray-100 transition duration-200"
-                        >
-                            <div className="flex justify-center mb-3 text-3xl">
-                                {el.icon}
-                            </div>
-                            <h2 className="text-lg font-semibold text-gray-800">
-                                {el.title}
-                            </h2>
+            <div
+                data-aos="fade-up"
+                data-aos-anchor-placement="top-center"
+                className="  grid md:grid-rows-1 md:grid-cols-6 grid-rows-2 grid-cols-4 gap-6 px-5 my-7 md:my-20"
+            >
+                {cards.map((el, idx) => (
+                    <div
+                        key={idx}
+                        className="p-6 bg-white rounded-lg shadow-md text-center hover:bg-gray-100 transition duration-200"
+                    >
+                        <div className="flex justify-center mb-3 text-3xl">
+                            {el.icon}
                         </div>
-                    ))}
-                </div>
+                        <h2 className="text-lg font-semibold text-gray-800">
+                            {el.title}
+                        </h2>
+                    </div>
+                ))}
+            </div>
             {/* </div> */}
-
-            <Cart
-                courses={courseList}
-                title="🔥 Limited Time Offers"
-                showSeeAllButton={false}
-            />
-
-            <Cart />
-
+            <div data-aos="fade-up">
+                <Cart
+                    courses={courseList}
+                    title="🔥 Limited Time Offers"
+                    showSeeAllButton={false}
+                />
+            </div>
             <TrustedCompanies />
         </div>
     );

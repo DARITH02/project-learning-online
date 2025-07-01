@@ -3,26 +3,40 @@
 import React from "react";
 import { ArrowUp } from "lucide-react";
 // import { Button } from "@/components/ui/button";
+import Logo from "../../../../public/storage/logo/logo-etec.png";
+
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 function Footer() {
+    useEffect(() => {
+        AOS.init({
+            duration: 1000, // animation duration (in ms)
+            once: false, // animate only once
+        });
+    }, []);
+
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
     return (
-        <footer className="bg-slate-900 text-white">
+        <footer className="bg-slate-900 text-white " >
             <div className="max-w-7xl mx-auto px-4 py-12">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8" data-aos="fade-up">
                     {/* Company Info */}
                     <div className="lg:col-span-1">
-                        <div className="flex items-center gap-2 mb-4">
-                            <div className="w-8 h-8 bg-gradient-to-br from-orange-400 to-orange-500 rounded-md flex items-center justify-center">
+                        <div className="flex items-center gap-2 mb-4 h-12 w-14">
+                            <img className="object-cover " src={Logo} alt="" />
+
+                            {/* <div className="w-8 h-8 bg-gradient-to-br from-orange-400 to-orange-500 rounded-md flex items-center justify-center">
                                 <div className="w-5 h-5 bg-white rounded-sm flex items-center justify-center">
                                     <div className="w-3 h-3 bg-gradient-to-br from-blue-500 to-blue-600 rounded-sm"></div>
                                 </div>
-                            </div>
+                            </div> */}
                             <span className="text-xl font-bold tracking-wide">
-                                ONEST
+                                ETEC
                             </span>
                         </div>
                         <p className="text-gray-400 text-sm leading-relaxed">

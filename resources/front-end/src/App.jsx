@@ -1,8 +1,9 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import routeList from "./routes";
-import Header from "./components/Header";
+
 import "./index.css";
+// import '../css/app.css'; 
 import Layout from "./components/Layout";
 
 export default function App({ page, data }) {
