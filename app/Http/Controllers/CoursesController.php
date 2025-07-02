@@ -15,7 +15,8 @@ class CoursesController extends Controller
 {
     public function index(Request $request)
     {
-        $data = Courses::all();
+       $data = Courses::with('category')->get();
+
         if ($request->ajax()) {
             return view('pages.courses.coursesList', compact('data'))->renderSections()['contents'];
         }
@@ -34,11 +35,14 @@ class CoursesController extends Controller
     public function store(Request $request)
     {
 
-
         try {
             $validated = $request->validate([
                 'title' => 'required|unique:courses,title',
                 'price' => 'required|numeric',
+
+                'category' => 'required|exists:categories,id',
+                // 'description' => 'nullable|string',
+                // 'level' => 'nullable|string',
                 // 'status' => 'required|in:active,inactive',
                 'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             ]);
@@ -46,9 +50,12 @@ class CoursesController extends Controller
             $path = $request->file('image')->store('images', 'public');
 
             $course = Courses::create([
+                'cate_id' => $validated['category'],
                 'title' => $validated['title'],
                 'price' => $validated['price'],
                 'status' => $request['status'],
+                'level' => $request['level'],
+                'description' => $request['description'],
                 'thumbnail' => $path,
             ]);
 

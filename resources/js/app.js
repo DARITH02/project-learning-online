@@ -1,7 +1,11 @@
 import axios from "axios";
 import "./bootstrap";
 import { data } from "autoprefixer";
+
+
 lucide.createIcons();
+
+
 
 const bgMode = document.querySelectorAll(".bg-mode");
 const themeIcon = document.getElementById("theme-icon");
@@ -95,6 +99,46 @@ document.querySelectorAll(".bg-show-togle").forEach((btn) => {
 
 // Toggle submenu
 
+// window.toggleSubmenu = function (header) {
+//     const submenu = header.nextElementSibling;
+//     const chevron = header.querySelector(".chevron");
+
+//     if (!submenu || !chevron) return;
+
+//     const isExpanded = submenu.classList.contains("max-h-40");
+//     console.log(isExpanded);
+
+//     // Collapse all submenus and reset chevrons and headers
+//     document.querySelectorAll(".submenu").forEach((menu) => {
+//         menu.classList.remove("max-h-40");
+//         menu.classList.add("max-h-0");
+//     });
+
+//     document.querySelectorAll(".chevron").forEach((c) => {
+//         c.classList.remove("rotate-180", "text-blue-600");
+//         c.classList.add("text-gray-400");
+//     });
+
+//     document.querySelectorAll(".submenu-header").forEach((h) => {
+//         h.classList.remove("text-blue-600", "bg-blue-200");
+//         // h.querySelector("svg")?.classList.remove("text-blue-600");
+//         h.querySelector("svg")?.classList.add("text-gray-400");
+//     });
+
+//     // Toggle current submenu
+//     if (!isExpanded) {
+//         submenu.classList.remove("max-h-0");
+//         submenu.classList.add("max-h-40");
+
+//         chevron.classList.add("rotate-180", "text-blue-600");
+
+//         chevron.classList.remove("text-gray-400");
+
+//         header.classList.add("text-blue-600", "bg-blue-200");
+//     } 
+// };
+
+
 window.toggleSubmenu = function (header) {
     const submenu = header.nextElementSibling;
     const chevron = header.querySelector(".chevron");
@@ -102,9 +146,8 @@ window.toggleSubmenu = function (header) {
     if (!submenu || !chevron) return;
 
     const isExpanded = submenu.classList.contains("max-h-40");
-    console.log(isExpanded);
 
-    // Collapse all submenus and reset chevrons and headers
+    // Collapse all submenus and reset styles
     document.querySelectorAll(".submenu").forEach((menu) => {
         menu.classList.remove("max-h-40");
         menu.classList.add("max-h-0");
@@ -117,7 +160,7 @@ window.toggleSubmenu = function (header) {
 
     document.querySelectorAll(".submenu-header").forEach((h) => {
         h.classList.remove("text-blue-600", "bg-blue-200");
-        // h.querySelector("svg")?.classList.remove("text-blue-600");
+        h.querySelector("svg")?.classList.remove("text-blue-600");
         h.querySelector("svg")?.classList.add("text-gray-400");
     });
 
@@ -127,14 +170,60 @@ window.toggleSubmenu = function (header) {
         submenu.classList.add("max-h-40");
 
         chevron.classList.add("rotate-180", "text-blue-600");
-
         chevron.classList.remove("text-gray-400");
 
         header.classList.add("text-blue-600", "bg-blue-200");
+
+        // 🔐 Save the active submenu ID or index
+        localStorage.setItem("activeSubmenu", header.getAttribute("data-id"));
     } else {
-        // header.classList.remove("text-blue-600",'bg-gray-700');
+        localStorage.removeItem("activeSubmenu");
     }
 };
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const savedId = localStorage.getItem("activeMenuItem");
+
+    if (savedId) {
+        const activeItem = document.querySelector(
+            `.submenu-item[data-id="${savedId}"]`
+        );
+
+        if (activeItem) {
+            activeItem.classList.add("active", "text-blue-600", "font-medium");
+            activeItem.classList.remove("text-gray-700");
+        }
+    }
+
+
+
+
+      const savedSubmenuId = localStorage.getItem("activeSubmenu");
+
+    if (savedSubmenuId) {
+        const header = document.querySelector(`.submenu-header[data-id="${savedSubmenuId}"]`);
+
+        if (header) {
+            const submenu = header.nextElementSibling;
+            const chevron = header.querySelector(".chevron");
+
+            submenu?.classList.remove("max-h-0");
+            submenu?.classList.add("max-h-40");
+
+            chevron?.classList.add("rotate-180", "text-blue-600");
+            chevron?.classList.remove("text-gray-400");
+
+            header.classList.add("text-blue-600", "bg-blue-200");
+        }
+    }
+
+
+
+
+});
 
 // Set active submenu item
 window.setActive = function (item) {
@@ -150,6 +239,7 @@ window.setActive = function (item) {
 
     item.classList.add("active", "text-blue-600", "font-medium");
     item.classList.remove("text-gray-700");
+    localStorage.setItem("activeMenuItem", item.getAttribute("data-id"));
 };
 
 // Auto-expand the first menu on page load
@@ -328,9 +418,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (response.status === 200) {
                     loadPage("/viewCourses");
 
-                    notyf.success(
-                        response.data.message 
-                    );
+                    notyf.success(response.data.message);
                     frmSelector.reset();
                 }
             })
@@ -340,7 +428,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (error.status === 422) {
                     notyf.error(error.response.data.message);
                 } else {
-                    notyf.error("An unexpected error occurred");
                     notyf.error("An unexpected error occurred");
                 }
             });

@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CoursesController;
+use App\Http\Controllers\LessionController;
 use App\Http\Controllers\PreviewImageController;
 
 
@@ -37,8 +38,6 @@ Route::post('/search', [CategoryController::class, 'search'])->name('search');
 
 
 
-
-
 //route courese
 // Route::get('/viewCourses', [CoursesController::class, 'index'])->name('viewCourses');
 Route::get('/viewCourses', [CoursesController::class, 'index'])->name('viewCourses');
@@ -49,6 +48,12 @@ Route::post('/update-course/{id}', [CoursesController::class, 'update'])->name('
 // Route::post('preview-img',[CoursesController::class,'preview'])->name('preview-img');
 Route::delete('/del-course/{id}', [CoursesController::class, 'destroy'])->name('del-course');
 
+
+
+
+
+//lession
+Route::get('/lessionCreate',[LessionController::class,'create'])->name('lessionCreate');
 
 
 

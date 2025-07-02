@@ -121,7 +121,7 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-sm">
                                             <a href="#" class="text-blue-600 hover:text-blue-800">{{$datas->title}}</a>
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Software Development</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{$datas->cate_id}}</td>
 
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             <div>Total Section : 12.00</div>
@@ -177,6 +177,5 @@
             </div>
         </div>
     </div>
-
 
 @endsection

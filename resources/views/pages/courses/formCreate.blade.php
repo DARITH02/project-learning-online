@@ -91,9 +91,9 @@
                             <select id="category" name="category"
                                 class="w-full px-3 py-2.5 border border-gray-300 rounded-md shadow-sm text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                 required>
-                                <option value="" selected disabled>Select Category</option>
+                                <option  selected disabled>Select Category</option>
                                 @foreach ($category as $cate)
-                                    <option value="{{$cate->id}}"> {{$cate->title}}</option>
+                                    <option value="{{$cate->id}}"> {{$cate->id}}</option>
                                 @endforeach
 
                             </select>
@@ -243,7 +243,7 @@
                                 <input type="file" name="img" class="preview" id="img" onchange="previewImg(this)">
                             </div>
                         </div> --}}
-                        <div class="w-1/2 mx-auto bg-white rounded-lg shadow-md p-6">
+                        <div class="w-1/2 mx-auto bg-white rounded-lg shadow-sm p-6">
                             <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Upload Image</h2>
 
                             <!-- Upload Area -->
@@ -292,11 +292,16 @@
                             </div>
 
                             <!-- Upload Button -->
-                            <button id="uploadButton"
+                            {{-- <button id="uploadButton"
                                 class="w-full mt-6 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                                 disabled>
                                 Upload Image
-                            </button>
+                            </button> --}}
+                        </div>
+                        <div class="w-1/2 h-full">
+                            <label for="" class="block text-sm font-medium text-gray-700 mb-2">description</label>
+                            <textarea name="description" rows="" cols="" id=""
+                                class="w-full h-50 block border-2 rounded-md border-gray-400 shadow-md p-5" placeholder="description here....."></textarea>
                         </div>
 
 
