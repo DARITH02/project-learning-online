@@ -15,7 +15,7 @@ class CoursesController extends Controller
 {
     public function index(Request $request)
     {
-       $data = Courses::with('category')->get();
+        $data = Courses::with('category')->get();
 
         if ($request->ajax()) {
             return view('pages.courses.coursesList', compact('data'))->renderSections()['contents'];
@@ -100,11 +100,13 @@ class CoursesController extends Controller
     }
     public function edit($id)
     {
-        $find = Courses::findOrFail($id);
+        $find = Courses::with('category:id,title')->find($id);
+        // $data = Courses::select('status', 'level')->get();
+        $category=Category::lazy();
         if (request()->ajax()) {
-            return view('pages.courses.formUpdate', compact('find'))->renderSections()['contents'];
+            return view('pages.courses.formUpdate', compact(['find', 'category']))->renderSections()['contents'];
         }
-        return view('pages.courses.formUpdate', compact('find'));
+        return view('pages.courses.formUpdate', compact(['find', 'category']));
 
     }
 
@@ -149,6 +151,8 @@ class CoursesController extends Controller
             'title' => $credentials['title'],
             'price' => $credentials['price'],
             'status' => $request['status'],
+            'level' => $request['level'],
+            'cate_id' => $request['category'],
             'thumbnail' => $path,
 
         ]);

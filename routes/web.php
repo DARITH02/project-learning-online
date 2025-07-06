@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CoursesController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LessionController;
 use App\Http\Controllers\PreviewImageController;
 
@@ -13,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 use function PHPUnit\Framework\returnValueMap;
 use Illuminate\Http\Request;
 
-Route::get('/', function () {
-    return view('pages.dashbord');
-})->name('/');
+Route::get('/', [DashboardController::class, 'index'])->name('/');
+
+
 Route::get('courses', function () {
     return view("chat.chat");
 })->name('courses');
@@ -53,7 +54,8 @@ Route::delete('/del-course/{id}', [CoursesController::class, 'destroy'])->name('
 
 
 //lession
-Route::get('/lessionCreate',[LessionController::class,'create'])->name('lessionCreate');
+Route::get('/lessionCreate', [LessionController::class, 'create'])->name('lessionCreate');
+Route::post('/create-lession', [LessionController::class, 'store'])->name('create-lession.store');
 
 
 
@@ -95,21 +97,21 @@ Route::post('/chat', [ChatController::class, 'ask'])->name('chat.ask');
 // Route::get('/', [\App\Http\Controllers\controllerFront\CoursesController::class, 'index']);
 
 
-Route::get('/course', function () {
-    $data = Courses::all();
-    $page = 'course';
-    return view('react', compact(
-        'page',
-        'data'
-    ));
-});
-Route::get('/category', function () {
-    $page = 'category';
-    $data = Category::all();
-    return view('react', compact('page', 'data'));
-});
-// Route::get('/c')
+// Route::get('/course', function () {
+//     $data = Courses::all();
+//     $page = 'course';
+//     return view('react', compact(
+//         'page',
+//         'data'
+//     ));
+// });
+// Route::get('/category', function () {
+//     $page = 'category';
+//     $data = Category::all();
+//     return view('react', compact('page', 'data'));
+// });
+// // Route::get('/c')
 
-Route::get('/{any}', function () {
-    return view('react');
-})->where('any', '.*');
+// Route::get('/{any}', function () {
+//     return view('react');
+// })->where('any', '.*');

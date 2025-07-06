@@ -79,7 +79,11 @@
                             </label>
                             <select id="level" name="level"
                                 class="w-full px-3 py-2.5 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                                <option value="beginner" selected>Beginner</option>
+                                <option value="{{$find->level}}">{{$find->level}}</option>
+                                {{-- @foreach ($data as $level)
+                                <option value="">{{$level->level}}</option>
+                                @endforeach --}}
+                                <option value="beginner">Beginner</option>
                                 <option value="intermediate">Intermediate</option>
                                 <option value="advanced">Advanced</option>
                             </select>
@@ -92,10 +96,13 @@
                             <select id="category" name="category"
                                 class="w-full px-3 py-2.5 border border-gray-300 rounded-md shadow-sm text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                 required>
-                                <option value="" selected disabled>Select Category</option>
-                                {{-- @foreach ($category as $cate)
-                                <option value="{{$cate->id}}"> {{$cate->title}}</option>
-                                @endforeach --}}
+                                <option disabled {{!$find->cate_id ? 'selected' : '' }} value="">
+                                    Please lectect category</option>
+
+                                @foreach ($category as $cate)
+                                    <option value="{{$cate->id}}" {{$find->cate_id == $cate->id ? 'selected' : ''}}>
+                                        {{$cate->title}}</option>
+                                @endforeach
 
                             </select>
                         </div>

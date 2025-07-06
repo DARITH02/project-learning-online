@@ -89,11 +89,11 @@
                             </label>
 
                             <select id="category" name="category"
-                                class="w-full px-3 py-2.5 border border-gray-300 rounded-md shadow-sm text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                class="w-full px-3 py-2.5 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                 required>
                                 <option  selected disabled>Select Category</option>
                                 @foreach ($category as $cate)
-                                    <option value="{{$cate->id}}"> {{$cate->id}}</option>
+                                    <option value="{{$cate->id}}"> {{$cate->title}}</option>
                                 @endforeach
 
                             </select>

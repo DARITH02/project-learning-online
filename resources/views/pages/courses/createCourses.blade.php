@@ -1,4 +1,4 @@
-@extends('app.app')
+{{-- @extends('app.app')
 @section('contents')
 
 <body class="bg-gray-50">
@@ -219,4 +219,4 @@
     </div>
 </body>
 </html>
-@endsection
+@endsection --}}

@@ -14,7 +14,6 @@ class CategoryController extends Controller
     {
         $categories = Category::all();
 
-
         if ($request->ajax()) {
             return view('pages.category.categories', compact('categories'))->renderSections()['contents'];
         }

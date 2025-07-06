@@ -1,3 +1,4 @@
+{{--
 <!DOCTYPE html>
 <html>
 
@@ -10,14 +11,11 @@
 
 <body>
     @php
-        $props = [
-            'page' => $page ?? 'home',
-            'data' => $data ?? []
-        ];
+    $props = [
+    'page' => $page ?? 'home',
+    'data' => $data ?? []
+    ];
     @endphp
     <div id="app" data-page='@json($props)'></div>
 
     {{-- <div id="app" data-page='@json(["page" => $page, ' data'=> $data])'></div> --}}
-</body>
-
-</html>
