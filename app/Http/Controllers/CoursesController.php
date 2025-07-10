@@ -34,7 +34,7 @@ class CoursesController extends Controller
     }
     public function store(Request $request)
     {
-
+        
         try {
             $validated = $request->validate([
                 'title' => 'required|unique:courses,title',

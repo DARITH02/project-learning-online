@@ -13,11 +13,12 @@ class LessionController extends Controller
     public function create()
     {
         $course = Courses::all();
+        $title = 'lession';
 
         if (request()->ajax()) {
             return view('pages.lession.fromCreateLession', compact('course'))->renderSections()['contents'];
         }
-        return view('pages.lession.fromCreateLession', compact('course'));
+        return view('pages.lession.fromCreateLession', compact(['course', 'title']));
 
     }
     public function store(Request $request)
@@ -60,8 +61,8 @@ class LessionController extends Controller
             $paths[] = $path;
 
             Lession::create([
-                'course_id'=>$request['course'],
-                'video_path'=>$path
+                'course_id' => $request['course'],
+                'video_path' => $path
             ]);
         }
 

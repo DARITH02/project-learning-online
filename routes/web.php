@@ -5,6 +5,7 @@ use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LessionController;
+use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\PreviewImageController;
 
 
@@ -53,9 +54,18 @@ Route::delete('/del-course/{id}', [CoursesController::class, 'destroy'])->name('
 
 
 
+//modules
+Route::get('/modules', [ModuleController::class, 'index'])->name('modules.index');
+Route::get('/create-module', [ModuleController::class, 'show'])->name('create-module');
+Route::post('/create-module',[ModuleController::class,'store'])->name('create-module.store');
+
+
+
 //lession
 Route::get('/lessionCreate', [LessionController::class, 'create'])->name('lessionCreate');
 Route::post('/create-lession', [LessionController::class, 'store'])->name('create-lession.store');
+
+
 
 
 

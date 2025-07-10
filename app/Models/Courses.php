@@ -15,7 +15,11 @@ class Courses extends Model
     }
     public function video()
     {
-        return $this->hasMany(Lession::class,'course_id');
+        return $this->hasMany(Lession::class, 'course_id');
+    }
+    public function modules()
+    {
+        return $this->hasMany(Module::class, 'course_id');
     }
 
 

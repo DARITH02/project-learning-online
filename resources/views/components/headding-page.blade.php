@@ -16,7 +16,7 @@
         </ul>
     </div>
 </nav> --}}
-<div {{$attributes->merge(['class' => 'bg-mode border-b border-gray-200 px-6 py-4']) }}>
+<div {{$attributes->merge(['class' => 'border-b border-gray-200 px-6 py-4']) }}>
     <div class="flex items-center justify-between">
         <h1 class="text-2xl font-bold ">{{$headding}}</h1>
         <nav class="text-sm ">

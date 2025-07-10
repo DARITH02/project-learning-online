@@ -245,10 +245,16 @@ window.loadPage = function (url) {
         .then((response) => response.text())
         .then((html) => {
             const container = document.getElementById("main-content");
+           const title= document.querySelector("title");
+        
+        
+        
+           
+
 
             if (container) {
                 container.innerHTML = html;
-
+// title.innerText=response.title;
                 //                 document.addEventListener("click", function (e) {
                 //     if (e.target.closest(".pagination a")) {
                 //         e.preventDefault();
@@ -258,6 +264,18 @@ window.loadPage = function (url) {
 
                 //     }
                 // });
+
+                const tempDom = document.createElement("html");
+                tempDom.innerHTML = html;
+                const newTitle = tempDom.querySelector("title")?.innerText;
+                if (newTitle) {
+                    document.title = newTitle;
+                }
+                console.log(newTitle);
+                
+
+
+
 
                 const theme = localStorage.getItem("theme") || "light";
                 const bgMode = document.querySelectorAll(".bg-mode");
@@ -412,6 +430,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         const url = frmSelector.getAttribute("data-url");
+        console.log(url);
+        
         axios
             .post(url, frmData)
             .then((response) => {
