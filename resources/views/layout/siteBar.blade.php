@@ -45,8 +45,8 @@
                         onclick="setActive(this);loadPage('viewcategory')">Categories List</div>
                     <div class="submenu-item px-6 py-2 text-sm font-medium  hover:bg-blue-100 cursor-pointer relative"
                         onclick="setActive(this);loadPage('lessionCreate')">Lession</div>
-                         <div class="submenu-item px-6 py-2 text-sm font-medium  hover:bg-blue-100 cursor-pointer relative"
-                        onclick="setActive(this);loadPage('modules')">Modules</div>
+                    <div class="submenu-item px-6 py-2 text-sm font-medium  hover:bg-blue-100 cursor-pointer relative"
+                        onclick="setActive(this);loadPage('create-module')">Modules</div>
                 </div>
             </div>
 

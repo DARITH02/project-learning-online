@@ -8,7 +8,7 @@
         </div> --}}
 
         <div class="flex w-full items-center">
-            <a href="{{route('modules.index')}}"
+            <a href="{{route('viewCourses')}}"
                 class=" block w- cursor-pointer hover:bg-gray-500 duration-200  px-3 py-2 my-2 rounded-md"><svg
                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -24,9 +24,6 @@
                 <x-slot name='title2'>Create</x-slot>
             </x-headding-page>
         </div>
-
-
-
 
         <form method="" id="frm-module-create" data-url="{{route('create-module.store')}}">
 
@@ -221,10 +218,10 @@
             container.innerHTML = ''
             tags.forEach(tag => {
                 container.innerHTML += `
-                                                                            <span class="bg-gray-200 text-sm px-2 py-1 rounded flex items-center gap-1">
-                                                                              ${tag}
-                                                                              <button type="button" onclick="removeTag('${tag}')" class="text-red-500">×</button>
-                                                                            </span>`
+                                                                                <span class="bg-gray-200 text-sm px-2 py-1 rounded flex items-center gap-1">
+                                                                                  ${tag}
+                                                                                  <button type="button" onclick="removeTag('${tag}')" class="text-red-500">×</button>
+                                                                                </span>`
             })
             document.getElementById('tags-hidden').value = JSON.stringify(tags)
         }
@@ -249,10 +246,10 @@
             container.innerHTML = ''
             prerequisites.forEach(p => {
                 container.innerHTML += `
-                                                                            <span class="bg-gray-200 text-sm px-2 py-1 rounded flex items-center gap-1">
-                                                                              ${p}
-                                                                              <button type="button" onclick="removePrerequisite('${p}')" class="text-red-500">×</button>
-                                                                            </span>`
+                                                                                <span class="bg-gray-200 text-sm px-2 py-1 rounded flex items-center gap-1">
+                                                                                  ${p}
+                                                                                  <button type="button" onclick="removePrerequisite('${p}')" class="text-red-500">×</button>
+                                                                                </span>`
             })
             document.getElementById('prerequisites-hidden').value = JSON.stringify(prerequisites)
         }

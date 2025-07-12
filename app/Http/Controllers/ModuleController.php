@@ -64,8 +64,8 @@ class ModuleController extends Controller
             $module = Module::create(
 
                 [
-                    'course_id'=>$request['course'],
-                    'title'=>$request['title']
+                    'course_id' => $request['course'],
+                    'title' => $request['title']
                 ]
             );
 
@@ -87,9 +87,74 @@ class ModuleController extends Controller
                 'error' => $e->getMessage(), // You can remove this in production
             ], 500);
         }
+    }
 
 
 
+    public function edit($id)
+    {
+        $title = 'modules';
+
+        $module = Courses::with('modules')->findOrFail($id);
+
+        // $module = Module::findOrFail($id);
+
+        if (request()->expectsJson()) {
+
+            return view('pages.modules.editModules', compact(['title', 'module']))->renderSections()['contents'];
+
+        }
+        return view('pages.modules.editModules', compact(['title', 'module']));
+
+    }
+
+    public function update(Request $request)
+    {
+      
+        $cridentials=$request->validate([
+            'title'=> 'required|string|max:255',
+        ]);
+        try {
+            $module = Module::findOrFail($request->id);
+
+            $module->update($cridentials);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Module updated successfully!',
+                'data' => $module
+            ]);
+
+        } catch (\Exception $e) {
+            Log::error('Module update failed: ' . $e->getMessage());
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to update module.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+    public function destroy($id)
+    {
+        try {
+            $module = Module::findOrFail($id);
+            $module->delete();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Module deleted successfully!'
+            ]);
+
+        } catch (\Exception $e) {
+            Log::error('Module deletion failed: ' . $e->getMessage());
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to delete module.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
     }
 
 

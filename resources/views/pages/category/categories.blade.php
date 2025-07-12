@@ -5,13 +5,23 @@
         <div class="">
             <div class="shadown w-full">
                 <!-- Header Section -->
-                <x-headding-page>
-                    <x-slot name="headding">Categoyies</x-slot>
-                    <x-slot name="title1">Category</x-slot>
-                    <x-slot name="title2">View Categories</x-slot>
-
-                </x-headding-page>
-
+                <div class="flex w-full items-center">
+                    <a href="{{route('/')}}"
+                        class=" block w- cursor-pointer hover:bg-gray-500 duration-200  px-3 py-2 my-2 rounded-md"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-circle-arrow-left-icon lucide-circle-arrow-left">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="m12 8-4 4 4 4" />
+                            <path d="M16 12H8" />
+                        </svg>
+                    </a>
+                    <x-headding-page class="block w-full">
+                        <x-slot name='headding'>Category</x-slot>
+                        <x-slot name='title1'>category</x-slot>
+                        <x-slot name='title2'>View All</x-slot>
+                    </x-headding-page>
+                </div>
                 <div class="mx-auto mt-6 bg-mode px-5 py-2.5">
                     <div class="flex items-center justify-between flex-wrap gap-4">
                         <div class="flex items-center gap-4">
@@ -121,7 +131,7 @@
                                             </svg>
                                             edit
                                         </button>
-                                        <button onclick="deleteItem('/deleteCategory/',{{$category['id']}})" 
+                                        <button onclick="deleteItem('/deleteCategory/',{{$category['id']}})"
                                             class="text-gray-100 hover:text-white bg-rose-800 p-2 rounded-md hover:bg-rose-900 px-3 flex gap-1.5 cursor-pointer duration-150">
 
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
@@ -145,8 +155,8 @@
 
 
                 {{-- {{$categories->links()}} --}}
-               
-               {{-- href="?page=2" --}}
+
+                {{-- href="?page=2" --}}
                 {{-- {{ $categories->links('vendor.pagination.tailwind') }} --}}
 
                 {{-- <nav>
@@ -157,7 +167,7 @@
 
 
 
-                
+
 
 
             </div>

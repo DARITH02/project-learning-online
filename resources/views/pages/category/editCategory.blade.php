@@ -1,21 +1,23 @@
 @extends('app.app')
 @section('contents')
   <div class="w-full p-8">
-    <x-headding-page>
-    <x-slot name='headding'>Update Cetegory </x-slot>
-    <x-slot name='title1'>Category</x-slot>
-    <x-slot name='title2'>Create</x-slot>
-    </x-headding-page>
-
-    <button onclick="loadPage('{{route('viewcategory')}}')"
-    class="cursor-pointer hover:bg-gray-500 duration-200 bg-gray-300 px-3 py-2 my-2 rounded-md"><svg
+    <div class="flex w-full items-center">
+    <a href="{{route('viewcategory')}}"
+      class=" block w- cursor-pointer hover:bg-gray-500 duration-200  px-3 py-2 my-2 rounded-md"><svg
       xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
       stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
       class="lucide lucide-circle-arrow-left-icon lucide-circle-arrow-left">
       <circle cx="12" cy="12" r="10" />
       <path d="m12 8-4 4 4 4" />
       <path d="M16 12H8" />
-    </svg></button>
+      </svg>
+    </a>
+    <x-headding-page class="block w-full">
+      <x-slot name='headding'>Category</x-slot>
+      <x-slot name='title1'>category</x-slot>
+      <x-slot name='title2'>Update</x-slot>
+    </x-headding-page>
+    </div>
     <div class="bg-mode mx-auto rounded-lg shadow-sm m-5 p-7">
     <form id="form-update-crategory" class="space-y-6" data-url="{{ route('updateCategory.update') }}">
       <!-- Title Field -->

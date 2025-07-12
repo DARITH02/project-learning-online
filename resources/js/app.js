@@ -237,24 +237,21 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 window.loadPage = function (url) {
+
     fetch(url, {
         headers: {
-            "X-Requested-With": "XMLHttpRequest", // Let Laravel know this is an AJAX request
+            "X-Requested-With": "XMLHttpRequest", // Let Laravel know this is
         },
     })
         .then((response) => response.text())
         .then((html) => {
             const container = document.getElementById("main-content");
-           const title= document.querySelector("title");
-        
-        
-        
-           
-
+            const title = document.querySelector("title");
 
             if (container) {
+                // window.location.replace(url)
                 container.innerHTML = html;
-// title.innerText=response.title;
+                // title.innerText=response.title;
                 //                 document.addEventListener("click", function (e) {
                 //     if (e.target.closest(".pagination a")) {
                 //         e.preventDefault();
@@ -272,10 +269,6 @@ window.loadPage = function (url) {
                     document.title = newTitle;
                 }
                 console.log(newTitle);
-                
-
-
-
 
                 const theme = localStorage.getItem("theme") || "light";
                 const bgMode = document.querySelectorAll(".bg-mode");
@@ -431,7 +424,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const url = frmSelector.getAttribute("data-url");
         console.log(url);
-        
+
         axios
             .post(url, frmData)
             .then((response) => {
@@ -456,7 +449,6 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     window.deleteItem = (route, id) => {
-        console.log(route, id);
 
         Swal.fire({
             title: "Are you sure?",
@@ -474,9 +466,15 @@ document.addEventListener("DOMContentLoaded", () => {
                         const row = document.querySelector(
                             `.category-row-${id}`
                         );
+
                         if (row) {
                             row.remove();
                         }
+                        if (route == "/delete-module/") {
+                            console.log(10);
+
+                        }
+
 
                         if (response.status === 200) {
                             notyf.success(response.data.message);
@@ -514,23 +512,48 @@ document.addEventListener("DOMContentLoaded", () => {
         let frmData = new FormData(frmSelector);
         const url = frmSelector.getAttribute("data-url");
         // const valueTitlte = document.getElementById("ttlel_up");
+        const files = frmSelector.querySelectorAll("input, select");
 
-        // if (valueTitlte.value.trim() === "") {
-        //     notyf.open({
-        //         type: "warning",
-        //         message: "Empty field please enter it......!",
-        //     });
 
-        //     valueTitlte.focus();
-        //     return;
-        // }
-
+        for (const file of files) {
+            if (!file.value.trim()) {
+                notyf.open({
+                    type: "warning",
+                    message: "Empty field please enter it......!",
+                });
+                file.focus();
+            }
+        }
         axios
-            .post(url, frmData)
+            .post(url, frmData, {
+                headers: {
+                    "X-CSRF-TOKEN": document.querySelector(
+                        'meta[name="csrf-token"]'
+                    ).content,
+                    "Content-Type": "multipart/form-data",
+                },
+            })
             .then((response) => {
                 if (response.status == 200) {
                     // loadPage("/viewCourses");
                     notyf.success(response.data.message);
+                }
+                const files = frmSelector.querySelectorAll(
+                    "input, select,textarea"
+                );
+                for (const file of files) {
+                    file.value = "";
+                }
+                console.log(response.data.data);
+                const row = document.querySelector(
+                    `.category-row-${response.data.data.id}`
+                );
+
+                if (url == "/update-module") {
+                    const txt = row?.querySelector('.txt-title');
+                    txt.textContent = response.data.data.title;
+
+
                 }
                 // console.log(response.data.data);
             })
@@ -539,7 +562,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 if (error.status == 500) {
                     // notyf.success(response.data.message);
-                    notyf.error("Doubplicate");
+                    notyf.error("An unexpected error occurred");
                 }
             });
     };
@@ -580,11 +603,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     response.data.html.forEach((e, i) => {
                         tr += `
                       <tr id="category-row-{{$category->id}}" class="hover:bg-gray-50">
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${
-                                i + 1
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${i + 1
                             }</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${
-                                e["title"]
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${e["title"]
                             }</td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
@@ -601,9 +622,8 @@ document.addEventListener("DOMContentLoaded", () => {
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">10-12-2024</td>
                             <td class="px-6 py-4 whitespace-nowrap flex space-x-2.5" colspan="2">
-                                <button type="button" onclick="loadPage('{{ route('editCate', ${
-                                    e["i"]
-                                }) }}')"
+                                <button type="button" onclick="loadPage('{{ route('editCate', ${e["i"]
+                            }) }}')"
                                     class="text-gray-100 hover:text-white bg-blue-500 p-2 rounded-md hover:bg-blue-700 flex px-3 gap-1.5 cursor-pointer duration-150">
 
 
@@ -844,16 +864,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // uplaod multiples images
-    window.uploadMultipleImages = (selector, selectText) => {
+    window.uploadMultipleImages = (selector) => {
         const frmSelector = document.querySelector(selector);
-        const text = frmSelector.querySelector(selectText);
+        // const text = frmSelector.querySelector(selectText);
         let frmData = new FormData();
 
         // const file = imgSelector.files;
         window.selectedVideos.forEach((file) => {
             frmData.append("videos[]", file);
         });
-        frmData.append("course", text.value);
+        // frmData.append("course", frmData.value);
+        const courseSelect = frmSelector.querySelector('[name="course"]');
+        const moduleSelect = frmSelector.querySelector('[name="module"]');
+
+        frmData.append("course", courseSelect?.value || "");
+        frmData.append("module", moduleSelect?.value || "");
+
         const url = frmSelector.getAttribute("data-url");
 
         axios
@@ -871,7 +897,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 // },
             })
             .then((response) => {
-               
                 notyf.success(response.data.message);
                 frmData = new FormData();
                 frmSelector.reset();
@@ -907,23 +932,20 @@ document.addEventListener("DOMContentLoaded", () => {
         // }
     };
 
-    window.clearFrmVideos=(selector,selectText)=>{
-           const frmSelector = document.querySelector(selector);
+    window.clearFrmVideos = (selector, selectText) => {
+        const frmSelector = document.querySelector(selector);
         const text = frmSelector.querySelector(selectText);
-    
+
         //    frmData = new FormData();
-                frmSelector.reset();
-                window.selectedVideos = [];
+        frmSelector.reset();
+        window.selectedVideos = [];
 
-                const previewContainer =
-                    document.getElementById("video-preview");
-                if (previewContainer) previewContainer.innerHTML = "";
+        const previewContainer = document.getElementById("video-preview");
+        if (previewContainer) previewContainer.innerHTML = "";
 
-                const counterEl = document.getElementById("video-count");
-                if (counterEl)
-                    counterEl.textContent = "Selected videos under 100MB: 0";
-
-    }
+        const counterEl = document.getElementById("video-count");
+        if (counterEl) counterEl.textContent = "Selected videos under 100MB: 0";
+    };
 
     // form.addEventListener("submit", function (e) {
     //     e.preventDefault();
@@ -947,4 +969,70 @@ document.addEventListener("DOMContentLoaded", () => {
     //             alert("Upload failed.");
     //         });
     // });
+
+    window.handleAction = function (event) {
+        // Hide all popups first
+        document.querySelectorAll(".action-modal").forEach((modal) => {
+            modal.classList.add("hidden");
+            modal.classList.remove("opacity-100");
+        });
+
+        // Only handle if an .action button was clicked
+        const actionBtn = event.target.closest(".action");
+        if (actionBtn) {
+            // Prevent the event from bubbling up and closing the modal immediately
+            event.stopPropagation();
+
+            // Find the modal next to the clicked button
+            const modal = actionBtn.nextElementSibling;
+            if (modal && modal.classList.contains("action-modal")) {
+                modal.classList.remove("hidden");
+                setTimeout(() => {
+                    modal.classList.add("opacity-100");
+                }, 10);
+            }
+        }
+    };
+
+    // Hide all popups when clicking anywhere else
+    document.addEventListener("click", window.handleAction);
+
+    // Prevent closing when clicking inside the popup
+    document.querySelectorAll(".action-modal").forEach((modal) => {
+        modal.addEventListener("click", function (e) {
+            e.stopPropagation();
+        });
+    });
+
+    window.showModalModule = (id, title) => {
+        const txt_title = document.querySelector(".update_module");
+        const txt_id = document.querySelector(".id_module");
+        txt_title.value = title;
+        txt_id.value = id;
+    };
+
+    window.getModule = (id) => {
+        console.log(id);
+
+        axios
+            .get(`/get-modules/${id}`)
+            .then((response) => {
+                // console.log(response.data);
+                const courseSelect = document.getElementById('module');
+                courseSelect.innerHTML = '<option value="" hidden>Please select course</option>';
+                response.data.data.forEach((module) => {
+                    console.log(module);
+                    const option = document.createElement('option');
+                    option.value = module.id;
+                    option.textContent = module.title;
+                    courseSelect.appendChild(option);
+
+                })
+
+            })
+            .catch((error) => {
+                console.error("Error fetching module data:", error);
+            });
+    }
+
 });

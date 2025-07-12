@@ -7,7 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Courses extends Model
 {
     protected $table = 'courses';
-    protected $fillable = ['title', 'thumbnail', 'price', 'status', 'cate_id', 'description', 'level'];
+    protected $fillable = [
+        'title',
+        'thumbnail',
+        'price',
+        'status',
+        'cate_id',
+        'description',
+        'level'
+    ];
 
     public function category()
     {
@@ -15,12 +23,13 @@ class Courses extends Model
     }
     public function video()
     {
-        return $this->hasMany(Lession::class, 'course_id');
+        return $this->hasMany(
+            Lession::class,
+            'course_id'
+        );
     }
     public function modules()
     {
         return $this->hasMany(Module::class, 'course_id');
     }
-
-
 }

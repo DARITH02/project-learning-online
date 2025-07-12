@@ -4,21 +4,24 @@
 
 
     <div class="w-full p-8">
-        <x-headding-page>
-            <x-slot name='headding'>Create Courses </x-slot>
-            <x-slot name='title1'>Category</x-slot>
-            <x-slot name='title2'>Create</x-slot>
-        </x-headding-page>
-        <a href="{{route('viewCourses')}}"
-            class=" inline-block cursor-pointer hover:bg-gray-500 duration-200 bg-gray-300 px-3 py-2 my-2 rounded-md"><svg
-                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="lucide lucide-circle-arrow-left-icon lucide-circle-arrow-left">
-                <circle cx="12" cy="12" r="10" />
-                <path d="m12 8-4 4 4 4" />
-                <path d="M16 12H8" />
-            </svg>
-        </a>
+        <div class="flex w-full items-center">
+            <a href="{{route('viewCourses')}}"
+                class=" block w- cursor-pointer hover:bg-gray-500 duration-200  px-3 py-2 my-2 rounded-md"><svg
+                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-circle-arrow-left-icon lucide-circle-arrow-left">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="m12 8-4 4 4 4" />
+                    <path d="M16 12H8" />
+                </svg>
+            </a>
+            <x-headding-page class="block w-full">
+                <x-slot name='headding'>Modules</x-slot>
+                <x-slot name='title1'>modules</x-slot>
+                <x-slot name='title2'>Create</x-slot>
+            </x-headding-page>
+        </div>
+
 
         <div class="bg-mode mx-auto rounded-lg shadow-sm z-0">
             {{-- <form id="form-courses" class="space-y-6" data-url="{{ route('create-courses.store') }}">
@@ -91,7 +94,7 @@
                             <select id="category" name="category"
                                 class="w-full px-3 py-2.5 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                 required>
-                                <option  selected disabled>Select Category</option>
+                                <option selected disabled>Select Category</option>
                                 @foreach ($category as $cate)
                                     <option value="{{$cate->id}}"> {{$cate->title}}</option>
                                 @endforeach
@@ -301,7 +304,8 @@
                         <div class="w-1/2 h-full">
                             <label for="" class="block text-sm font-medium text-gray-700 mb-2">description</label>
                             <textarea name="description" rows="" cols="" id=""
-                                class="w-full h-50 block border-2 rounded-md border-gray-400 shadow-md p-5" placeholder="description here....."></textarea>
+                                class="w-full h-50 block border-2 rounded-md border-gray-400 shadow-md p-5"
+                                placeholder="description here....."></textarea>
                         </div>
 
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Courses;
 use App\Models\Lession;
+use App\Models\Module;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use function Pest\Laravel\json;
@@ -23,6 +24,7 @@ class LessionController extends Controller
     }
     public function store(Request $request)
     {
+       
         // ✅ Validate video files
         $validator = validator([
             // 'videos' => 'required|array',
@@ -62,6 +64,7 @@ class LessionController extends Controller
 
             Lession::create([
                 'course_id' => $request['course'],
+                'module_id' => $request['module'],
                 'video_path' => $path
             ]);
         }
@@ -72,5 +75,14 @@ class LessionController extends Controller
             'message' => 'Videos uploaded successfully.',
             'data' => $paths
         ], 200); // Created
+    }
+    public function getModules($id)
+    {
+        $modules = Module::where('course_id', $id)->get();
+        $course = Courses::with('modules')->find($id);
+        return response()->json([
+            'status' => 'success',
+            'data' => $course->modules
+        ]);
     }
 }

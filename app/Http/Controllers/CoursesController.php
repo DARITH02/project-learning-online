@@ -15,7 +15,7 @@ class CoursesController extends Controller
 {
     public function index(Request $request)
     {
-        $data = Courses::with('category')->get();
+        $data = Courses::with(['category', 'modules'])->withCount('modules')->get();
 
         if ($request->ajax()) {
             return view('pages.courses.coursesList', compact('data'))->renderSections()['contents'];
@@ -34,7 +34,7 @@ class CoursesController extends Controller
     }
     public function store(Request $request)
     {
-        
+
         try {
             $validated = $request->validate([
                 'title' => 'required|unique:courses,title',
@@ -102,7 +102,7 @@ class CoursesController extends Controller
     {
         $find = Courses::with('category:id,title')->find($id);
         // $data = Courses::select('status', 'level')->get();
-        $category=Category::lazy();
+        $category = Category::lazy();
         if (request()->ajax()) {
             return view('pages.courses.formUpdate', compact(['find', 'category']))->renderSections()['contents'];
         }

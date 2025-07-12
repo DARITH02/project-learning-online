@@ -4,12 +4,23 @@
     <div class="p-7">
         <div class="w-full">
             <!-- Header Section -->
-            <x-headding-page class="rounded-md">
-                <x-slot name='headding'>Create Courses</x-slot>
-                <x-slot name='title1'>Courses</x-slot>
-                <x-slot name='title2'>View Courses</x-slot>
-                {{-- <x-slot name='title3'> </x-slot> --}}
-            </x-headding-page>
+            <div class="flex w-full items-center">
+                <a href="{{route('viewCourses')}}"
+                    class=" block w- cursor-pointer hover:bg-gray-500 duration-200  px-3 py-2 my-2 rounded-md"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-circle-arrow-left-icon lucide-circle-arrow-left">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="m12 8-4 4 4 4" />
+                        <path d="M16 12H8" />
+                    </svg>
+                </a>
+                <x-headding-page class="block w-full">
+                    <x-slot name='headding'>Courses</x-slot>
+                    <x-slot name='title1'>course</x-slot>
+                    <x-slot name='title2'>View All</x-slot>
+                </x-headding-page>
+            </div>
 
             <!-- Main Content -->
             <div class="w-full mt-5 bg-mode">
@@ -124,7 +135,7 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{$datas->cate_id}}</td>
 
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            <div>Total Section : 12.00</div>
+                                            <div>Total Section : {{$datas->modules_count}}</div>
                                             <div>Total Lesson : 4.00</div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">0.00</td>
@@ -142,8 +153,76 @@
                                                 {{$datas->status}}
                                             </span>
                                         </td>
-                                        <td colspan="2" class="px-6 flex-row space-x-3.5 py-4 whitespace-nowrap">
-                                            <button class="text-blue-700" onclick="loadPage('/update-course/{{$datas->id}}')">
+                                        <td colspan="2" class="px-6 flex-row items-center space-x-3.5 py-4 whitespace-nowrap">
+                                            <span class="inline-block relative z-0">
+                                                <button
+                                                    class="action relative  px-1 py-0.5 rounded-md shadow-2xs cursor-pointer hover:bg-gray-200">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                        stroke-linecap="round" stroke-linejoin="round"
+                                                        class="lucide lucide-ellipsis-vertical-icon lucide-ellipsis-vertical">
+                                                        <circle cx="12" cy="12" r="1" />
+                                                        <circle cx="12" cy="5" r="1" />
+                                                        <circle cx="12" cy="19" r="1" />
+                                                    </svg></button>
+                                                <div id=""
+                                                    class="action-modal absolute top-0 -left-[350%]  z-50 items-center 
+                                                                                                                                                        hidden bg-gray-200 px-3.5 py-2 justify-center  rounded-lg shadow-2xl transition-opacity duration-300">
+                                                    {{-- <div id="actionModalContent"
+                                                        class="bg-white rounded-lg p-8 shadow-lg w-full max-w-md scale-95 opacity-0 transition-all duration-300">
+                                                        <h2 class="text-xl font-bold mb-4">Action Modal</h2>
+                                                        <p>This is your modal content.</p>
+                                                        <button onclick="closeActionModal()"
+                                                            class="mt-4 px-4 py-2 bg-blue-600 text-white rounded">Close</button>
+                                                    </div> --}}
+
+                                                    <ul class="flex flex-col gap-1.5">
+                                                        <li class="cursor-pointer">
+                                                            <a onclick="loadPage('/update-course/{{$datas->id}}')"
+                                                                class="flex gap-1 items-center">
+
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="15"
+                                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                                    stroke-width="2" stroke-linecap="round"
+                                                                    stroke-linejoin="round"
+                                                                    class="lucide lucide-squarse-pen-icon lucide-square-pen">
+                                                                    <path
+                                                                        d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                                                                    <path
+                                                                        d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z" />
+                                                                </svg>
+                                                                Course
+                                                            </a>
+
+                                                        </li>
+                                                        <li class="">
+                                                            <a onclick="loadPage('/edit-module/{{$datas->id}}')"
+                                                                class="flex gap-1 cursor-pointer items-center">
+
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="15"
+                                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                                    stroke-width="2" stroke-linecap="round"
+                                                                    stroke-linejoin="round"
+                                                                    class="lucide lucide-squarse-pen-icon lucide-square-pen">
+                                                                    <path
+                                                                        d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                                                                    <path
+                                                                        d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z" />
+                                                                </svg>
+                                                                Modules
+                                                            </a>
+
+                                                        </li>
+
+                                                    </ul>
+
+                                                </div>
+
+
+                                            </span>
+
+                                            {{-- <button class="text-blue-700"
+                                                onclick="loadPage('/update-course/{{$datas->id}}')">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                                     stroke-linecap="round" stroke-linejoin="round"
@@ -152,7 +231,7 @@
                                                     <path
                                                         d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z" />
                                                 </svg>
-                                            </button>
+                                            </button> --}}
                                             <button class="text-red-800" onclick="deleteItem('/del-course/',{{$datas->id}})"
                                                 data-url="">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"

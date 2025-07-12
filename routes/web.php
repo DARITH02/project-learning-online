@@ -14,6 +14,7 @@ use App\Models\Courses;
 use Illuminate\Support\Facades\Route;
 use function PHPUnit\Framework\returnValueMap;
 use Illuminate\Http\Request;
+use Symfony\Component\Routing\Attribute\Route as AttributeRoute;
 
 Route::get('/', [DashboardController::class, 'index'])->name('/');
 
@@ -58,12 +59,17 @@ Route::delete('/del-course/{id}', [CoursesController::class, 'destroy'])->name('
 Route::get('/modules', [ModuleController::class, 'index'])->name('modules.index');
 Route::get('/create-module', [ModuleController::class, 'show'])->name('create-module');
 Route::post('/create-module',[ModuleController::class,'store'])->name('create-module.store');
+Route::get('/edit-module/{id}', [ModuleController::class, 'edit'])->name('edit-module');
+
+Route::post('/update-module', [ModuleController::class, 'update'])->name('update-module');
+Route::delete('/delete-module/{id}', [ModuleController::class, 'destroy'])->name('delete-module');
 
 
 
 //lession
 Route::get('/lessionCreate', [LessionController::class, 'create'])->name('lessionCreate');
 Route::post('/create-lession', [LessionController::class, 'store'])->name('create-lession.store');
+Route::get('/get-modules/{id}', [LessionController::class, 'getModules'])->name('get-modules');
 
 
 

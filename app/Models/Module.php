@@ -13,4 +13,8 @@ class Module extends Model
     {
         return $this->belongsTo(Courses::class, 'course_id');
     }
+    public function lessions()
+    {
+        return $this->hasMany(Lession::class, 'module_id');
+    }
 }
