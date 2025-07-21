@@ -11,7 +11,11 @@
     <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    {{--
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    <script src="{{ asset('js/app.js') }}"></script> --}}
 
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

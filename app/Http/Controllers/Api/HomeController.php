@@ -23,12 +23,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $courses = Courses::all();
 
+        $courses = Courses::all();
         return response()->json([
             'success' => true,
             'data' => $courses
         ]);
+
     }
 
     /**
@@ -51,12 +52,14 @@ class HomeController extends Controller
      */
     public function find_course($id)
     {
-        $find_course = Courses::with('video')->find($id);
+
+        $find_course = Courses::with(['category', 'modules', 'video'])->find($id);
 
         return response()->json([
             'success' => true,
             'data' => $find_course
         ]);
+
     }
 
     /**
@@ -73,10 +76,12 @@ class HomeController extends Controller
     public function show_category()
     {
         $category = Category::all();
-
         return response()->json([
             'success' => true,
             'data' => $category
         ]);
     }
+
+
+
 }
