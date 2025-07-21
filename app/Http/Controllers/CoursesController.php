@@ -30,7 +30,6 @@ class CoursesController extends Controller
             return view('pages.courses.formCreate', compact('category'))->renderSections()['contents'];
         }
         return view('pages.courses.formCreate', compact('category'));
-
     }
     public function store(Request $request)
     {
@@ -63,14 +62,11 @@ class CoursesController extends Controller
                 'message' => 'Course created successfully.',
                 'data' => $course,
             ], 200);
-
-
         } catch (\Illuminate\Validation\ValidationException $e) {
             return response()->json([
                 'message' => 'Validation failed empty fields.',
                 'errors' => $e->errors()
             ], 422);
-
         } catch (\Throwable $e) {
             \Log::error('Course creation error: ' . $e->getMessage());
 
@@ -79,24 +75,7 @@ class CoursesController extends Controller
             ], 500);
         }
 
-        // $credentials = $request->validate([
-        //     'title' => 'required|unique:courses,title',
-        //     'price' => 'required|numeric',
-        //     'image' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048',
-        // ]);
-        // $image = $request->file('image');
-        // // $imageName=time().'_'. uniqid().$image->getClientOriginalName();
-        // $path = $image->store("images", "public");
 
-
-        // $create = Courses::create([
-        //     'title' => $request['title'],
-        //     'price' => $request['price'],
-        //     'status' => $request['status'],
-        //     'thumbnail' => $path
-        // ]);
-
-        // return response()->json($create);
     }
     public function edit($id)
     {
@@ -107,7 +86,6 @@ class CoursesController extends Controller
             return view('pages.courses.formUpdate', compact(['find', 'category']))->renderSections()['contents'];
         }
         return view('pages.courses.formUpdate', compact(['find', 'category']));
-
     }
 
     public function update(Request $request, $id)
@@ -129,14 +107,6 @@ class CoursesController extends Controller
             ], 422);
         }
 
-
-
-
-        // $credentials = $request->validate([
-        //     'title' => 'required|unique:courses,title',
-        //     'price' => 'required|numeric',
-        //     'image' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048',
-        // ]);
         $path = $findData['thumbnail'];
 
         if ($request->hasFile('image')) {
@@ -158,19 +128,7 @@ class CoursesController extends Controller
         ]);
 
         return response()->json(['message' => 'Course updated successfully']);
-
-
     }
-
-
-
-
-
-
-
-
-
-
     public function destroy($id)
     {
 
@@ -181,7 +139,6 @@ class CoursesController extends Controller
             if ($course->thumbnail) {
                 // Storage::delete('public/' . $course->thumbnail); // this deletes storage/app/public/images/...
                 Storage::disk('public')->delete($course->thumbnail);
-
             }
             if ($course->delete()) {
                 return response()->json(['message' => 'record has been delete successfully ......!', 'data' => $course['title']], 200);
@@ -190,18 +147,6 @@ class CoursesController extends Controller
 
         } catch (\Throwable $th) {
             return response()->json(['message' => 'record has been delete successfully ......!', 'data' => $course['title']], 200);
-
         }
-
-
-
-
     }
-
-
-
-
-
-
-
 }
