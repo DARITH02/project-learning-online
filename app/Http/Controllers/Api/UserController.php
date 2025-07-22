@@ -62,10 +62,8 @@ class UserController extends Controller
             'password' => Hash::make($request['password'])
         ]);
         $token = $user->createToken('api-token')->plainTextToken;
-        // return response()->json([
-        //     'access_token' => $token,
-        // ]);
-
+     // return response()->json([
+    
         return response()->json([
             'success' => true,
             'message' => 'User registered successfully',

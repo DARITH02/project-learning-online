@@ -12,11 +12,6 @@ Route::post('/registration', [UserController::class, 'store']);
 Route::post('/login', [UserController::class, 'login']);
 
 
-// routes/api.php
-Route::get('/cart', function () {
-    return response()->json(['cart' => [1, 2, 3]]);
-});
-
 
 
 // Route::get('/view-course/{id}', [HomeController::class, 'find_course']);
