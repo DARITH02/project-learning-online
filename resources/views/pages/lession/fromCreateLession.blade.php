@@ -1,7 +1,7 @@
 @extends('app.app')
 @section('contents')
 
-    <div class="w-full px-7 mx-auto space-y-4">
+    <div class="w-full px-7 mx-auto">
         <!-- Upload Area -->
         <div class="flex w-full items-center">
             <a href="{{route('viewCourses')}}"

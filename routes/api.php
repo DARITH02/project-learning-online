@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\CategroyController;
 use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Auth\GoogleLoginController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
@@ -10,6 +11,11 @@ Route::get('/users', [HomeController::class, 'index']);
 
 Route::post('/registration', [UserController::class, 'store']);
 Route::post('/login', [UserController::class, 'login']);
+
+// route registration google
+Route::post('/google-registraion', [GoogleLoginController::class, 'register']);
+
+Route::post('/google-login', [GoogleLoginController::class, 'login']);
 
 
 

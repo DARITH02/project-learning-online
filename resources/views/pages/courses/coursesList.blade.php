@@ -1,7 +1,7 @@
 @extends('app.app')
 @section('contents')
 
-    <div class="p-7">
+    <div class="px-7">
         <div class="w-full">
             <!-- Header Section -->
             <div class="flex w-full items-center">
@@ -23,7 +23,7 @@
             </div>
 
             <!-- Main Content -->
-            <div class="w-full mt-5 bg-mode">
+            <div class="w-full mt-5">
                 <div class="rounded-lg shadow-sm">
                     <!-- Controls Section -->
                     <div class="p-6 border-b border-gray-200">
@@ -256,5 +256,7 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('js/loadingPage.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 
-@endsection
+    @endsection

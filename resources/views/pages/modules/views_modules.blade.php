@@ -2,7 +2,7 @@
 @extends('app.app')
 @section('contents')
     
-    <div class=" bg-mode mx-auto px-4 py-8">
+    <div class=" bg-mode mx-auto px-4 ">
         <!-- Header Section -->
         <div class="mb-8">
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">

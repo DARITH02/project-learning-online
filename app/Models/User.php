@@ -24,6 +24,9 @@ class User extends Authenticatable
         'password',
         'role_id'
     ];
+    public function purchases(){
+        return $this->hasMany(CoursePurchase::class,'user_id');
+    }
 
     /**
      * The attributes that should be hidden for serialization.

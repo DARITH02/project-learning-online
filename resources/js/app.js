@@ -1,9 +1,5 @@
 import axios from "axios";
 
-import { data } from "autoprefixer";
-
-lucide.createIcons();
-
 const bgMode = document.querySelectorAll(".bg-mode");
 const themeIcon = document.getElementById("theme-icon");
 
@@ -25,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         setIconTheme(true);
         bgMode.forEach((e) => {
-            e.classList.add("bg-[#212529]");
+            e.classList.add("bg-[#23272f]");
             e.classList.remove("bg-[#f8f9fa]");
         });
     } else {
@@ -33,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.classList.remove("dark");
         // document.body.classList.add("light");
         bgMode.forEach((e) => {
-            e.classList.remove("bg-[#212529]");
+            e.classList.remove("bg-[#23272f]");
             e.classList.add("bg-[#f8f9fa]");
         });
     }
@@ -51,7 +47,7 @@ document.getElementById("toggle-theme").addEventListener("click", () => {
         document.body.classList.remove("light");
 
         bgMode.forEach((e) => {
-            e.classList.add("bg-[#212529]");
+            e.classList.add("bg-[#23272f]");
             e.classList.remove("bg-[#f8f9fa]");
         });
     } else {
@@ -60,7 +56,7 @@ document.getElementById("toggle-theme").addEventListener("click", () => {
 
         bgMode.forEach((e) => {
             e.classList.add("bg-[#f8f9fa]");
-            e.classList.remove("bg-[#212529]");
+            e.classList.remove("bg-[#23272f]");
         });
     }
 });
@@ -236,67 +232,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (firstHeader) window.toggleSubmenu(firstHeader);
 });
 
-window.loadPage = function (url) {
-
-    fetch(url, {
-        headers: {
-            "X-Requested-With": "XMLHttpRequest", // Let Laravel know this is
-        },
-    })
-        .then((response) => response.text())
-        .then((html) => {
-            const container = document.getElementById("main-content");
-            const title = document.querySelector("title");
-
-            if (container) {
-                // window.location.replace(url)
-                container.innerHTML = html;
-                // title.innerText=response.title;
-                //                 document.addEventListener("click", function (e) {
-                //     if (e.target.closest(".pagination a")) {
-                //         e.preventDefault();
-                //         //   console.log("Pagination link clicked:", e.target.closest("a").href);
-                //         // const url = e.target.closest("a").getAttribute("href");
-                //         const url = e.target.closest("a").href;
-
-                //     }
-                // });
-
-                const tempDom = document.createElement("html");
-                tempDom.innerHTML = html;
-                const newTitle = tempDom.querySelector("title")?.innerText;
-                if (newTitle) {
-                    document.title = newTitle;
-                }
-                console.log(newTitle);
-
-                const theme = localStorage.getItem("theme") || "light";
-                const bgMode = document.querySelectorAll(".bg-mode");
-
-                bgMode.forEach((el) => {
-                    // Remove any existing theme classes
-                    // el.classList.remove("bg-blue-500", "bg-[#f8f9fa]");
-
-                    if (theme === "dark") {
-                        el.classList.add("bg-[#212529]");
-                        el.classList.remove("bg-[#f8f9fa]");
-                        // el.classList.add("bg-blue-500"); // dark theme color
-                    } else {
-                        el.classList.add("bg-[#f8f9fa]"); // light theme color
-                        el.classList.remove("bg-[#212529]");
-                    }
-                });
-
-                // ✅ Update browser URL without reloading
-                history.pushState({ url: url }, "", url);
-            } else {
-                console.error("#main-content container not found.");
-            }
-        })
-        .catch((error) => {
-            console.error("Error loading page:", error);
-        });
-};
 window.previewImg = (input) => {
     // console.log(item.classList.contains("preview"));
     // const url=document.g
@@ -350,22 +285,22 @@ window.addEventListener("popstate", function (e) {
 // });
 
 // ✅ Handle browser back/forward buttons
-window.addEventListener("popstate", function (event) {
-    const state = event.state;
-    if (state && state.url) {
-        loadPage(state.url);
-    }
-});
+// window.addEventListener("popstate", function (event) {
+//     const state = event.state;
+//     if (state && state.url) {
+//         loadPage(state.url);
+//     }
+// });
 
 // ✅ On first load: check if not homepage and auto-load
-document.addEventListener("DOMContentLoaded", function () {
-    const currentPath = window.location.pathname;
+// document.addEventListener("DOMContentLoaded", function () {
+//     const currentPath = window.location.pathname;
 
-    // Only load dynamically if not on the homepage
-    if (currentPath !== "/") {
-        loadPage(currentPath);
-    }
-});
+//     // Only load dynamically if not on the homepage
+//     if (currentPath !== "/") {
+//         loadPage(currentPath);
+//     }
+// });
 
 //create data
 
@@ -449,7 +384,6 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     window.deleteItem = (route, id) => {
-
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -472,9 +406,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         }
                         if (route == "/delete-module/") {
                             console.log(10);
-
                         }
-
 
                         if (response.status === 200) {
                             notyf.success(response.data.message);
@@ -514,7 +446,6 @@ document.addEventListener("DOMContentLoaded", () => {
         // const valueTitlte = document.getElementById("ttlel_up");
         const files = frmSelector.querySelectorAll("input, select");
 
-
         for (const file of files) {
             if (!file.value.trim()) {
                 notyf.open({
@@ -550,10 +481,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 );
 
                 if (url == "/update-module") {
-                    const txt = row?.querySelector('.txt-title');
+                    const txt = row?.querySelector(".txt-title");
                     txt.textContent = response.data.data.title;
-
-
                 }
                 // console.log(response.data.data);
             })
@@ -603,9 +532,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     response.data.html.forEach((e, i) => {
                         tr += `
                       <tr id="category-row-{{$category->id}}" class="hover:bg-gray-50">
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${i + 1
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${
+                                i + 1
                             }</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${e["title"]
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${
+                                e["title"]
                             }</td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
@@ -622,8 +553,9 @@ document.addEventListener("DOMContentLoaded", () => {
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">10-12-2024</td>
                             <td class="px-6 py-4 whitespace-nowrap flex space-x-2.5" colspan="2">
-                                <button type="button" onclick="loadPage('{{ route('editCate', ${e["i"]
-                            }) }}')"
+                                <button type="button" onclick="loadPage('{{ route('editCate', ${
+                                    e["i"]
+                                }) }}')"
                                     class="text-gray-100 hover:text-white bg-blue-500 p-2 rounded-md hover:bg-blue-700 flex px-3 gap-1.5 cursor-pointer duration-150">
 
 
@@ -1018,21 +950,50 @@ document.addEventListener("DOMContentLoaded", () => {
             .get(`/get-modules/${id}`)
             .then((response) => {
                 // console.log(response.data);
-                const courseSelect = document.getElementById('module');
-                courseSelect.innerHTML = '<option value="" hidden>Please select course</option>';
+                const courseSelect = document.getElementById("module");
+                courseSelect.innerHTML =
+                    '<option value="" hidden>Please select course</option>';
                 response.data.data.forEach((module) => {
                     console.log(module);
-                    const option = document.createElement('option');
+                    const option = document.createElement("option");
                     option.value = module.id;
                     option.textContent = module.title;
                     courseSelect.appendChild(option);
-
-                })
-
+                });
             })
             .catch((error) => {
                 console.error("Error fetching module data:", error);
             });
-    }
+    };
 
+    window.view = (id) => {
+        fetch(`/get-user/${id}`)
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+
+                let tr = "";
+                tr = `
+                    <tr class=border-gray-200">
+                            <th scope="row"
+                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                               ${data["id"]}
+                            </th>
+                            <td class="px-6 py-4">
+                               ${data["name"]}
+                            </td>
+                            <td class="px-6 py-4">
+                                ${data["email"]}
+                            </td>
+                            <td class="px-6 py-4">
+                             ${(data["purchases"].length> 0) ? data["purchases"].length : "No coures"}
+                            </td> <td class="px-6 py-4">
+                               ${data["created_at"]}
+                            </td>
+                        </tr>
+        
+        `;
+                document.getElementById("tbl_user").innerHTML = tr;
+            });
+    };
 });

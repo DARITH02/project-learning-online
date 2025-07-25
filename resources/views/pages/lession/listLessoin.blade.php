@@ -1,6 +1,6 @@
 @extends('app.app')
 @section('contents')
-    <div class="max-w-4xl mx-auto p-6 bg-white space-y-6">
+    <div class="max-w-4xl mx-auto px-7 bg-white">
         <!-- Course Preview Type -->
         <div class="space-y-2">
             <label for="preview-type" class="text-base font-medium text-gray-700">Course Preview Type</label>

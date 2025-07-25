@@ -1,7 +1,7 @@
 @extends('app.app')
 @section('contents')
 
-    <div class="p-7">
+    <div class="px-7">
         <div class="">
             <div class="shadown w-full">
                 <!-- Header Section -->

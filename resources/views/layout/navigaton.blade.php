@@ -1,7 +1,8 @@
 <nav class="bg-mode w-full px-5 py-2 shadow-sm h-auto z-50">
     <div class="flex justify-between items-center h-16">
+        <div class="w-full"></div>
         <!-- Left side - Back and Home icons -->
-        <div class="flex items-center space-x-4">
+        {{-- <div class="flex items-center space-x-4">
             <button class="p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
@@ -15,12 +16,12 @@
                     </path>
                 </svg>
             </button>
-        </div>
+        </div> --}}
 
         <!-- Right side - Language, Theme, Fullscreen -->
-        <div class="flex items-center space-x-2">
+        <div class="flex justify-end space-x-2">
             <!-- Language Selector -->
-            <div class="relative">
+            {{-- <div class="relative">
                 <button
                     class="flex items-center space-x-1 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors duration-200">
                     <span class="text-sm font-medium ">English</span>
@@ -29,10 +30,10 @@
                         </path>
                     </svg>
                 </button>
-            </div>
+            </div> --}}
 
             <!-- Theme Toggle -->
-            <button id="toggle-theme" class="p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200">
+            <button id="toggle-theme" class="p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200 cursor-pointer">
                 <span id="theme-icon">
 
                     {{-- <svg class="w-5 h-5 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -44,13 +45,13 @@
             </button>
 
             <!-- Fullscreen Toggle -->
-            <button class="p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200">
+            {{-- <button class="p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200">
                 <svg class="w-5 h-5 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4">
                     </path>
                 </svg>
-            </button>
+            </button> --}}
         </div>
     </div>
 

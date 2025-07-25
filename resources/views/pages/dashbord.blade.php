@@ -6,7 +6,13 @@
             <x-headding>
                 Hello, Super Admin
             </x-headding>
-            <button id="add">add</button>
+
+            {{-- <a href="{{ url('/export/excel') }}">Export Excel</a> |
+<a href="{{ url('/export/csv') }}">Export CSV</a> |
+<a href="{{ url('/export/pdf') }}">Export PDF</a> --}}
+
+
+        
             <!-- Stats Cards Container -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Total Student Card -->
@@ -26,6 +32,7 @@
                         <p class="text-3xl font-bold">49</p>
                     </div>
                 </div>
+         
 
                 <!-- Total Instructor Card -->
                 <div class="bg-mode rounded-lg p-6 flex items-center space-x-4">

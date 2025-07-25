@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CoursesController;
@@ -7,8 +8,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LessionController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\PreviewImageController;
-
-
+use App\Http\Controllers\UserExportController;
+use App\Http\Controllers\UsersController;
 use App\Models\Category;
 use App\Models\Courses;
 use Illuminate\Support\Facades\Route;
@@ -72,7 +73,18 @@ Route::post('/create-lession', [LessionController::class, 'store'])->name('creat
 Route::get('/get-modules/{id}', [LessionController::class, 'getModules'])->name('get-modules');
 
 
+//user
+Route::get('/users', [UsersController::class,'index'])->name('users.index');
+Route::get('/filter', [UsersController::class, 'search'])->name('filter');
+Route::get("/get-user/{id}",[UsersController::class,"view"]);
 
+
+
+
+// export 
+Route::get('/export/excel', [UserExportController::class, 'exportExcel']);
+Route::get('/export/csv', [UserExportController::class, 'exportCsv']);
+Route::get('/export/pdf', [UserExportController::class, 'exportPdf']);
 
 
 
@@ -96,38 +108,3 @@ Route::post('/chat', [ChatController::class, 'ask'])->name('chat.ask');
 
 
 
-
-
-
-
-
-
-
-
-//route use with react
-
-// Route::get('/home',fn() =>view('react',['page'=>'home']));
-// Route::get('/{any}', fn () => view('react'))->where('any', '.*');
-
-// Route::get('/', [\App\Http\Controllers\controllerFront\CoursesController::class, 'index']);
-// Route::get('/', [\App\Http\Controllers\controllerFront\CoursesController::class, 'index']);
-
-
-// Route::get('/course', function () {
-//     $data = Courses::all();
-//     $page = 'course';
-//     return view('react', compact(
-//         'page',
-//         'data'
-//     ));
-// });
-// Route::get('/category', function () {
-//     $page = 'category';
-//     $data = Category::all();
-//     return view('react', compact('page', 'data'));
-// });
-// // Route::get('/c')
-
-// Route::get('/{any}', function () {
-//     return view('react');
-// })->where('any', '.*');
