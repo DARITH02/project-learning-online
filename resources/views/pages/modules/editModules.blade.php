@@ -110,17 +110,7 @@
             </div>
         </form>
 
-        {{-- <div id="popup" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center">
-            <!-- Modal Content -->
-            <div class="bg-white max-w-md w-full p-6 rounded-xl shadow-lg relative transform transition-all duration-300 scale-95 opacity-0"
-                id="popupContent">
-                <!-- Close Button -->
-                <button onclick="closePopup()"
-                    class="absolute top-2 right-3 text-gray-400 text-xl hover:text-red-500">&times;</button>
-                <h2 class="text-xl font-bold mb-2">Popup Title</h2>
-                <p class="text-gray-600">This modal uses only Tailwind classes. No config required.</p>
-            </div>
-        </div> --}}
+      
     </div>
     <script>
         function openPopup() {

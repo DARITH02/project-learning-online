@@ -10,6 +10,7 @@ use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\PreviewImageController;
 use App\Http\Controllers\UserExportController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\UsersPurchasesController;
 use App\Models\Category;
 use App\Models\Courses;
 use Illuminate\Support\Facades\Route;
@@ -77,6 +78,20 @@ Route::get('/get-modules/{id}', [LessionController::class, 'getModules'])->name(
 Route::get('/users', [UsersController::class,'index'])->name('users.index');
 Route::get('/filter', [UsersController::class, 'search'])->name('filter');
 Route::get("/get-user/{id}",[UsersController::class,"view"]);
+
+
+// user purcharses
+Route::get("/get-users-purchases", [UsersPurchasesController::class,"index"])->name('get-users-purchases.index');
+
+
+
+
+
+
+Route::get("/add-user",function(){
+    return view("pages.user.purchasesCouses.addPurchases");
+});
+Route::post("/add-users", [UsersController::class, 'add'])->name('add-users');
 
 
 

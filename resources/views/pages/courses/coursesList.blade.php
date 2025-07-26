@@ -28,58 +28,11 @@
                     <!-- Controls Section -->
                     <div class="p-6 border-b border-gray-200">
                         <div class="flex items-center justify-between flex-wrap gap-4">
-                            <div class="flex items-center gap-4 flex-wrap">
-                                <div class="flex items-center gap-2">
-                                    <span class="text-gray-700 font-medium">Show</span>
-                                    <select
-                                        class="border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                        <option>10</option>
-                                        <option>25</option>
-                                        <option>50</option>
-                                        <option>100</option>
-                                    </select>
-                                    <span class="text-gray-700 font-medium">Entries</span>
-                                </div>
-
-                                <select
-                                    class="border border-gray-300 rounded-md px-3 py-2 text-sm text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 min-w-[140px]">
-                                    <option>Select Category</option>
-                                    <option>Software Development</option>
-                                    <option>Website Development</option>
-                                    <option>Mobile Development</option>
-                                    <option>Desktop Development</option>
-                                </select>
-
-                                <select
-                                    class="border border-gray-300 rounded-md px-3 py-2 text-sm text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 min-w-[140px]">
-                                    <option>Select Instructor</option>
-                                    <option>Instructor 1</option>
-                                    <option>Instructor 2</option>
-                                </select>
-
-                                <select
-                                    class="border border-gray-300 rounded-md px-3 py-2 text-sm text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 min-w-[120px]">
-                                    <option>Select Status</option>
-                                    <option>Active</option>
-                                    <option>Inactive</option>
-                                </select>
-
-                                <div class="">
-                                    <input type="text" placeholder="search"
-                                        class="border border-gray-300 rounded-md pl-4 pr-10 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-64">
-                                    <i
-                                        class="fas fa-search absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                                </div>
-
-                                <button
-                                    class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
-                                    Filter
-                                </button>
-                            </div>
+                          
 
                             <button onclick="loadPage('create-courses')"
-                                class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium flex items-center gap-2 transition-colors">
-                                <i class="fas fa-plus"></i>
+                                class="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium flex items-center gap-2 transition-colors">
+                               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-plus-icon lucide-square-plus"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
                                 Add
                             </button>
                         </div>
@@ -232,7 +185,7 @@
                                                         d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z" />
                                                 </svg>
                                             </button> --}}
-                                            <button class="text-red-800" onclick="deleteItem('/del-course/',{{$datas->id}})"
+                                            <button class="text-red-800 cursor-pointer" onclick="deleteItem('/del-course/',{{$datas->id}})"
                                                 data-url="">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"

@@ -63,4 +63,7 @@
         </div>
     </div>
 
+
+ <script src="{{ asset('js/loadingPage.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 @endsection

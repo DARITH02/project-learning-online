@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{$title ?? "home"}}</title>
+  
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
     <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
@@ -43,12 +45,11 @@
         </article>
         <article class="w-4/5 block absolute left-1/5">
             <article class="w-full">
-                <nav class="w-full sticky top-0">
+                <nav class="w-full sticky top-0 z-40 backdrop-opacity-50">
                     @include('layout.navigaton')
                 </nav>
                 <main id="main-content" class="w-full  p-7">
-                    <section class=" shadow-sm">
-
+                    <section class="shadow-sm z-0">
                         @yield('contents')
                     </section>
                 </main>
