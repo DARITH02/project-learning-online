@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Courses;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -26,5 +27,11 @@ class UsersPurchasesController extends Controller
             return view("pages.user.purchasesCouses.userPurchases",compact("users"));
 
         
+    }
+    public function getUsersCourse(){
+
+        $users=User::all();
+        $courses = Courses::all();
+        return response()->json(['users'=>$users,'courses'=>$courses]);
     }
 }

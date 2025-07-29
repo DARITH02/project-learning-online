@@ -20,7 +20,7 @@ class GoogleLoginController extends Controller
         ]);
         $message='';
         // Find or create the user
-        $user = User::where('email', operator: $request['email'])->first();
+        $user = User::where('email',  $request['email'])->first();
 
         if (!$user) {
             $user = User::create([

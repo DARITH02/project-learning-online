@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Download } from "lucide-react";
 
 const bgMode = document.querySelectorAll(".bg-mode");
 const themeIcon = document.getElementById("theme-icon");
@@ -598,9 +599,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
     };
 
-
-    
-
     window.handleAction = function (event) {
         // Hide all popups first
         document.querySelectorAll(".action-modal").forEach((modal) => {
@@ -685,7 +683,11 @@ document.addEventListener("DOMContentLoaded", () => {
                                 ${data["email"]}
                             </td>
                             <td class="px-6 py-4">
-                             ${(data["purchases"].length> 0) ? data["purchases"].length : "No coures"}
+                             ${
+                                 data["purchases"].length > 0
+                                     ? data["purchases"].length
+                                     : "No coures"
+                             }
                             </td> <td class="px-6 py-4">
                                ${data["created_at"]}
                             </td>
@@ -693,6 +695,36 @@ document.addEventListener("DOMContentLoaded", () => {
         
         `;
                 document.getElementById("tbl_user").innerHTML = tr;
+            });
+    };
+
+    window.addUserCourse = () => {
+        let user = [];
+        let cousers = [];
+        const txtUser = document.getElementById("userName");
+        const category = document.getElementById("category");
+
+        axios
+            .get("get-users-course")
+            .then(function (response) {
+                user = response["data"]["users"];
+                user.forEach((user) => {
+                    const option = document.createElement("option");
+
+                    option.value = user["id"];
+                    option.textContent = `${user["name"]} (${user["email"]})`;
+                    txtUser.appendChild(option);
+                });
+                cousers = response["data"]["courses"];
+                cousers.forEach((course) => {
+                    const cateOption = document.createElement("option");
+                    cateOption.value = course["id"];
+                    cateOption.textContent = course["title"];
+                    category.appendChild(cateOption);
+                });
+            })
+            .catch((err) => {
+                console.log(err);
             });
     };
 });

@@ -8,7 +8,7 @@
                     <h1 class="text-3xl font-bold ">Users Management</h1>
                     <p class="text-gray-400 mt-1">Manage and view all registered users</p>
                 </div>
-                <div class="flex gap-3">
+                {{-- <div class="flex gap-3">
                     <button
                         class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors">
                         <i class="fas fa-plus"></i>
@@ -19,7 +19,7 @@
                         <i class="fas fa-download"></i>
                         Export
                     </button>
-                </div>
+                </div> --}}
             </div>
         </div>
 

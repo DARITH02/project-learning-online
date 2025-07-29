@@ -82,7 +82,7 @@ Route::get("/get-user/{id}",[UsersController::class,"view"]);
 
 // user purcharses
 Route::get("/get-users-purchases", [UsersPurchasesController::class,"index"])->name('get-users-purchases.index');
-
+Route::get('/get-users-course', [UsersPurchasesController::class,'getUsersCourse']);
 
 
 
